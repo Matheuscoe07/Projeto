@@ -19,84 +19,117 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header> <!-- Logo e entrar -->
-        <div>
-            <h1>Logo</h1>
-        </div>
-
-        <div>
-            <a href="">Entre ou cadastre-se</a>
-        </div>
-    </header>
     
-    <div> <!-- Corpo real (recomendações + feed)-->
-        <div> <!-- Recomendações -->
-            <h2>Em Alta</h2>
-            <div> <!-- Elemento -->
-                <div> <!-- Foto -->
 
+    <div class="container">
+        <div class="row">
+            <header> <!-- Logo e entrar -->
+                <div class="logo">
+                    <h1>Logo</h1>
                 </div>
-                <h5>AAAAAAAAAAAAAAAAA</h5> <!-- Nome da música -->
-                <h6>AAAAAAAAAAAAAAAAA</h6> <!-- Nome do artista -->
-                <p>Ouvido por Fulano, Ciclano</p>
-            </div>
-            <div> <!-- Elemento -->
-                <div> <!-- Foto -->
             
+                <div class="entrar">
+                    <a href="">Entre ou cadastre-se</a>
                 </div>
-                <h5>AAAAAAAAAAAAAAAAA</h5> <!-- Nome da música -->
-                <h6>AAAAAAAAAAAAAAAAA</h6> <!-- Nome do artista -->
-                <p>Ouvido por Fulano, Ciclano</p>
-            </div>
-            <div> <!-- Elemento -->
-                <div> <!-- Foto -->
+            </header>
+        </div>
+        <div class="row">
+            <div class="col-9"> <!-- col 1 -->
+                <div> <!-- Recomendações -->
+                    <h2>Em Alta</h2>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="elemento"> <!-- Elemento -->
+                                    <img src="assets/AbbeyRoadCover.jpg" alt="" class="capa_album"> <!--A imagem sera importada pelo back-->
+                                    <h5>Here comes the sun</h5> <!-- Nome da música -->
+                                    <h6>Beatles</h6> <!-- Nome do artista -->
+                                    <p>Ouvido por Fulano, Ciclano</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="elemento"> <!-- Elemento -->
+                                    <img src="assets/AbbeyRoadCover.jpg" alt="" class="capa_album"> <!--A imagem sera importada pelo back-->
+                                    <h5>Here comes the sun</h5> <!-- Nome da música -->
+                                    <h6>Beatles</h6> <!-- Nome do artista -->
+                                    <p>Ouvido por Fulano, Ciclano</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="elemento"> <!-- Elemento -->
+                                    <img src="assets/AbbeyRoadCover.jpg" alt="" class="capa_album"> <!--A imagem sera importada pelo back-->
+                                    <h5>Here comes the sun</h5> <!-- Nome da música -->
+                                    <h6>Beatles</h6> <!-- Nome do artista -->
+                                    <p>Ouvido por Fulano, Ciclano</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- Fim da div recomendacoes -->
+                
+                <div> <!-- Feed -->
+                    <h2>Para você</h2>
+                    <div> <!-- Post -->
+                
+                    </div>
+                </div> <!-- Fim do feed -->
+            </div> <!-- Fim da col 1 -->
             
-                </div>
-                <h5>AAAAAAAAAAAAAAAAA</h5> <!-- Nome da música -->
-                <h6>AAAAAAAAAAAAAAAAA</h6> <!-- Nome do artista -->
-                <p>Ouvido por Fulano, Ciclano</p>
-            </div>
-            <div> <!-- Elemento -->
-                <div> <!-- Foto -->
-            
-                </div>
-                <h5>AAAAAAAAAAAAAAAAA</h5> <!-- Nome da música -->
-                <h6>AAAAAAAAAAAAAAAAA</h6> <!-- Nome do artista -->
-                <p>Ouvido por Fulano, Ciclano</p>
-            </div>
-            <div> <!-- Elemento -->
-                <div> <!-- Foto -->
-            
-                </div>
-                <h5>AAAAAAAAAAAAAAAAA</h5> <!-- Nome da música -->
-                <h6>AAAAAAAAAAAAAAAAA</h6> <!-- Nome do artista -->
-                <p>Ouvido por Fulano, Ciclano</p>
-            </div>
-        </div>
-
-        <div> <!-- Feed -->
-            <h2>Para você</h2>
-            <div> <!-- Post -->
-
-            </div>
-        </div>
-    </div>
-
-    <div> <!-- Seção lateral -->
-        <div> <!-- Comunidades -->
-            <h2>Comunidades</h2>
-            <h4>em alta</h4>
-            <div> <!-- Comunidade -->
-
-            </div>
-        </div>
-
-        <div> <!-- Eventos -->
-            <h4>Próximos</h4>
-            <h2>Eventos</h2>
-        </div>
-
-    </div>
+            <div class="col-3"> <!-- col 2 -->
+                <div class="sessao_lateral"> <!-- Seção lateral -->
+                    <div> <!-- Comunidades -->
+                        <div class="titulo_lateral">
+                            <h2>Comunidades</h2>
+                            <h4>em alta</h4>
+                        </div>
+                
+                        <div class="elemento_lateral"> <!-- Comunidade -->
+                            <img src="assets/BeyonceProfile.jpg" alt="" class="perfil_lateral"><!-- Foto importada pelo back -->
+                            <h5>Bey Hive</h5><!-- Titulo -->
+                            <h6>2M de participantes</h6><!-- Descrição -->
+                        </div>
+                
+                        <div class="elemento_lateral"> <!-- Comunidade -->
+                            <img src="assets/BeyonceProfile.jpg" alt="" class="perfil_lateral"><!-- Foto importada pelo back -->
+                            <h5>Bey Hive</h5><!-- Titulo -->
+                            <h6>2M de participantes</h6><!-- Descrição -->
+                        </div>
+                
+                        <div class="elemento_lateral"> <!-- Comunidade -->
+                            <img src="assets/BeyonceProfile.jpg" alt="" class="perfil_lateral"><!-- Foto importada pelo back -->
+                            <h5>Bey Hive</h5><!-- Titulo -->
+                            <h6>2M de participantes</h6><!-- Descrição -->
+                        </div>
+                    </div>
+                
+                    <div> <!-- Eventos -->
+                        <div class="titulo_lateral2">
+                            <h4">Próximos</h4>
+                            <h2>Eventos</h2>
+                        </div>
+                        
+                
+                        <div class="elemento_lateral" <!-- Evento -->
+                            <img src="assets/RockInRioPerfil.png" alt="" class="perfil_lateral"><!-- Foto importada pelo back -->
+                            <h5>Rock In Rio</h5><!-- Titulo -->
+                            <h6>Maior evento de "Rock" do Brasil!</h6><!-- Descrição -->
+                        </div>
+                
+                        <div class="elemento_lateral"> <!-- Evento -->
+                            <img src="assets/RockInRioPerfil.png" alt="" class="perfil_lateral"><!-- Foto importada pelo back -->
+                            <h5>Rock In Rio</h5><!-- Titulo -->
+                            <h6>Maior evento de "Rock" do Brasil!</h6><!-- Descrição -->
+                        </div>
+                
+                        <div class="elemento_lateral"> <!-- Evento -->
+                            <img src="assets/RockInRioPerfil.png" alt="" class="perfil_lateral"><!-- Foto importada pelo back -->
+                            <h5>Rock In Rio</h5><!-- Titulo -->
+                            <h6>Maior evento de "Rock" do Brasil!</h6><!-- Descrição -->
+                        </div>
+                    </div>
+        </div> <!-- Fim da row -->
+    </div> <!-- Fim da container -->
+    
 
     <!-- JavaScript -->
 
