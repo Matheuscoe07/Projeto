@@ -9,6 +9,7 @@
 
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
+const session = require('express-session');
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
@@ -38,9 +39,17 @@ var app = express();
 
 app.use(express.static(__dirname + '/public'))
    .use(cors())
-   .use(cookieParser());
+   .use(cookieParser())
+   .use(session({
+    secret: 'w{KsB~7]`FgnN4Rx:+G:2-K+J2}xR6$.',
+    resave: false,
+    saveUninitialized: false
+  }));
+
 
 app.get('/login', function(req, res) {
+
+  req.session.destroy();
 
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
@@ -81,7 +90,7 @@ app.get('/callback', function(req, res) {
         grant_type: 'authorization_code'
       },
       headers: {
-        'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+        'Authorization': 'Basic ' + (new Buffer.from(client_id + ':' + client_secret).toString('base64'))
       },
       json: true
     };
@@ -100,7 +109,29 @@ app.get('/callback', function(req, res) {
 
         // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
-          console.log(body);
+          
+          // Envie os dados para o microserviço
+          var dados = {
+            access_token: access_token,
+            refresh_token: refresh_token,
+            spotify_data: body
+          };
+          
+
+          var mssOptions = {
+            url: 'http://localhost:5001/usuarios',
+            method: 'POST',
+            json: true,
+            body: dados
+          };
+
+          request.post(mssOptions, function(error2, response2, body2) {
+            if (!error2 && response2.statusCode === 201) {
+              console.log('Dados enviados para o microserviço com sucesso.');
+            } else {
+              console.log('Falha ao enviar os dados para o microserviço:', error2);
+            }
+          });
         });
 
         // we can also pass the token to the browser to make requests from there

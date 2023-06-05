@@ -11,13 +11,14 @@ app.get('/usuarios', (req, res) => {
     res.send(bdUsuarios)
 }); 
 
-app.put('/usuarios', (req, res) => {
-    const { username, nome, genero } = req.body;
-    bdUsuarios[username] = {
-        username, nome, genero
+app.post('/usuarios', (req, res) => {
+    jsonSpotify = req.body.spotify_data
+    console.log(jsonSpotify)
+    bdUsuarios[jsonSpotify.id] = {
+        username:jsonSpotify.email, nome:jsonSpotify.display_name
     }   
 
-    res.status(201).send(bdUsuarios[username]);
+    res.status(201).send(bdUsuarios[jsonSpotify.id]);
 });
 
 app.listen(5001, (() => {
