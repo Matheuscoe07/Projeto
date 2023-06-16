@@ -33,5 +33,5 @@ app.put('/curtidas', (req, res) => {
 });
 
 app.listen(5004, (() => {
-    console.log('Lembretes. Porta 5004');
+    console.log('Curtidas. Porta 5004');
 }));

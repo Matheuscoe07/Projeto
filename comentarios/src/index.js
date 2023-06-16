@@ -24,7 +24,7 @@ app.put('/comentarios', (req, res) => {
 });
 
 app.listen(5003, (() => {
-    console.log('Lembretes. Porta 5003');
+    console.log('Comentários. Porta 5003');
 }));
 
 

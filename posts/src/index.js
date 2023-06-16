@@ -12,16 +12,24 @@ app.get('/usuarios/:username/posts', (req, res) => {
     res.send(bdPostsDosUsuarios[[req.params.username]] || [] )
 }); 
 
-app.put('/usuarios/:username/posts', (req, res) => {
+app.put('/usuarios/:username/posts', async (req, res) => {
     const idPost = uuidv4();
     const { titulo, imagem } = req.body;
     const postsDoUsuario = bdPostsDosUsuarios[req.params.username] || [];
     postsDoUsuario.push({ [idPost]: { titulo, imagem } });
     bdPostsDosUsuarios[req.params.username] = postsDoUsuario;
 
+    await axios.post('http://localhost:10000/eventos', {
+        tipo: 'postCriado',
+        dados: {
+            username,
+            titulo,
+            imagem
+        }
+    })
     res.status(201).send(postsDoUsuario);
 });
 
 app.listen(5002, (() => {
-    console.log('Lembretes. Porta 5001');
+    console.log('Posts. Porta 5002');
     }));
