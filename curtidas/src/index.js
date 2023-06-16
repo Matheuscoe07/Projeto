@@ -32,6 +32,11 @@ app.put('/curtidas', (req, res) => {
     res.status(201).send(curtidasDoPost);
 });
 
+app.post("/eventos", (req, res) => {
+    console.log(req.body);
+    res.status(200).send({ msg: "ok" });
+    });
+
 app.listen(5004, (() => {
     console.log('Curtidas. Porta 5004');
 }));

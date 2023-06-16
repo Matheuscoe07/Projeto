@@ -9,10 +9,10 @@ app.post('/eventos', (req, res) => {
 const evento = req.body;
 //microserviço de usuários
 axios.post('http://localhost:5001/eventos', evento);
-// //microserviço de posts
-// axios.post('http://localhost:5002/eventos', evento);
-// //microserviço de comentários
-// axios.post('http://localhost:5003/eventos', evento);
+//microserviço de posts
+axios.post('http://localhost:5002/eventos', evento);
+//microserviço de comentários
+axios.post('http://localhost:5003/eventos', evento);
 // //microserviço de curtidas
 // axios.post('http://localhost:5004/eventos', evento);
 res.status(200).send({ msg: "ok" });

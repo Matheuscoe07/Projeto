@@ -15,6 +15,7 @@ app.get('/usuarios/:username/posts', (req, res) => {
 app.put('/usuarios/:username/posts', async (req, res) => {
     const idPost = uuidv4();
     const { titulo, imagem } = req.body;
+    const usuario = req.params.username;
     const postsDoUsuario = bdPostsDosUsuarios[req.params.username] || [];
     postsDoUsuario.push({ [idPost]: { titulo, imagem } });
     bdPostsDosUsuarios[req.params.username] = postsDoUsuario;
@@ -22,13 +23,18 @@ app.put('/usuarios/:username/posts', async (req, res) => {
     await axios.post('http://localhost:10000/eventos', {
         tipo: 'postCriado',
         dados: {
-            username,
+            usuario,
             titulo,
             imagem
         }
     })
     res.status(201).send(postsDoUsuario);
 });
+
+app.post("/eventos", (req, res) => {
+    console.log(req.body);
+    res.status(200).send({ msg: "ok" });
+    });
 
 app.listen(5002, (() => {
     console.log('Posts. Porta 5002');
