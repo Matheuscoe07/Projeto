@@ -37,8 +37,8 @@ var stateKey = 'spotify_auth_state';
 
 var app = express();
 
-app.use(express.static(__dirname + '/public'))
-   .use(cors())
+// app.use(express.static(__dirname + '/public'))
+app.use(cors())
    .use(cookieParser())
    .use(session({
     secret: 'w{KsB~7]`FgnN4Rx:+G:2-K+J2}xR6$.',
@@ -135,11 +135,14 @@ app.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
-          querystring.stringify({
-            access_token: access_token,
-            refresh_token: refresh_token
-          }));
+        // res.redirect('http://localhost:3000/client/src/index.html'); //+
+        console.log("passei")
+        res.redirect('http://localhost:3000/?authenticated=true');
+          // querystring.stringify({
+          //   access_token: access_token,
+          //   refresh_token: refresh_token
+          // })
+          // );
       } else {
         res.redirect('/#' +
           querystring.stringify({

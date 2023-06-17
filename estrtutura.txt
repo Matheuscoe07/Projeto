@@ -1,0 +1,38 @@
+README.md
+authentication/
+  src/
+    controllers/
+    models/
+    services/
+client/
+  src/
+    components/
+    containers/
+    styles/
+comentarios/
+  src/
+    controllers/
+    models/
+    services/
+curtidas/
+  src/
+    controllers/
+    models/
+    services/
+posts/
+  src/
+    controllers/
+    models/
+    services/
+usuarios/
+  src/
+    controllers/
+    models/
+    services/
+frontend/
+  public/
+    index.html
+  src/
+    components/
+    containers/
+    styles/
