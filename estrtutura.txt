@@ -36,3 +36,19 @@ frontend/
     components/
     containers/
     styles/
+
+
+------------------------------
+
+- src
+  - components
+    - Login
+      - Login.js
+      - Login.css
+  - services
+    - api.js
+    - dataProcessor.js
+  - App.js
+  - index.js
+
+--------------------------------

@@ -1,0 +1,11 @@
+.login a{
+    font-style: oblique;
+    text-decoration: none;
+    color: white;
+}
+
+.login a:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
