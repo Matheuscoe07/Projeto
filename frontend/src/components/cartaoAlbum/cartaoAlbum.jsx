@@ -12,7 +12,7 @@ const GlobalStyles = styled.div`
 export default function CartaoAlbum({fotoAlbum, nomeMusica, artista, ouvinte}){
     return (
     <GlobalStyles>
-        <div className={`${styles.ctnMusica}`}>
+        <div className={`${styles.ctnAlbum}`}>
             <div className={`${styles.albumWrapper}`}>
                 <img src={fotoAlbum}/>
             </div>

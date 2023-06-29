@@ -36,7 +36,7 @@ export default function Login({ EmAlta, EmAltaBR, Comunidades}) {
 
       const timer = setTimeout(() => {
          fetchData()
-      }, 3000);
+      }, 0);
 
    },[]);
 
@@ -58,7 +58,7 @@ export default function Login({ EmAlta, EmAltaBR, Comunidades}) {
                   </div>
                   <div className='row my-5' style={titulosPrincipais}>
                      <p>Em alta no BR</p>
-                     {/* {dataAlbuns.length === 0 ? <Spinner/> : <CarrosselAlbum listaAlbum={dataAlbuns}/>} */}
+                     {/* 2{dataAlbuns.length === 0 ? <Spinner/> : <CarrosselAlbum listaAlbum={dataAlbuns}/>} */}
                   </div>
                </div>
                <div className='col-2 mx-auto text-center' style={titulosPrincipais}>
