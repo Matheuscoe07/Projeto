@@ -12,9 +12,9 @@ export default function CarrosselAlbum({listaAlbum}) {
 
       const calculateShow = () => {
         const screenWidth = window.innerWidth;
-        if (screenWidth <= 550) {
+        if (screenWidth <= 850) {
          setNumberToShow(1);
-        } else if (screenWidth <= 990) {
+        } else if (screenWidth <= 992) {
          setNumberToShow(2);
         } else if (screenWidth <= 1200) {
          setNumberToShow(3);
@@ -30,7 +30,7 @@ export default function CarrosselAlbum({listaAlbum}) {
       return () => {
         window.removeEventListener('resize', calculateShow); // Remove o ouvinte de redimensionamento da janela ao desmontar o componente.
       };
-      
+
     }, []);
 
     const settings = {

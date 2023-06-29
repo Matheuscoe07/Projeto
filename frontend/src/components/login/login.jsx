@@ -42,28 +42,31 @@ export default function Login({ EmAlta, EmAltaBR, Comunidades}) {
 
    return(
       <GlobalStyles>
-         <div className={`row container-md mx-5 my-3 ${styles.login}`}>
-               <div className='col-9'>
-                  <div className='row'>
-                     <div className='col-8' style={titulosPrincipais}>
-                           <p>Logo</p>
+         <div className={`container my-2 mx-5  ${styles.login}`}>
+               <div className='row'>
+                  <div className='col-lg-9 col-md-10 col-6'>
+                     <div className='row'>
+                        <div className='col-md-8 col-6' style={titulosPrincipais}>
+                              <p>Logo</p>
+                        </div>
+                        <div className='col-md-4 col-6 my-2 text-center' style={{ textAlign: 'right'}}>
+                              <a href={AUTH_URL}>Entre ou cadastra-se</a>
+                        </div>
                      </div>
-                     <div className='col my-2' style={{ textAlign: 'right', marginRight: '1em'}}>
-                           <a href={AUTH_URL}>Entre ou cadastra-se</a>
+                     <div className='row my-3' style={titulosPrincipais}>
+                        <p>Em Alta na Gringa</p>
+                        {dataAlbuns.length === 0 ? <Spinner/> : <CarrosselAlbum listaAlbum={dataAlbuns}/>}
+                     </div>
+                     <div className='row my-3' style={titulosPrincipais}>
+                        <p>Em alta no BR</p>
+                        {dataAlbuns.length === 0 ? <Spinner/> : <CarrosselAlbum listaAlbum={dataAlbuns}/>}
                      </div>
                   </div>
-                  <div className='row my-5' style={titulosPrincipais}>
-                     <p>Em Alta na Gringa</p>
-                     {dataAlbuns.length === 0 ? <Spinner/> : <CarrosselAlbum listaAlbum={dataAlbuns}/>}
+                  <div className='col-xl-1 col-lg-0'></div>
+                  <div className='col-lg-2 offset-lg-1 col-md-2 col-6 mx-auto text-center' style={titulosPrincipais}>
+                     <p>Artistas em Alta</p>
+                        {Comunidades}
                   </div>
-                  <div className='row my-5' style={titulosPrincipais}>
-                     <p>Em alta no BR</p>
-                     {/* 2{dataAlbuns.length === 0 ? <Spinner/> : <CarrosselAlbum listaAlbum={dataAlbuns}/>} */}
-                  </div>
-               </div>
-               <div className='col-2 mx-auto text-center' style={titulosPrincipais}>
-                  <p>Comunidades em Alta</p>
-                     {Comunidades}
                </div>
          </div>
       </GlobalStyles>
