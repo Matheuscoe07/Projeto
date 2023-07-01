@@ -1,25 +1,13 @@
 import React from 'react';
-import styles from './cartaoAlbum.module.css';
-import styled from 'styled-components';
-
-const GlobalStyles = styled.div`
-  * {
-    padding: 0;
-    margin: 0;
-  }
-`;
+import './cartaoAlbum.css'
 
 export default function CartaoAlbum({fotoAlbum, nomeMusica, artista, ouvinte}){
     return (
-    <GlobalStyles>
-        <div className={`${styles.ctnAlbum}`}>
-            <div className={`${styles.albumWrapper}`}>
-                <img src={fotoAlbum}/>
-            </div>
-            <p className={`${styles.musica} text-truncate`}>{nomeMusica}</p>
-            <p className={`${styles.artista}`}>{artista}</p>
+        <div className="ctn">
+            <img src={fotoAlbum}/>
+            <p className='musica text-truncate'>{nomeMusica}</p>
+            <p className='artista'>{artista}</p>
             {ouvinte && <p>{`Ouvido por ${ouvinte}`}</p>}
         </div>
-    </GlobalStyles>
   );
 }

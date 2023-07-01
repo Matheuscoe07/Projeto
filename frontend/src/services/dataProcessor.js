@@ -1,7 +1,7 @@
 import img1 from '../images/img1.jpg'
 
 const albums = [
-    { id: 1, titulo: 'Here comes the sun 1', artista: 'Beatles', imagem: img1 },
+    { id: 1, titulo: 'Here comes the sun 1aaaaaaa', artista: 'Beatles', imagem: img1 },
     { id: 2, titulo: 'Here comes the sun 2', artista: 'Beatles', imagem: img1 },
     { id: 3, titulo: 'Here comes the sun 3', artista: 'Beatles', imagem: img1 },
     { id: 4, titulo: 'Here comes the sun 4', artista: 'Beatles', imagem: img1 },

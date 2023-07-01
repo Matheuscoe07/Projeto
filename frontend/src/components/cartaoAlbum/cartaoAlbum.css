@@ -1,0 +1,29 @@
+.ctn{
+   height: auto;
+}
+
+.ctn img {
+   width: 6.5em;
+   height: 6.5em;
+   margin: left;
+   object-fit: cover; 
+   margin-bottom: .1em;
+}
+
+p{
+   margin: 0;
+   padding: 0;
+   font-weight: 450;
+
+}
+
+.musica{
+    font-size: .7em;
+}
+   
+.artista{
+   margin-top: -.2em;
+   font-size: .55em;
+}
+
+
