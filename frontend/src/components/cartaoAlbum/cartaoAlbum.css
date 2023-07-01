@@ -1,10 +1,11 @@
-.ctn{
+.ctnMain{
+   font-size: 30px;
    height: auto;
+   /* background-color: blueviolet; */
 }
 
-.ctn img {
-   width: 6.5em;
-   height: 6.5em;
+.ctnMain img {
+   width: 99%;
    margin: left;
    object-fit: cover; 
    margin-bottom: .1em;
@@ -14,16 +15,21 @@ p{
    margin: 0;
    padding: 0;
    font-weight: 450;
-
 }
 
 .musica{
-    font-size: .7em;
+   font-size: .7em;
+   cursor: pointer;
 }
-   
+
 .artista{
    margin-top: -.2em;
    font-size: .55em;
+   cursor: pointer;
 }
 
+p:hover{
+   text-decoration: underline;
+   
+}
 
