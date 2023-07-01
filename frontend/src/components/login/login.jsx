@@ -38,7 +38,7 @@ export default function Login({ EmAlta, EmAltaBR, Comunidades}) {
    },[]);
 
    return(
-         <div className={`container-md login`}>
+         <div className={`container-lg login`}>
                <div className='row'>
                   <div className='col-md-10 col-6'>
                      <div className='row'>
