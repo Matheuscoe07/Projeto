@@ -8,15 +8,15 @@ body {
    font: monstserrat, serif;
 }
 
-.container {
-   padding: 1em 0em;
-   /* margin: 0 1.5em; */
-}
-
 .row{
    margin: 0;
 }
 
 p, li {
    color: #fff;
+}
+
+.click:hover{
+   cursor: pointer;
+   text-decoration: underline;
 }

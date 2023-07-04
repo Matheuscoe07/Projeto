@@ -3,11 +3,15 @@ import './cartaoAlbum.css'
 
 export default function CartaoAlbum({ fotoAlbum, nomeMusica, artista, ouvinte }) {
    return (
-      <div className='ctnMain text-truncate' style={{ width: '92%' }}>
-         <img src={fotoAlbum} />
-         <p className='musica text-truncate'>{nomeMusica}</p>
-         <p className='artista'>{artista}</p>
-         {ouvinte && <p>{`Ouvido por ${ouvinte}`}</p>}
+      <div className='ctn-cartao-album'>
+         <div className='item-imagem'>
+            <img src={fotoAlbum} />
+            </div>
+         <div className='item-info'>
+            <p className='nome text-truncate click' style={{fontSize: '.7em'}}>{nomeMusica}</p>
+            <p className='artista click' style={{fontSize: '.55em'}}>{artista}</p>
+            {ouvinte && <p className='click'>{`Ouvido por ${ouvinte}`}</p>}
+         </div>
       </div>
    );
 }

@@ -1,14 +1,14 @@
-.login a {
+.ctn-home {
+   padding: 1em 0em 1em 2em;
+   margin: auto;
+}
+
+.header-home a {
    font-style: oblique;
    text-decoration: none;
    color: white;
 }
 
-.login a:hover {
-   cursor: pointer;
-   text-decoration: underline;
-}
-
-.mainHedaers {
+.main-titles {
    font-size: 1.6em;
 }

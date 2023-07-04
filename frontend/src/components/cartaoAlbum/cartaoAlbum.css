@@ -1,34 +1,20 @@
-.ctnMain{
+.ctn-cartao-album{
    font-size: 30px;
+   width: 92%;
    height: auto;
+   margin: auto;
 }
 
-.ctnMain img {
+.ctn-cartao-album .item-imagem img {
    width: 100%;
-   margin: left;
+   /* margin: left; */
    object-fit: cover; 
    margin-bottom: .1em;
 }
 
-p{
+.ctn-cartao-album .item-info p{
    margin: 0;
    padding: 0;
    font-weight: 450;
-}
-
-.musica{
-   font-size: .7em;
-   cursor: pointer;
-}
-
-.artista{
-   margin-top: -.2em;
-   font-size: .55em;
-   cursor: pointer;
-}
-
-p:hover{
-   text-decoration: underline;
-   
 }
 

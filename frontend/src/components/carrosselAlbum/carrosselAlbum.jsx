@@ -30,14 +30,12 @@ export default function CarrosselAlbum({ listaAlbum, listaBreakpoints }) {
    const settings = getSettings();
 
    return (
-      <div className="sliderWrapper w-100">
          <Slider {...settings}>
             {listaAlbum.map((album) => (
-               <div key={album.id} className="itemWrapper">
-                  <CartaoAlbum fotoAlbum={`${album.imagem}`} nomeMusica={`${album.titulo}`} artista={`${album.artista}`}/>
+               <div key={album.id} className="slider-item-album">
+                  <CartaoAlbum fotoAlbum={album.imagem} nomeMusica={album.titulo} artista={album.artista} />
                </div>
             ))}
          </Slider>
-      </div>
    );
 }
