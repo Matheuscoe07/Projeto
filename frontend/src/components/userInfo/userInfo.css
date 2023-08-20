@@ -1,0 +1,61 @@
+.ctn-main {
+   background-color: #333;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   text-align: center;
+   color: white;
+   width: 50%;
+   padding: 20px 10px;
+}
+
+.user-header {
+   padding: 20px;
+}
+
+
+/* ----------------------------------------- */
+
+.profile-pic {
+   width: 100px;
+   height: 100px;
+   border-radius: 50%;
+   margin-bottom: 10px;
+}
+
+h1 {
+   font-size: 2.4em;
+   margin: 0;
+}
+
+.info {
+   display: grid;
+   gap: 10px;
+   text-align: left;
+}
+
+label {
+   font-weight: bold;
+   font-size: 16px;
+}
+
+.form-control {
+   background-color: rgba(0, 0, 0, 0.3);
+   color: white;
+   border: none;
+   padding: 8px;
+   border-radius: 4px;
+   width: 100%;
+   font-size: 14px;
+}
+
+.form-control:focus {
+   box-shadow: none; 
+   background-color: rgba(0, 0, 0, 0.1);
+   color: white;
+}
+
+.back-button {
+   cursor: pointer;
+   margin-top: 20px;
+   font-size: 20px;
+}

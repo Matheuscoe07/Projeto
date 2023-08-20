@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { Link } from 'react-router-dom';
 import './login.css'; // Importe o arquivo CSS aqui
 
 import CarrosselAlbum from '../carrosselAlbum/carrosselAlbum';
@@ -8,7 +8,7 @@ import ScrollArtista from '../scrollArtist/scrollArtista';
 import SpotifyDataProcessor from '../../services/dataProcessor';
 
 
-export default function Login({ EmAlta, EmAltaBR, Comunidades }) {
+export default function Login({ EmAlta, EmAltaBR, Comunidades, autenticado }) {
    const AUTH_URL = 'http://localhost:8888/login'
 
    // SliderSettings breakpoints: window Size: 1024px, slidesToShow: 2
@@ -41,15 +41,16 @@ export default function Login({ EmAlta, EmAltaBR, Comunidades }) {
 
    return (
       <div className='ctn-home'>
-
+         
          <div className='row header-home'>
             <div className='col-6'>
                <p>Logo</p>
             </div>
             <div className='col-6 text-center'>
-               <a className='click' href={AUTH_URL}>Entre ou cadastra-se</a>
+               {autenticado ? (<Link to='/perfil'> <p class="underline-on-hover">Foto Usuário</p> </Link>) : (<a className='click' href={AUTH_URL}> Entre ou cadastre-se </a>)}
             </div>
          </div>
+
          <div className='row body-home my-3'>
             <div className='col-9 carroseis'>
                <div className='carrosel-gringo main-titles'>
@@ -62,9 +63,9 @@ export default function Login({ EmAlta, EmAltaBR, Comunidades }) {
                </div>
             </div>
             <div className='col-3 scrolls p-0'>
-               <div className='scroll-artistas text-center main-titles pt-2' style={{marginLeft:'1.5em', backgroundColor: '#343434', width: '80%'}}>
+               <div className='scroll-artistas text-center main-titles pt-2' style={{ marginLeft: '1.5em', backgroundColor: '#343434', width: '80%' }}>
                   <p>Artistas em Alta</p>
-                  <ScrollArtista listaArtista={dataArtistas}/>
+                  <ScrollArtista listaArtista={dataArtistas} />
                </div>
             </div>
          </div>
@@ -72,3 +73,6 @@ export default function Login({ EmAlta, EmAltaBR, Comunidades }) {
       </div>
    )
 };
+
+
+

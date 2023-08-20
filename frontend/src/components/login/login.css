@@ -12,3 +12,7 @@
 .main-titles {
    font-size: 1.6em;
 }
+
+.underline-on-hover:hover {
+   text-decoration: underline;
+ }
