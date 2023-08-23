@@ -1,45 +1,77 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-// const axios = require("axios");
+const usuarioService = require('./service');
+const axios = require("axios");
+
+
 const router = express.Router();
 const app = express();
-app.use(bodyParser.json());
-const usuarioService = require('./service');
 
 class UsuarioController {
 
-   constructor() {
-     this.usuarioService = usuarioService; // Instancie a service
-   }
+  constructor() {
+    this.usuarioService = new usuarioService(); // Instancie a service
+  }
 
-   async obterTodos(req, res) {
+  async obterTodos(req, res) {
     try {
       const usuarios = await this.usuarioService.obterTodosUsuarios();
       res.send(usuarios);
     } catch (error) {
-      res.status(500).send({ error: "Ocorreu um erro ao obter os usuários." });
+      res.status(500).send({
+        error: "Ocorreu um erro ao obter os usuários."
+      });
     }
   }
-
-   async criar(req, res) {
+      
+  criar(req, res) {
+    let novoUsuario;
+    const { spotify_data } = req.body;
+  
+    this.usuarioService.criarUsuario(spotify_data)
+      .then((usuario) => {
+        novoUsuario = usuario;
+        if (novoUsuario === null) {
+          throw new Error("Usuário não criado corretamente.");
+        }
+        return this.sendUserLogado(novoUsuario);
+      })
+      .then(() => {
+        res.status(200).send({ msg: novoUsuario });
+      })
+      .catch((error) => {
+        res.status(500).send({
+          error: `${error}`
+        });
+      });
+  }
+  
+  async sendUserLogado(userLogado) {
     try {
-      const { spotify_data } = req.body;
-      const novoUsuario = await this.usuarioService.criarUsuario(spotify_data);
-      res.status(201).send(novoUsuario);
+      await axios.post('http://localhost:10000/eventos', {
+        tipo: 'usuarioLogado',
+        dados: {
+          userLogado
+        }
+      });
     } catch (error) {
-      res.status(500).send({ error: "Ocorreu um erro ao criar o usuário." });
+      throw new Error("Erro ao enviar ao barramento de eventos.");
     }
   }
+  
 }
 
+router.post("/eventos", (req, res) => {
+  res.status(200).send({ msg: "ok", resultado: req.body });
+});
+
 router.get("/", async (req, res) => {
-   const controller = new UsuarioController();
-   await controller.obterTodos(req, res);
- });
+  const controller = new UsuarioController();
+  await controller.obterTodos(req, res);
+});
 
 router.post("/", async (req, res) => {
   const controller = new UsuarioController();
-  await controller.criar(req, res);
+  controller.criar(req, res);
 });
 
 module.exports = router;

@@ -8,7 +8,11 @@ const Usuario = require('./model');
 class UsuarioService {
 
   constructor() {
-    this.bdUsuarios = {"oi": "oi"};
+    if (UsuarioService.instance) {
+      return UsuarioService.instance;
+    }
+    this.bdUsuarios = {};
+    UsuarioService.instance = this;
   }
 
   async obterTodosUsuarios() {
@@ -16,12 +20,15 @@ class UsuarioService {
   }
 
   async criarUsuario(spotifyData) {
-    const novoUsuario = new Usuario(spotifyData.id, spotifyData.display_name, spotifyData.email, spotifyData.images[0]?.url, spotifyData.country, spotifyData.followers?.total);
-    this.bdUsuarios[novoUsuario.id] = novoUsuario;
-
-    return novoUsuario;
+      const novoUsuario = new Usuario(spotifyData.id, spotifyData.display_name, spotifyData.email, spotifyData.images[0]?.url, spotifyData.country, spotifyData.followers?.total);
+      if(novoUsuario.checkUser()){
+        this.bdUsuarios[novoUsuario.id] = novoUsuario;
+        return novoUsuario;
+      }else{
+        return null;
+      }
   }
 
 }
 
-module.exports = new UsuarioService(); // Exportar uma instância única
+module.exports = UsuarioService;

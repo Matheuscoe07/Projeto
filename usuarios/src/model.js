@@ -7,6 +7,14 @@ class Usuario {
      this._nac = nac;
      this._totalFollowers = totalFollowers;
    }
+
+   checkUser() {
+    if (!this._id || !this._nome || !this._email || !this._fotoPerfil || !this._nac || !this._totalFollowers) {
+      return false;
+    }
+    return true;
+   }
+
  
    get id() {
      return this._id;
@@ -33,4 +41,4 @@ class Usuario {
    }
  }
  
-module.exports = Usuario; // Exportar a classe
+module.exports = Usuario;
