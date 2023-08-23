@@ -1,10 +1,9 @@
 const express = require("express");
-const usuarioService = require('./service');
+const usuarioService = require('./usuarioService');
 const axios = require("axios");
-
-
 const router = express.Router();
-const app = express();
+const tiposEventos = require("../../Util/src/tiposEventos"); // Importa os tipos de eventos
+
 
 class UsuarioController {
 
@@ -47,8 +46,8 @@ class UsuarioController {
   
   async sendUserLogado(userLogado) {
     try {
-      await axios.post('http://localhost:10000/eventos', {
-        tipo: 'usuarioLogado',
+      await axios.post('http://127.0.0.1:10000/eventos', {
+        tipo: tiposEventos.USUARIO_LOGADO,
         dados: {
           userLogado
         }
@@ -57,11 +56,11 @@ class UsuarioController {
       throw new Error("Erro ao enviar ao barramento de eventos.");
     }
   }
-  
 }
 
 router.post("/eventos", (req, res) => {
-  res.status(200).send({ msg: "ok", resultado: req.body });
+  res.status(200).send({ msg: "Sucesso", resultado: req.body });
+  console.log(req.body);
 });
 
 router.get("/", async (req, res) => {
@@ -71,7 +70,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const controller = new UsuarioController();
-  controller.criar(req, res);
+  controller.criar(req, res); 
 });
 
 module.exports = router;

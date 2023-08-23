@@ -28,5 +28,3 @@ class Util {
 }
 
 module.exports = Util;
-// Example usage
-// Util.sendRequest(8080, 'http://example.com/api', { data: 'sample' });

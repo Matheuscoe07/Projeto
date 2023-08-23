@@ -1,9 +1,8 @@
 const express = require("express");
-const axios = require("axios");
 const app = express();
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
-const Usuario = require('./model');
+const Usuario = require('./usuarioModel');
 
 class UsuarioService {
 
