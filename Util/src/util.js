@@ -23,10 +23,10 @@ class Util {
                 await axios.post(strRequest, evento);
                 return {status: true, msg: 'Sucesso'};
             }catch (error) {
-                return {status: false, msg: 'Endpoit Inválido'};
+                return {status: false, msg: `Endpoit Inválido: ${strRequest}`};
             }
         } else {
-            return {status: false, msg: 'Serviço inoperante'};
+            return {status: false, msg: `Serviço inoperante: Porta ${port}`};
         }
     }
 
@@ -40,6 +40,16 @@ class Util {
         }
         return parseInt(str.substring(startIndex, slashIndex))
       }
+
+    static generateRandomString (length) {
+        let text = "";
+        let possible ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < length; i++) {
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return text;
+    };
 }
 
 

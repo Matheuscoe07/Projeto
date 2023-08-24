@@ -9,5 +9,7 @@ app.use(bodyParser.json());
 app.use('/usuarios', usuarioController)
 
 app.listen(ENUM.portas.PORTA_USUARIO, () => {
-  console.log(`Users. Porta ${ENUM.portas.PORTA_USUARIO}`);
+  console.log(`Usuários: Porta ${ENUM.portas.PORTA_USUARIO}`);
 });
+
+
