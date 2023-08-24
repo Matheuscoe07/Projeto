@@ -2,8 +2,8 @@ const express = require("express");
 const usuarioService = require('./usuarioService');
 const axios = require("axios");
 const router = express.Router();
-const tiposEventos = require("../../Util/src/tiposEventos"); // Importa os tipos de eventos
-
+const util = require("../../Util/src/util");
+const ENUM = require("../../Util/src/enums");
 
 class UsuarioController {
 
@@ -16,51 +16,35 @@ class UsuarioController {
       const usuarios = await this.usuarioService.obterTodosUsuarios();
       res.send(usuarios);
     } catch (error) {
-      res.status(500).send({
-        error: "Ocorreu um erro ao obter os usuários."
-      });
+      res.status(500).send({ error: "Ocorreu um erro ao obter os usuários." });
     }
   }
-      
-  criar(req, res) {
-    let novoUsuario;
-    const { spotify_data } = req.body;
-  
-    this.usuarioService.criarUsuario(spotify_data)
-      .then((usuario) => {
-        novoUsuario = usuario;
-        if (novoUsuario === null) {
-          throw new Error("Usuário não criado corretamente.");
-        }
-        return this.sendUserLogado(novoUsuario);
-      })
-      .then(() => {
-        res.status(200).send({ msg: novoUsuario });
-      })
-      .catch((error) => {
-        res.status(500).send({
-          error: `${error}`
-        });
-      });
-  }
-  
-  async sendUserLogado(userLogado) {
+
+  async criar(req, res) {
     try {
-      await axios.post('http://127.0.0.1:10000/eventos', {
-        tipo: tiposEventos.USUARIO_LOGADO,
-        dados: {
-          userLogado
-        }
-      });
+      const { spotify_data } = req.body;
+      const novoUsuario = await this.usuarioService.criarUsuario(spotify_data);
+      if (novoUsuario === null) {
+        throw new Error("Usuário não criado corretamente.");
+      }
+      const envio = await this.sendUserLogado(novoUsuario);
+      if (!envio.status) {
+        throw new Error(envio.msg);
+      }
+      res.status(200).send({ msg: novoUsuario });
     } catch (error) {
-      throw new Error("Erro ao enviar ao barramento de eventos.");
+      res.status(500).send({ error: `${error}` });
     }
+  }
+
+  async sendUserLogado(userLogado) {
+    let pacote = { tipo: ENUM.tiposEventos.USUARIO_LOGADO, dados: { userLogado } };
+    return util.sendRequest(`${ENUM.enderecosIP.SERVICO_BARRAMENTO}/eventos`, pacote);
   }
 }
 
 router.post("/eventos", (req, res) => {
   res.status(200).send({ msg: "Sucesso", resultado: req.body });
-  console.log(req.body);
 });
 
 router.get("/", async (req, res) => {
@@ -70,7 +54,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const controller = new UsuarioController();
-  controller.criar(req, res); 
+  controller.criar(req, res);
 });
 
 module.exports = router;

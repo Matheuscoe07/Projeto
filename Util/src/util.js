@@ -1,8 +1,6 @@
 const net = require("net");
 const axios = require("axios");
 
-// import { post } from 'axios'; // Import the 'axios' module
-
 class Util {
 
     static async checkPort(port) {
@@ -17,14 +15,32 @@ class Util {
         });
     }
 
-    static async sendRequest(port, strRequest, evento) {
+    static async sendRequest(strRequest, evento) {
+        const port = Util.extrairPorta(strRequest);
         const isPortOpen = await Util.checkPort(port);
         if (isPortOpen) {
-          axios.post(strRequest, evento);
+            try {
+                await axios.post(strRequest, evento);
+                return {status: true, msg: 'Sucesso'};
+            }catch (error) {
+                return {status: false, msg: 'Endpoit Inválido'};
+            }
         } else {
-          console.log(`Porta ${port} não está disponível`);
+            return {status: false, msg: 'Serviço inoperante'};
         }
     }
+
+    static extrairPorta(str) {
+        const startIndexHTTP = str.indexOf(':') + 1; // Encontra o índice ":" do HTTP
+        const startIndex = str.indexOf(':', startIndexHTTP) + 1; // Encontra o índice ":" da Porta
+        const slashIndex = str.indexOf('/', startIndex); // Encontra o índice da próxima "/" a partir da Porta
+        if (startIndex === -1 || slashIndex === -1) {
+          // Caso os índices não sejam válidos ou não exista "/"
+          return null;
+        }
+        return parseInt(str.substring(startIndex, slashIndex))
+      }
 }
+
 
 module.exports = Util;

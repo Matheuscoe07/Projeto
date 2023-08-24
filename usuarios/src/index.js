@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const usuarioController  = require('./usuarioController')
+const usuarioController  = require('./usuarioController');
+const ENUM  = require('../../Util/src/enums');
 
 app.use(bodyParser.json());
 
 app.use('/usuarios', usuarioController)
 
-app.listen(5001, () => {
-  console.log("Users. Porta 5001");
+app.listen(ENUM.portas.PORTA_USUARIO, () => {
+  console.log(`Users. Porta ${ENUM.portas.PORTA_USUARIO}`);
 });
