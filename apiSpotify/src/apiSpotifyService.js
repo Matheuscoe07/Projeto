@@ -1,4 +1,5 @@
 const request = require('request');
+const axios = require('axios');
 const ENUM = require('../../Util/src/enums');
 
 class ApiSpotifyService {
@@ -8,54 +9,46 @@ class ApiSpotifyService {
       this.redirectURI = redirectURI;
    }
 
-   exchangeAuthorizationCode(code) {
-      return new Promise((resolve, reject) => {
+   async exchangeAuthorizationCode(code) {
+      try {
          const authOptions = {
             url: 'https://accounts.spotify.com/api/token',
-            form: {
+            data: new URLSearchParams({
                code: code,
                redirect_uri: this.redirectURI,
                grant_type: 'authorization_code',
-            },
+            }),
             headers: {
-               Authorization: 'Basic ' + Buffer.from(this.clientId + ':' + this.clientSecret).toString('base64'),
+               Authorization: `Basic ${Buffer.from(this.clientId + ':' + this.clientSecret).toString('base64')}`,
             },
-            json: true,
          };
 
-         request.post(authOptions, (error, response, body) => {
-            if (!error && response.statusCode === 200) {
-               resolve({
-                  access_token: body.access_token,
-                  refresh_token: body.refresh_token,
-               });
-            } else {
-               reject(error || new Error('Failed to exchange authorization code.'));
-            }
-         });
-      });
+         const response = await axios.post(authOptions.url, authOptions.data, { headers: authOptions.headers });
+         return {
+            access_token: response.data.access_token,
+            refresh_token: response.data.refresh_token,
+         };
+      } catch (error) {
+         throw error || new Error('Failed to exchange authorization code.');
+      }
    }
 
-   getUserData(access_token) {
-      return new Promise((resolve, reject) => {
+   async getUserData(access_token) {
+      try {
          const options = {
             url: 'https://api.spotify.com/v1/me',
-            headers: { Authorization: 'Bearer ' + access_token },
-            json: true,
+            headers: { Authorization: `Bearer ${access_token}` },
          };
 
-         request.get(options, (error, response, body) => {
-            if (!error && response.statusCode === 200) {
-               resolve(body);
-            } else {
-               reject(error || new Error('Failed to get user data.'));
-            }
-         });
-      });
+         const response = await axios(options);
+         return response.data;
+      } catch (error) {
+         throw error || new Error('Failed to get user data.');
+      }
    }
 
-   sendDataToMicroservice(access_token, refresh_token, userData) {
-      return new Promise((resolve, reject) => {
+   async sendDataToMicroservice(access_token, refresh_token, userData) {
+      try {
          const dados = {
             access_token: access_token,
             refresh_token: refresh_token,
@@ -64,22 +57,37 @@ class ApiSpotifyService {
 
          const mssOptions = {
             url: 'http://127.0.0.1:5001/usuarios',
-            method: 'POST',
-            json: true,
-            body: dados,
+            method: 'post',
+            data: dados,
          };
 
-         request.post(mssOptions, (error, response, body) => {
-            if (!error && response.statusCode === 200) {
-               resolve('Data sent to microservice successfully.');
-            } else {
-               reject(error || new Error('Failed to send data to microservice.'));
-            }
-         });
-      });
+         const response = await axios(mssOptions);
+         if (response.status === 200) {
+            return 'Data sent to microservice successfully.';
+         } else {
+            throw new Error('Failed to send data to microservice.');
+         }
+      } catch (error) {
+         throw error || new Error('Failed to send data to microservice.');
+      }
+   }
+
+   async getTopArtists(access_token) {
+      try {
+         const options = {
+            url: 'https://api.spotify.com/v1/me/top/artists',
+            headers: { Authorization: `${access_token}` },
+         };
+         console.log(options);
+         const response = await axios.get(options.url, { headers: options.headers });
+         return response.data;
+      } catch (error) {
+         throw error || new Error('Failed to get top artists.');
+      }
    }
 }
 
 module.exports = ApiSpotifyService;
+
 
 

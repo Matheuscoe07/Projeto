@@ -9,7 +9,7 @@ import SpotifyDataProcessor from '../../services/dataProcessor';
 
 
 export default function Login({ EmAlta, EmAltaBR, Comunidades, autenticado }) {
-   const AUTH_URL = 'http://localhost:8888/login'
+   const AUTH_URL = 'http://localhost:8888/api_spotify/login'
 
    // SliderSettings breakpoints: window Size: 1024px, slidesToShow: 2
    const breakpointsAlbuns = [[1200, 3], [992, 2], [768, 1]];
