@@ -15,13 +15,33 @@ class Util {
         });
     }
 
-    static async sendRequest(strRequest, evento) {
-        const port = Util.extrairPorta(strRequest);
-        const isPortOpen = await Util.checkPort(port);
-        if (isPortOpen) {
+    static async sendRequestPOST(strRequest, evento, checkPort=true) {
+        let port, isPortOpen = true;
+        if(checkPort){
+            port = Util.extrairPorta(strRequest);
+            isPortOpen = await Util.checkPort(port);
+        }
+        if(isPortOpen) {
             try {
                 await axios.post(strRequest, evento);
                 return {status: true, msg: 'Sucesso'};
+            }catch (error) {
+                return {status: false, msg: `Endpoit Inválido: ${strRequest}`};
+            }
+        } else {
+            return {status: false, msg: `Serviço inoperante: Porta ${port}`};
+        }
+    }
+
+    static async sendRequestGET(strRequest, checkPort=true) {
+        let port, isPortOpen = true;
+        if(checkPort){
+            port = Util.extrairPorta(strRequest);
+            isPortOpen = await Util.checkPort(port);
+        }
+        if(isPortOpen) {
+            try {
+                return await axios.get(strRequest);
             }catch (error) {
                 return {status: false, msg: `Endpoit Inválido: ${strRequest}`};
             }

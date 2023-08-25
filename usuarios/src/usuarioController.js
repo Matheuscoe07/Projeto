@@ -39,7 +39,7 @@ class UsuarioController {
 
   async sendUserLogado(userLogado) {
     let pacote = { tipo: ENUM.tiposEventos.USUARIO_LOGADO, dados: { userLogado } };
-    return util.sendRequest(`${ENUM.enderecosIP.SERVICO_BARRAMENTO}/eventos`, pacote);
+    return util.sendRequestPOST(`${ENUM.enderecosIP.SERVICO_BARRAMENTO}/eventos`, pacote);
   }
 }
 

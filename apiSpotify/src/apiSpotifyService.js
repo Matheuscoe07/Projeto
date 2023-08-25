@@ -2,6 +2,8 @@ const request = require('request');
 const axios = require('axios');
 const apiSpotifyModel = require('./apiSpotifyModel');
 const ENUM = require('../../Util/src/enums');
+const util = require("../../Util/src/util");
+
 
 class ApiSpotifyService {
    constructor(clientId, clientSecret, redirectURI) {
@@ -94,7 +96,8 @@ class ApiSpotifyService {
          const options = {
             url: 'https://charts-spotify-com-service.spotify.com/public/v0/charts'
          };
-         const response = await axios.get(options.url);
+         const response = await util.sendRequestGET(options.url, false);
+         console.log("PASSEI AQUI");
          switch (tipo) {
             case ENUM.tiposParamsTopGlobais.MUSICAS:
                topGlobais = this.apiSpotifyModel.formatarTopMusicasGlobais(response.data.chartEntryViewResponses[0].entries);

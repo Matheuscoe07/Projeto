@@ -28,19 +28,19 @@ class BarramentoController {
       switch (tipo) {
          case ENUM.tiposEventos.USUARIO_LOGADO:
             // console.log("ENTREIII")
-            util.sendRequest("http://127.0.0.1:5001/usuarios/eventos", dados);
+            util.sendRequestPOST("http://127.0.0.1:5001/usuarios/eventos", dados);
             break;
          case tiposEventos.USUARIO:
-            util.sendRequest("https://127.0.0.1:8888/login", evento);
+            util.sendRequestPOST("https://127.0.0.1:8888/login", evento);
             break;
          case tiposEventos.POST:
-            util.sendRequest("http://127.0.0.1:5002/eventos", evento);
+            util.sendRequestPOST("http://127.0.0.1:5002/eventos", evento);
             break;
          case tiposEventos.COMENTARIO:
-            util.sendRequest("http://127.0.0.1:5003/eventos", evento);
+            util.sendRequestPOST("http://127.0.0.1:5003/eventos", evento);
             break;
          case tiposEventos.CURTIDA:
-            util.sendRequest("http://127.0.0.1:5004/eventos", evento);
+            util.sendRequestPOST("http://127.0.0.1:5004/eventos", evento);
             break;
          default:
             console.log("Tipo de evento não reconhecido:", evento.tipo);
