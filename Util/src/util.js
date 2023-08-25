@@ -23,10 +23,10 @@ class Util {
         }
         if(isPortOpen) {
             try {
-                await axios.post(strRequest, evento);
-                return {status: true, msg: 'Sucesso'};
+                let response = await axios.post(strRequest, evento);
+                return {status: true, msg: 'Sucesso', data: response.data};
             }catch (error) {
-                return {status: false, msg: `Endpoit Inválido: ${strRequest}`};
+                return {status: false, msg: `Request Inválido: ${strRequest}`};
             }
         } else {
             return {status: false, msg: `Serviço inoperante: Porta ${port}`};
@@ -41,9 +41,10 @@ class Util {
         }
         if(isPortOpen) {
             try {
-                return await axios.get(strRequest);
+                let response =  await axios.get(strRequest);
+                return {status: true, msg: 'Sucesso', data: response.data};
             }catch (error) {
-                return {status: false, msg: `Endpoit Inválido: ${strRequest}`};
+                return {status: false, msg: `Request Inválido: ${strRequest}`};
             }
         } else {
             return {status: false, msg: `Serviço inoperante: Porta ${port}`};

@@ -92,27 +92,24 @@ class ApiSpotifyService {
 
    async pegarTopGlobais(tipo) {
       let topGlobais;
-      try {
-         const options = {
-            url: 'https://charts-spotify-com-service.spotify.com/public/v0/charts'
-         };
-         const response = await util.sendRequestGET(options.url, false);
-         console.log("PASSEI AQUI");
-         switch (tipo) {
-            case ENUM.tiposParamsTopGlobais.MUSICAS:
-               topGlobais = this.apiSpotifyModel.formatarTopMusicasGlobais(response.data.chartEntryViewResponses[0].entries);
-               break;
-            case ENUM.tiposParamsTopGlobais.ALBUNS:
-               topGlobais = this.apiSpotifyModel.formatarTopAlbunsGlobais(response.data.chartEntryViewResponses[1].entries);
-               break;
-            case ENUM.tiposParamsTopGlobais.ARTISTAS:
-               topGlobais = this.apiSpotifyModel.formatarTopArtistasGlobais(response.data.chartEntryViewResponses[2].entries);
-               break;
-         }
-         return topGlobais;
-      } catch (error) {
-         throw error || new Error('Failed to get top artists.');
+      const options = {
+         url: 'https://charts-spotify-com-service.spotify.com/public/v0/charts'
+      };
+      const response = await util.sendRequestGET(options.url, false);
+      if (!response.status) throw new Error(response.msg);
+      switch (tipo) {
+         case ENUM.tiposParamsTopGlobais.MUSICAS:
+            topGlobais = this.apiSpotifyModel.formatarTopMusicasGlobais(response.data.chartEntryViewResponses[0].entries);
+            break;
+         case ENUM.tiposParamsTopGlobais.ALBUNS:
+            topGlobais = this.apiSpotifyModel.formatarTopAlbunsGlobais(response.data.chartEntryViewResponses[1].entries);
+            break;
+         case ENUM.tiposParamsTopGlobais.ARTISTAS:
+            topGlobais = this.apiSpotifyModel.formatarTopArtistasGlobais(response.data.chartEntryViewResponses[2].entries);
+            break;
       }
+      return topGlobais;
+
    }
 }
 
