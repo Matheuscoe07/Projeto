@@ -1,5 +1,6 @@
 const request = require('request');
 const axios = require('axios');
+const apiSpotifyModel = require('./apiSpotifyModel');
 const ENUM = require('../../Util/src/enums');
 
 class ApiSpotifyService {
@@ -7,6 +8,7 @@ class ApiSpotifyService {
       this.clientId = clientId;
       this.clientSecret = clientSecret;
       this.redirectURI = redirectURI;
+      this.apiSpotifyModel = new apiSpotifyModel();
    }
 
    async exchangeAuthorizationCode(code) {
@@ -81,6 +83,30 @@ class ApiSpotifyService {
          console.log(options);
          const response = await axios.get(options.url, { headers: options.headers });
          return response.data;
+      } catch (error) {
+         throw error || new Error('Failed to get top artists.');
+      }
+   }
+
+   async pegarTopGlobais(tipo) {
+      let topGlobais;
+      try {
+         const options = {
+            url: 'https://charts-spotify-com-service.spotify.com/public/v0/charts'
+         };
+         const response = await axios.get(options.url);
+         switch (tipo) {
+            case ENUM.tiposParamsTopGlobais.MUSICAS:
+               topGlobais = this.apiSpotifyModel.formatarTopMusicasGlobais(response.data.chartEntryViewResponses[0].entries);
+               break;
+            case ENUM.tiposParamsTopGlobais.ALBUNS:
+               topGlobais = this.apiSpotifyModel.formatarTopAlbunsGlobais(response.data.chartEntryViewResponses[1].entries);
+               break;
+            case ENUM.tiposParamsTopGlobais.ARTISTAS:
+               topGlobais = this.apiSpotifyModel.formatarTopArtistasGlobais(response.data.chartEntryViewResponses[2].entries);
+               break;
+         }
+         return topGlobais;
       } catch (error) {
          throw error || new Error('Failed to get top artists.');
       }

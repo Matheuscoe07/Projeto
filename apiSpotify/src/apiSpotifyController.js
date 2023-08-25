@@ -2,8 +2,9 @@ const express = require('express');
 const querystring = require('querystring');
 const ApiSpotifyService = require('./apiSpotifyService'); 
 const util = require('../../Util/src/util');
+const ENUM = require('../../Util/src/enums');
 
-const router = express.Router();
+const router = express.Router([{mergeParams: true}]);
 
 class ApiSpotifyController {
 
@@ -59,7 +60,7 @@ class ApiSpotifyController {
    }
 
    async getTopArtists(req, res) {
-      try {
+      try { 
          const access_token = req.get('Authorization'); // Ou de onde você estiver obtendo o token
          console.log(access_token);
 
@@ -72,6 +73,19 @@ class ApiSpotifyController {
          res.json(topArtists);
       } catch (error) {
          res.status(500).json({ error: error.message || 'Internal server error.' });
+      }
+   }
+
+   async pegarTopGlobais(req, res) {
+      try { 
+         const tipo = req.params.tipo;
+         if(!Object.values(ENUM.tiposParamsTopGlobais).includes(tipo) ) {
+            throw new Error('Parametro tipo inválido.');
+         }
+         const topArtistsGlobais = await this.apiSpotifyService.pegarTopGlobais(tipo);
+         res.status(200).json(topArtistsGlobais);
+      } catch (error) {
+         res.status(500).send({ error: `${error}` });
       }
    }
 
@@ -96,6 +110,14 @@ router.get('/callback', async (req, res) => {
 
 router.get('/top-artists', async (req, res) => {
    await apiSpotifyController.getTopArtists(req, res);
+});
+
+
+//------------------------------------- INCLUSAO TRES APIs TOP GLOBAIS -------------------------------------
+
+
+router.get('/top-globais/:tipo', async (req, res) => {
+   await apiSpotifyController.pegarTopGlobais(req, res);
 });
 
 module.exports = router;

@@ -20,6 +20,15 @@ class Enum {
       SERVICO_API_SPOTIFY: `http://127.0.0.1:${Enum.portas.PORTA_API_SPOTIFY}`,
     };
   }
+
+  static get tiposParamsTopGlobais() {
+    return {
+      MUSICAS: "musicas",
+      ALBUNS: "albuns",
+      ARTISTAS: "artistas"
+    };
+  }
+
 }
 
 module.exports = Enum;

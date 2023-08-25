@@ -31,7 +31,7 @@ class UsuarioController {
       if (!envio.status) {
         throw new Error(envio.msg);
       }
-      res.status(200).send({ msg: novoUsuario });
+      res.status(200).send(novoUsuario);
     } catch (error) {
       res.status(500).send({ error: `${error}` });
     }
