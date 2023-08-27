@@ -18,9 +18,14 @@ class BarramentoService {
       return this.bdBarramento;
    }
 
-   async adicionarEvento(evento) {
-      this.bdBarramento[uuidv4()] = evento;
-      return this.bdBarramento;
+   async adicionarEvento(tipo, dado) {
+      const evento = {}, idEvento = uuidv4();
+      evento.idEvento = idEvento
+      evento.tipoEvento = tipo
+      evento[tipo] = dado
+      this.bdBarramento[idEvento] = evento;
+      console.log(this.bdBarramento[idEvento])
+      return this.bdBarramento[idEvento];
    }
 }
 

@@ -46,7 +46,6 @@ class ApiSpotifyController {
          const storedState = req.cookies ? req.cookies[this.stateKey] : null;
 
          if (state === null || state !== storedState) {
-            console.log('state: ', state);
             throw new Error("States Inválidos.");
          } else {
             res.clearCookie(this.stateKey);
@@ -63,7 +62,7 @@ class ApiSpotifyController {
             if (!returnMicroServicos.status) {
                throw new Error(`Erro no envio aos microservicos: ${returnMicroServicos.msg}`);
             }
-            res.status(200).send({ msg: "Sucesso"});
+            res.status(200).redirect('http://localhost:3000/#' + querystring.stringify({ idEvento: returnMicroServicos.data.evento.idEvento, authenticated: this.tokenReact }));
          }
       } catch (error) {
          res.status(500).send({ error: `${error}` });
@@ -73,7 +72,7 @@ class ApiSpotifyController {
    async getTopArtists(req, res) {
       try { 
          const access_token = req.get('Authorization'); // Ou de onde você estiver obtendo o token
-         console.log(access_token);
+         // console.log(access_token);
 
          if (!access_token) {
             res.status(400).json({ error: 'Access token not provided.' });

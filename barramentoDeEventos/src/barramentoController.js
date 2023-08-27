@@ -23,24 +23,29 @@ class BarramentoController {
 
    async receberEventos(req, res){
       const {tipo, dados} = req.body;
-      await this.barramentoService.adicionarEvento(dados);
+      const evento = await this.barramentoService.adicionarEvento(tipo, dados);
 
       switch (tipo) {
          case ENUM.tiposEventos.USUARIO_LOGADO:
             // console.log("ENTREIII")
-            util.sendRequestPOST("http://127.0.0.1:5001/usuarios/eventos", dados);
+            await util.sendRequestPOST("http://127.0.0.1:5001/usuarios/eventos", dados);
+            res.status(200).send({evento: evento});
             break;
          case tiposEventos.USUARIO:
-            util.sendRequestPOST("https://127.0.0.1:8888/login", evento);
+            await util.sendRequestPOST("https://127.0.0.1:8888/login", evento);
+            res.status(200).send({ msg: "Sucesso", resultado: req.body });
             break;
          case tiposEventos.POST:
-            util.sendRequestPOST("http://127.0.0.1:5002/eventos", evento);
+            await util.sendRequestPOST("http://127.0.0.1:5002/eventos", evento);
+            res.status(200).send({ msg: "Sucesso", resultado: req.body });
             break;
          case tiposEventos.COMENTARIO:
-            util.sendRequestPOST("http://127.0.0.1:5003/eventos", evento);
+            await util.sendRequestPOST("http://127.0.0.1:5003/eventos", evento);
+            res.status(200).send({ msg: "Sucesso", resultado: req.body });
             break;
          case tiposEventos.CURTIDA:
-            util.sendRequestPOST("http://127.0.0.1:5004/eventos", evento);
+            await util.sendRequestPOST("http://127.0.0.1:5004/eventos", evento);
+            res.status(200).send({ msg: "Sucesso", resultado: req.body });
             break;
          default:
             console.log("Tipo de evento não reconhecido:", evento.tipo);
@@ -52,7 +57,6 @@ class BarramentoController {
 router.post("/", async (req, res) => {
    const controller = new BarramentoController();
    controller.receberEventos(req, res);
-   res.status(200).send({ msg: "Sucesso", resultado: req.body });
 });
 
 router.get("/", async (req, res) => {

@@ -21,7 +21,8 @@ class UsuarioService {
   async criarUsuario(spotifyData) {
       const novoUsuario = new Usuario(spotifyData.id, spotifyData.display_name, spotifyData.email, spotifyData.images[0]?.url, spotifyData.country, spotifyData.followers?.total);
       if(novoUsuario.checkUser()){
-        this.bdUsuarios[novoUsuario.id] = novoUsuario;
+        this.bdUsuarios[novoUsuario.id] = {...novoUsuario};
+        console.log(this.bdUsuarios)
         return novoUsuario;
       }else{
         return null;

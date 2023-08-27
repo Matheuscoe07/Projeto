@@ -26,18 +26,18 @@ class UsuarioController {
       if (novoUsuario === null) {
         throw new Error("Usuário não criado corretamente.");
       }
-      const envio = await this.sendUserLogado(novoUsuario);
-      if (!envio.status) {
-        throw new Error(envio.msg);
+      const envioBarramentos = await this.sendUserLogado(novoUsuario);
+      if (!envioBarramentos.status) {
+        throw new Error(envioBarramentos.msg);
       }
-      res.status(200).send(novoUsuario);
+      res.status(200).send({ evento: envioBarramentos.data.evento });
     } catch (error) {
       res.status(500).send({ error: `${error}` });
     }
   }
 
-  async sendUserLogado(userLogado) {
-    let pacote = { tipo: ENUM.tiposEventos.USUARIO_LOGADO, dados: { userLogado } };
+  async sendUserLogado(usuario) {
+    let pacote = { tipo: ENUM.tiposEventos.USUARIO_LOGADO, dados: { ...usuario } };
     return util.sendRequestPOST(`${ENUM.enderecosIP.SERVICO_BARRAMENTO}/eventos`, pacote);
   }
 }
