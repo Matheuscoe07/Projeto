@@ -15,7 +15,7 @@ class Util {
         });
     }
 
-    static async sendRequestPOST(strRequest, evento, checkPort=true) {
+    static async sendRequestPOST(strRequest, evento, eventoHeader=null , checkPort=true) {
         let port, isPortOpen = true;
         if(checkPort){
             port = Util.extrairPorta(strRequest);
@@ -23,10 +23,10 @@ class Util {
         }
         if(isPortOpen) {
             try {
-                let response = await axios.post(strRequest, evento);
+                let response = await axios.post(strRequest, evento, eventoHeader);
                 return {status: true, msg: 'Sucesso', data: response.data};
             }catch (error) {
-                return {status: false, msg: `Request Inválido: ${strRequest}`};
+                return {status: false, msg: `${error}`};
             }
         } else {
             return {status: false, msg: `Serviço inoperante: Porta ${port}`};
@@ -44,10 +44,20 @@ class Util {
                 let response =  await axios.get(strRequest);
                 return {status: true, msg: 'Sucesso', data: response.data};
             }catch (error) {
-                return {status: false, msg: `Request Inválido: ${strRequest}`};
+                return {status: false, msg: `${error}`};
             }
         } else {
             return {status: false, msg: `Serviço inoperante: Porta ${port}`};
+        }
+    }
+
+    static async sendRequest(jsonRequest) {
+        try {
+            let response =  await axios(jsonRequest);
+            return {status: true, msg: 'Sucesso', data: response.data};
+        }catch (error) {
+            return {status: false, msg: `${error}`};
+
         }
     }
 

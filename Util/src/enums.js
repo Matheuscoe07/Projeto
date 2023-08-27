@@ -10,6 +10,7 @@ class Enum {
       PORTA_USUARIO: 5001,
       PORTA_BARRAMENTO: 10000,
       PORTA_API_SPOTIFY: 8888,
+      PORTA_FRONTEND: 5007,
     };
   }
 
@@ -18,6 +19,8 @@ class Enum {
       SERVICO_USUARIO: `http://127.0.0.1:${Enum.portas.PORTA_USUARIO}`,
       SERVICO_BARRAMENTO: `http://127.0.0.1:${Enum.portas.PORTA_BARRAMENTO}`,
       SERVICO_API_SPOTIFY: `http://127.0.0.1:${Enum.portas.PORTA_API_SPOTIFY}`,
+      SERVICO_API_SPOTIFY2: `http://localhost:${Enum.portas.PORTA_API_SPOTIFY}`,
+      SERVICO_FRONTEND: `http://127.0.0.1:${Enum.portas.PORTA_FRONTEND}`,
     };
   }
 

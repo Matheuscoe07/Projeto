@@ -1,6 +1,5 @@
 const express = require("express");
 const usuarioService = require('./usuarioService');
-const axios = require("axios");
 const router = express.Router();
 const util = require("../../Util/src/util");
 const ENUM = require("../../Util/src/enums");
