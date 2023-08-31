@@ -1,7 +1,7 @@
-const net = require("net");
-const axios = require("axios");
+import axios from "axios";
+import net from "net";
 
-class Util {
+export default class Util {
 
     static async checkPort(port) {
         return new Promise((resolve) => {
@@ -15,7 +15,7 @@ class Util {
         });
     }
 
-    static async sendRequestPOST(strRequest, evento, eventoHeader=null , checkPort=true) {
+    static async sendRequestPOST(strRequest, jsonData={}, jsonHeader={} , checkPort=true) {
         let port, isPortOpen = true;
         if(checkPort){
             port = Util.extrairPorta(strRequest);
@@ -23,7 +23,7 @@ class Util {
         }
         if(isPortOpen) {
             try {
-                let response = await axios.post(strRequest, evento, eventoHeader);
+                const response = await axios.post(strRequest, jsonData, {headers: jsonHeader});
                 return {status: true, msg: 'Sucesso', data: response.data};
             }catch (error) {
                 return {status: false, msg: `${error}`};
@@ -33,7 +33,7 @@ class Util {
         }
     }
 
-    static async sendRequestGET(strRequest, checkPort=true) {
+    static async sendRequestGET(strRequest, jsonHeader={}, jsonParams={}, checkPort=true) {
         let port, isPortOpen = true;
         if(checkPort){
             port = Util.extrairPorta(strRequest);
@@ -41,7 +41,7 @@ class Util {
         }
         if(isPortOpen) {
             try {
-                let response =  await axios.get(strRequest);
+                const response = await axios.get(strRequest, {params: jsonParams, headers: jsonHeader});
                 return {status: true, msg: 'Sucesso', data: response.data};
             }catch (error) {
                 return {status: false, msg: `${error}`};
@@ -84,4 +84,3 @@ class Util {
 }
 
 
-module.exports = Util;

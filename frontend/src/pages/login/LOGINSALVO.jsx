@@ -39,15 +39,37 @@ export default function Login({ EmAlta, EmAltaBR, Comunidades, autenticado }) {
 
    }, []);
 
+   const handleAuthClick = async () => {
+      try {
+        const response = await axios.get('URL_DA_SUA_API_DE_AUTENTICACAO');
+        
+        if (response.data.success) {
+          setAuthStatus('Autenticado com sucesso!');
+        } else {
+          setAuthStatus('Erro de autenticação.');
+        }
+      } catch (error) {
+        setAuthStatus('Erro de rede');
+      }
+    };
+    
    return (
       <div className='ctn-home'>
-         
+
          <div className='row header-home'>
             <div className='col-6'>
                <p>Logo</p>
             </div>
             <div className='col-6 text-center'>
-               {autenticado ? (<Link to='/perfil'> <p class="underline-on-hover">Foto Usuário</p> </Link>) : (<a className='click' href={AUTH_URL}> Entre ou cadastre-se </a>)}
+               {autenticado ? (
+                  <Link to='/perfil'>
+                     <p className="underline-on-hover">Foto Usuário</p>
+                  </Link>
+               ) : (
+                  <p className='click' onClick={() => window.location.href = AUTH_URL}>
+                     Entre ou cadastre-se
+                  </p>
+               )}
             </div>
          </div>
 
@@ -73,6 +95,7 @@ export default function Login({ EmAlta, EmAltaBR, Comunidades, autenticado }) {
       </div>
    )
 };
+
 
 
 

@@ -1,14 +1,15 @@
-const express = require("express");
+import express from "express";
+import bodyParser from "body-parser";
+import { v4 as uuidv4 } from 'uuid'; // Importe a função v4 como uuidv4
+
 const app = express();
-const bodyParser = require("body-parser");
-const { v4: uuidv4 } = require('uuid');
 app.use(bodyParser.json());
 
-class BarramentoService {
+export default class BarramentoService {
 
    constructor() {
       if (BarramentoService.instance) {
-        return BarramentoService.instance;
+         return BarramentoService.instance;
       }
       this.bdBarramento = {};
       BarramentoService.instance = this;
@@ -27,6 +28,11 @@ class BarramentoService {
       console.log(this.bdBarramento[idEvento])
       return this.bdBarramento[idEvento];
    }
-}
 
-module.exports = BarramentoService;
+   async obterEvento(idEvento) {
+      if (idEvento in this.bdBarramento) {
+         return this.bdBarramento[idEvento]
+      }
+      return null;
+   }
+}

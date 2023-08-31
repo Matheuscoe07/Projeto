@@ -1,13 +1,13 @@
-const express = require("express");
-const barramentoService = require('./barramentoService');
-const router = express.Router();
-const util = require("../../Util/src/util");
-const ENUM = require("../../Util/src/enums"); // Importa os tipos de eventos
+import express from "express";
+import BarramentoService from './barramentoService.js';
+import util from "../../Util/src/util.js";
+import ENUM from "../../Util/src/enums.js"; // Importa os tipos de eventos
 
+const router = express.Router();
 class BarramentoController {
 
    constructor() {
-      this.barramentoService = new barramentoService(); // Instancie a service
+      this.barramentoService = new BarramentoService(); // Instancie a service
    }
 
    async obterTodos(req, res) {
@@ -21,13 +21,29 @@ class BarramentoController {
       }
    }
 
+   async obterRequisicaoLogin(req, res) {
+      let resultado;
+      try {
+        const idEvento = req.query.idEvento;
+        console.log(idEvento)
+        const evento = await this.barramentoService.obterEvento(idEvento);
+        console.log(evento)
+        if (evento === null) {
+          throw new Error("Evento não encontrado.");
+        }
+        res.status(200).send(evento);
+      } catch (error) {
+         resultado = { msg: `${error}`, resultado: {userAuth: false}};
+         res.status(500).send(resultado);
+      }
+   }
+
    async receberEventos(req, res){
       const {tipo, dados} = req.body;
       const evento = await this.barramentoService.adicionarEvento(tipo, dados);
 
       switch (tipo) {
          case ENUM.tiposEventos.USUARIO_LOGADO:
-            // console.log("ENTREIII")
             await util.sendRequestPOST("http://127.0.0.1:5001/usuarios/eventos", dados);
             res.status(200).send({evento: evento});
             break;
@@ -54,6 +70,11 @@ class BarramentoController {
    }
 }
 
+router.get("/auth-user", async (req, res) => {
+   const controller = new BarramentoController();
+   await controller.obterRequisicaoLogin(req, res);
+});
+
 router.post("/", async (req, res) => {
    const controller = new BarramentoController();
    controller.receberEventos(req, res);
@@ -62,6 +83,6 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
    const controller = new BarramentoController();
    await controller.obterTodos(req, res);
- });
- 
-module.exports = router;
+});
+
+export { BarramentoController, router };

@@ -1,38 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './global.css';
-import Login from './components/login/login';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { useSelector, Provider } from 'react-redux';
 import UserProfile from './components/userInfo/userInfo';
-import axios from 'axios';
+import { store, persistor } from './store/configureStore';
+import { PersistGate } from 'redux-persist/integration/react'; // Importe o PersistGate
+import Login from './pages/login/login';
+import './global.css';
 
 export default function App() {
-  const [usuarioLogado, setUsuarioLogado] = useState(false);
-  const [userData, setUserData] = useState(null);
+
+  const [usuarioLogado, setUsuarioLogado] = useState(store.getState().loginReducer.autenticado);
+
+  const renderElement = () => {
+    if(usuarioLogado){
+      return <Navigate to="/logado" />;
+    }else{
+      return <Navigate to="/login" />;
+    }
+  };
 
   useEffect(() => {
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    setUsuarioLogado(urlSearchParams.get('authenticated') === 'true');
 
-    if (usuarioLogado) {
-      axios.get('http://localhost:5001/usuarios')
-        .then(response => {
-          setUserData(response.data);
-          console.log("userData: ", userData); // Imprime o objeto userData no console
-        })
-        .catch(error => {
-          console.error('Erro na requisição:', error);
-        });
-    }
-  }, [usuarioLogado]);
+  }, []);
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login autenticado={usuarioLogado}/>} />
-        <Route path="/perfil" element={<UserProfile userData={userData} />} />
-      </Routes>
-    </Router>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router>
+          <Routes>
+          {/* <Route
+              path="/"
+              element={renderElement()} /> */}
+            <Route
+              path="/login"
+              element={(!usuarioLogado || usuarioLogado == null) ? <Login store={store} /> : null} />
+            <Route
+              path="/logado"
+              element={usuarioLogado ? <Login store={store} /> : null} />
+            <Route 
+              path="/perfil" 
+              element={<UserProfile userData={{}} />} />
+          </Routes>
+        </Router>
+      </PersistGate>
+    </Provider>
   );
 }
-
-

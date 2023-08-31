@@ -1,4 +1,4 @@
-class Usuario {
+export default class Usuario {
    constructor(id, nome, email, fotoPerfil, nac, totalFollowers) {
      this._id = id;
      this._nome = nome;
@@ -41,5 +41,4 @@ class Usuario {
    }
  }
  
-module.exports = Usuario;
 

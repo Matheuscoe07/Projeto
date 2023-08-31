@@ -1,10 +1,13 @@
-const express = require("express");
-const app = express();
-const bodyParser = require("body-parser");
-app.use(bodyParser.json());
-const Usuario = require('./usuarioModel');
+import express from "express";
+import bodyParser from "body-parser";
+import Usuario from './usuarioModel.js';
+import ENUM from "../../Util/src/enums.js";
+import util from "../../Util/src/util.js";
 
-class UsuarioService {
+const app = express();
+app.use(bodyParser.json());
+
+export default class UsuarioService {
 
   constructor() {
     if (UsuarioService.instance) {
@@ -29,7 +32,9 @@ class UsuarioService {
       }
   }
 
+  async sendUserLogado(usuario) {
+    let jsonData = { tipo: ENUM.tiposEventos.USUARIO_LOGADO, dados: { ...usuario } };
+    return util.sendRequestPOST(`${ENUM.enderecosIP.SERVICO_BARRAMENTO}/eventos`, jsonData);
+  }
+
 }
-
-module.exports = UsuarioService;
-

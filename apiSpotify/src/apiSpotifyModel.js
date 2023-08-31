@@ -1,4 +1,4 @@
-class ApiSpotifyModel {
+export default class ApiSpotifyModel {
 
    formatarTopMusicasGlobais(responseData) {
       const topArtistasGlobais = responseData.map(entry => ({
@@ -12,7 +12,7 @@ class ApiSpotifyModel {
          trackImg: entry.trackMetadata.displayImageUri
       }));
 
-      // console.log(JSON.stringify(topArtistasGlobais, null, 2));
+      console.log(JSON.stringify(topArtistasGlobais, null, 2));
       return topArtistasGlobais;
    }
 
@@ -44,5 +44,3 @@ class ApiSpotifyModel {
       return topArtistasGlobais;
    }
 }
-
-module.exports = ApiSpotifyModel;

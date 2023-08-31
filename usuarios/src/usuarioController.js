@@ -1,13 +1,12 @@
-const express = require("express");
-const usuarioService = require('./usuarioService');
+import express from "express";
+import UsuarioService from './usuarioService.js';
+
 const router = express.Router();
-const util = require("../../Util/src/util");
-const ENUM = require("../../Util/src/enums");
 
 class UsuarioController {
 
   constructor() {
-    this.usuarioService = new usuarioService(); // Instancie a service
+    this.usuarioService = new UsuarioService(); // Instancie a service
   }
 
   async obterTodos(req, res) {
@@ -26,7 +25,7 @@ class UsuarioController {
       if (novoUsuario === null) {
         throw new Error("Usuário não criado corretamente.");
       }
-      const envioBarramentos = await this.sendUserLogado(novoUsuario);
+      const envioBarramentos = await this.usuarioService.sendUserLogado(novoUsuario);
       if (!envioBarramentos.status) {
         throw new Error(envioBarramentos.msg);
       }
@@ -34,11 +33,6 @@ class UsuarioController {
     } catch (error) {
       res.status(500).send({ error: `${error}` });
     }
-  }
-
-  async sendUserLogado(usuario) {
-    let pacote = { tipo: ENUM.tiposEventos.USUARIO_LOGADO, dados: { ...usuario } };
-    return util.sendRequestPOST(`${ENUM.enderecosIP.SERVICO_BARRAMENTO}/eventos`, pacote);
   }
 }
 
@@ -56,4 +50,4 @@ router.post("/", async (req, res) => {
   controller.criar(req, res);
 });
 
-module.exports = router;
+export { UsuarioController, router };

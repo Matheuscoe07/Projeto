@@ -1,11 +1,9 @@
-const request = require('request');
-const axios = require('axios');
-const apiSpotifyModel = require('./apiSpotifyModel');
-const ENUM = require('../../Util/src/enums');
-const util = require("../../Util/src/util");
+import axios from 'axios';
+import  apiSpotifyModel from './apiSpotifyModel.js';
+import  ENUM  from '../../Util/src/enums.js';
+import util from '../../Util/src/util.js';
 
-
-class ApiSpotifyService {
+export default class ApiSpotifyService {
    constructor(clientId, clientSecret, redirectURI) {
       this.clientId = clientId;
       this.clientSecret = clientSecret;
@@ -27,7 +25,7 @@ class ApiSpotifyService {
             Authorization: `Basic ${Buffer.from(this.clientId + ':' + this.clientSecret).toString('base64')}`,
          },
       };
-      return await util.sendRequestPOST(authOptions.url, authOptions.data, { headers: authOptions.headers }, false);
+      return await util.sendRequestPOST(authOptions.url, authOptions.data, authOptions.headers, false);
    }
 
    async pegarUsuarioInfo(access_token) {
@@ -66,7 +64,7 @@ class ApiSpotifyService {
       const options = {
          url: 'https://charts-spotify-com-service.spotify.com/public/v0/charts'
       };
-      const response = await util.sendRequestGET(options.url, false);
+      const response = await util.sendRequestGET(options.url, undefined, undefined, false);
       if (!response.status) throw new Error(response.msg);
       switch (tipo) {
          case ENUM.tiposParamsTopGlobais.MUSICAS:
@@ -83,8 +81,3 @@ class ApiSpotifyService {
 
    }
 }
-
-module.exports = ApiSpotifyService;
-
-
-

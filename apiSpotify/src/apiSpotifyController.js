@@ -1,8 +1,14 @@
-const express = require('express');
-const querystring = require('querystring');
-const ApiSpotifyService = require('./apiSpotifyService'); 
-const util = require('../../Util/src/util');
-const ENUM = require('../../Util/src/enums');
+// const express = require('express');
+// const querystring = require('querystring');
+// const ApiSpotifyService = require('./apiSpotifyService'); 
+// const util = require('../../Util/src/util');
+// const ENUM = require('../../Util/src/enums');
+
+import express from 'express';
+import querystring from 'querystring';
+import ApiSpotifyService from './apiSpotifyService.js';
+import util from '../../Util/src/util.js';
+import ENUM from '../../Util/src/enums.js';
 
 const router = express.Router([{mergeParams: true}]);
 
@@ -62,7 +68,7 @@ class ApiSpotifyController {
             if (!returnMicroServicos.status) {
                throw new Error(`Erro no envio aos microservicos: ${returnMicroServicos.msg}`);
             }
-            res.status(200).redirect('http://localhost:3000/#' + querystring.stringify({ idEvento: returnMicroServicos.data.evento.idEvento, authenticated: this.tokenReact }));
+            res.status(200).redirect('http://localhost:3000/login?' + querystring.stringify({ idEvento: returnMicroServicos.data.evento.idEvento, authenticated: this.tokenReact }));
          }
       } catch (error) {
          res.status(500).send({ error: `${error}` });
@@ -131,7 +137,4 @@ router.get('/top-globais/:tipo', async (req, res) => {
    await apiSpotifyController.pegarTopGlobais(req, res);
 });
 
-module.exports = router;
-
-
-
+export { ApiSpotifyController, router };
