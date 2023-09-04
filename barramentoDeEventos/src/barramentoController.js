@@ -25,7 +25,6 @@ class BarramentoController {
       let resultado;
       try {
         const idEvento = req.query.idEvento;
-        console.log(idEvento)
         const evento = await this.barramentoService.obterEvento(idEvento);
         console.log(evento)
         if (evento === null) {

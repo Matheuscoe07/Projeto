@@ -2,9 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './userInfo.css';
 
-
 const UserInfo = (user) => {
    const navigate = useNavigate();
+   console.log('ENTREI');
 
    const userData = {
       name: 'John Doe',

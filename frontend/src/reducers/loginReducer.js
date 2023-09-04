@@ -1,8 +1,10 @@
-import { SET_USUARIO_LOGADO, SET_USUARIO_AUTH, LOGOUT_USUARIO } from '../actions/login.js';
+import { SET_USUARIO_LOGADO, SET_TOKEN_REACT, LOGOUT_USUARIO } from '../actions/login.js';
 
 const estadoInicial = {
-  autenticado: null,
   usuario: null,
+  autenticado: false,
+  tokenReact: null,
+  idEvento: null,
 };
 
 const loginReducer = (state = estadoInicial, acao) => {
@@ -11,12 +13,13 @@ const loginReducer = (state = estadoInicial, acao) => {
       return {
         ...state,
         autenticado: true,
-        usuario: acao.dados,
+        usuario: acao.dados.usuario_logado,
+        idEvento: acao.dados.idEvento,
       };
-    case SET_USUARIO_AUTH:
+    case SET_TOKEN_REACT:
       return {
         ...state,
-        autenticado: false,
+        tokenReact: acao.dados,
       };
       case LOGOUT_USUARIO:
         return {

@@ -6,58 +6,34 @@ import ScrollArtista from '../../components/scrollArtist/scrollArtista';
 import SpotifyDataProcessor from '../../services/dataProcessor';
 import util from '../../Util/util';
 import ENUM from '../../Util/enums';
-import { setUsuarioLogado, setUsuarioAuth } from '../../actions/login';
+import { setTokenReact } from '../../actions/login';
 import { Navigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 export default function Login({ EmAlta, EmAltaBR, Comunidades, store }) {
    const AUTH_URL = `${ENUM.enderecosIP.SERVICO_API_SPOTIFY2}/api_spotify/login`;
-
+   const dispatch = useDispatch();
    // SliderSettings breakpoints: window Size: 1024px, slidesToShow: 2
    const breakpointsAlbuns = [[1200, 3], [992, 2], [768, 1]];
 
    const [dataAlbuns, setDataAlbuns] = useState([]);
    const [dataArtistas, setDataArtistas] = useState([]);
    const [spinner, setSpinner] = useState(true);
-   const [authStatus, setAuthStatus] = useState(null);
 
    const gerenciarAuthClick = () => {
       try {
-         store.dispatch(setUsuarioAuth())
-         console.log('CLIQUEI: ', store.getState());
          let tokenReact = util.generateRandomString(16);
+         dispatch(setTokenReact(tokenReact))
+         console.log('CLIQUEI: ', store.getState());
          const AUTH_URL_WITH_TOKEN = `${AUTH_URL}/${tokenReact}`;
          window.location.href = AUTH_URL_WITH_TOKEN;
       } catch (error) {
-         setAuthStatus('Erro de rede');
+         console.log('Erro de rede');
       }
    };
 
    useEffect(() => {
-      let intervalId;
-
-      const rodarEventoLogin = async () => {
-         let idEvento;
-         const urlSearchParams = new URLSearchParams(window.location.search);
-         if (urlSearchParams.has('authenticated') && urlSearchParams.has('idEvento')) {
-            clearInterval(intervalId);
-            idEvento = urlSearchParams.get('idEvento');
-            const paramsJson = {
-               'idEvento': idEvento
-            };
-            const response = await util.sendRequestGET(`${ENUM.enderecosIP.SERVICO_BARRAMENTO}/eventos/auth-user`, undefined, paramsJson, false);
-            if (!response.status) {
-               throw new Error(response.msg);
-            }
-            let usuarioAutenticado = setUsuarioLogado(response.data.usuario_logado);
-            store.dispatch(usuarioAutenticado);
-            console.log('AUTENTICADO: ', store.getState());
-         } else {
-            // Se não houver 'authenticated', atualize o estado de autenticação para falso
-            console.log(idEvento)
-         }
-      };
-
 
       const fetchData = () => {
          try {
@@ -71,17 +47,11 @@ export default function Login({ EmAlta, EmAltaBR, Comunidades, store }) {
             console.error('Erro ao processar dados do Spotify:', error);
          }
       };
-      console.log('PRIMEIRA VEZ: ', store.getState());
-      if(store.getState().loginReducer.autenticado === false) {
-         intervalId = setInterval(rodarEventoLogin, 1000);
-      }
+
       const timer = setTimeout(() => {
          fetchData()
       }, 0);
 
-      return () => {
-         clearInterval(intervalId);
-      };
    });
 
    return (

@@ -1,18 +1,19 @@
-const SET_USUARIO_LOGADO = 'SET_USUARIO_LOGADO';
-const SET_USUARIO_AUTH = 'SET_USUARIO_AUTH';
-const LOGOUT_USUARIO = 'LOGOUT_USUARIO';
+export const SET_USUARIO_LOGADO = 'SET_USUARIO_LOGADO';
+export const SET_TOKEN_REACT = 'SET_TOKEN_REACT';
+export const LOGOUT_USUARIO = 'LOGOUT_USUARIO';
 
-const setUsuarioLogado = (usuarioData) => {
+export const setUsuarioLogado = (usuarioData) => {
   return {
     type: SET_USUARIO_LOGADO,
     dados: usuarioData,
   };
 };
 
-const setUsuarioAuth = () => {
+export const setTokenReact = (tokenReact) => {
   return {
-    type: SET_USUARIO_AUTH,
+    type: SET_TOKEN_REACT,
+    dados: tokenReact,
   };
 };
 
-export { setUsuarioLogado, setUsuarioAuth, SET_USUARIO_LOGADO, SET_USUARIO_AUTH, LOGOUT_USUARIO };
+
