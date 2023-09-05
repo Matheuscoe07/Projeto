@@ -9,7 +9,6 @@ import App from './app'
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* Envolve o componente App com o Provider */}
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <App store={store} />

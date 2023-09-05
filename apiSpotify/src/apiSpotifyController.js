@@ -1,16 +1,10 @@
-// const express = require('express');
-// const querystring = require('querystring');
-// const ApiSpotifyService = require('./apiSpotifyService'); 
-// const util = require('../../Util/src/util');
-// const ENUM = require('../../Util/src/enums');
-
 import express from 'express';
 import querystring from 'querystring';
 import ApiSpotifyService from './apiSpotifyService.js';
 import util from '../../Util/src/util.js';
 import ENUM from '../../Util/src/enums.js';
 
-const router = express.Router([{mergeParams: true}]);
+const router = express.Router([{ mergeParams: true }]);
 
 class ApiSpotifyController {
 
@@ -20,7 +14,16 @@ class ApiSpotifyController {
          "663b8df223434395b1854d449cfd2432" // Your secret
       );
       this.stateKey = 'spotify_auth_state';
-      this.scopeLogin = 'user-read-private user-read-email ugc-image-upload playlist-modify-public user-top-read';
+      const scopeImages = 'ugc-image-upload ';
+      const scopeSpotifyConnect = 'user-read-playback-state user-modify-playback-state user-read-currently-playing ';
+      const scopePlayback = 'app-remote-control streaming ';
+      const scopePlaylists = 'playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public ';
+      const scopeFollow = 'user-follow-modify user-follow-read ';
+      const scopeListeningHistory = 'user-read-playback-position user-top-read user-read-recently-played ';
+      const scopeLibrary = 'user-library-modify user-library-read ';
+      const scopeUsers = 'user-read-email user-read-private ';
+      this.scopeLogin = scopeImages + scopeSpotifyConnect + scopePlayback + scopePlaylists + scopeFollow + scopeListeningHistory + scopeLibrary + scopeUsers;
+      console.log(this.scopeLogin);
       this.tokenReact = null;
    }
 
@@ -59,7 +62,7 @@ class ApiSpotifyController {
             if (!returnTokens.status) {
                throw new Error(`Tokens não criados corretamente: ${returnTokens.msg}}`);
             }
-            const tokens = {access_token: returnTokens.data.access_token, refresh_token: returnTokens.data.refresh_token};
+            const tokens = { access_token: returnTokens.data.access_token, refresh_token: returnTokens.data.refresh_token };
             const returnUserData = await this.apiSpotifyService.pegarUsuarioInfo(tokens.access_token);
             if (!returnUserData.status) {
                throw new Error(`Dados do usuário não recueprados corretamente: ${returnUserData.msg}`);
@@ -68,7 +71,8 @@ class ApiSpotifyController {
             if (!returnMicroServicos.status) {
                throw new Error(`Erro no envio aos microservicos: ${returnMicroServicos.msg}`);
             }
-            res.status(200).redirect('http://localhost:3000/autenticacao?' + querystring.stringify({ idEvento: returnMicroServicos.data.evento.idEvento, authenticated: this.tokenReact }));
+            // res.status(200).redirect('http://localhost:3000/autenticacao?' + querystring.stringify({ idEvento: returnMicroServicos.data.evento.idEvento, authenticated: this.tokenReact }));
+            res.status(200).redirect(`http://localhost:3000/auth/${returnMicroServicos.data.evento.idEvento}/${this.tokenReact}`);
          }
       } catch (error) {
          res.status(500).send({ error: `${error}` });
@@ -76,7 +80,7 @@ class ApiSpotifyController {
    }
 
    async getTopArtists(req, res) {
-      try { 
+      try {
          const access_token = req.get('Authorization'); // Ou de onde você estiver obtendo o token
          // console.log(access_token);
 
@@ -87,20 +91,20 @@ class ApiSpotifyController {
 
          const topArtists = await this.apiSpotifyService.getTopArtists(access_token);
          res.json(topArtists);
-         
+
       } catch (error) {
          res.status(500).json({ error: error.message || 'Internal server error.' });
       }
    }
 
    async pegarTopGlobais(req, res) {
-      try { 
+      try {
          const tipo = req.params.tipo;
-         if(!Object.values(ENUM.tiposParamsTopGlobais).includes(tipo) ) {
+         if (!Object.values(ENUM.tiposParamsTopGlobais).includes(tipo)) {
             throw new Error('Parametro tipo inválido.');
          }
-         const topArtistsGlobais = await this.apiSpotifyService.pegarTopGlobais(tipo);
-         res.status(200).json(topArtistsGlobais);
+         const topGlobais = await this.apiSpotifyService.pegarTopGlobais(tipo);
+         res.status(200).json(topGlobais);
       } catch (error) {
          res.status(500).send({ error: `${error}` });
       }
@@ -138,3 +142,4 @@ router.get('/top-globais/:tipo', async (req, res) => {
 });
 
 export { ApiSpotifyController, router };
+

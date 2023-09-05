@@ -1,7 +1,7 @@
 import img1 from '../images/img1.jpg'
 
 const albums = [
-    { id: 1, titulo: 'Here comes the sun 1aaaaaaa', artista: 'Beatles', imagem: img1 },
+    { id: 1, titulo: 'Here comes the sun 1', artista: 'Beatles', imagem: img1 },
     { id: 2, titulo: 'Here comes the sun 2', artista: 'Beatles', imagem: img1 },
     { id: 3, titulo: 'Here comes the sun 3', artista: 'Beatles', imagem: img1 },
     { id: 4, titulo: 'Here comes the sun 4', artista: 'Beatles', imagem: img1 },
@@ -15,7 +15,7 @@ const albums = [
 
 const artistas = [
    { id: 1, nome: 'Bey Hive', seguidores: 120, imagem: img1 },
-   { id: 2, nome: 'Here comes the suaaaaaaaaaaaaaaaaaaaaa2', seguidores: 120, imagem: img1 },
+   { id: 2, nome: 'Here comes the sun 1aaaaaaaaaaaaaaaaaaaaaaaaa', seguidores: 120, imagem: img1 },
    { id: 3, nome: 'Here comes the sun 3', seguidores: 120, imagem: img1 },
    { id: 4, nome: 'Here comes the sun 4', seguidores: 120, imagem: img1 },
    { id: 5, nome: 'Here comes the sun 5', seguidores: 120, imagem: img1 },

@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import CartaoAlbum from '../cartaoAlbum/cartaoAlbum';
 
-export default function CarrosselAlbum({ listaAlbum, listaBreakpoints }) {
+export default function CarrosselMusica({ listaMusica, listaBreakpoints }) {
 
    const getSettings = () => {
       const defaultSettings = {
@@ -31,9 +31,9 @@ export default function CarrosselAlbum({ listaAlbum, listaBreakpoints }) {
 
    return (
          <Slider {...settings}>
-            {listaAlbum.map((album) => (
-               <div key={album.rank} className="slider-item-album">
-                  <CartaoAlbum fotoAlbum={album.albumImg} nome={`#${album.rank} ${album.albumName}`} artista={album.artists[0].name} />
+            {listaMusica.map((musica) => (
+               <div key={musica.rank} className="slider-item-musica">
+                  <CartaoAlbum fotoAlbum={musica.trackImg} nome={`#${musica.rank} ${musica.trackName}`} artista={musica.artists[0].name} />
                </div>
             ))}
          </Slider>

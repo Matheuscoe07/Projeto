@@ -24,7 +24,7 @@ export default class ApiSpotifyModel {
             spotifyUri: artist.spotifyUri.split(':')[2]
           })),
          albumUri: entry.albumMetadata.albumUri.split(':')[2],
-         trackName: entry.albumMetadata.albumName,
+         albumName: entry.albumMetadata.albumName,
          albumImg: entry.albumMetadata.displayImageUri
        }));
 

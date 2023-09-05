@@ -22,7 +22,7 @@ export default class UsuarioService {
   }
 
   async criarUsuario(spotifyData) {
-      const novoUsuario = new Usuario(spotifyData.id, spotifyData.display_name, spotifyData.email, spotifyData.images[0]?.url, spotifyData.country, spotifyData.followers?.total);
+      const novoUsuario = new Usuario(spotifyData.id, spotifyData.display_name, spotifyData.email, spotifyData.images[1]?.url, spotifyData.country, spotifyData.followers?.total, spotifyData.product, spotifyData.external_urls.spotify, spotifyData.href);
       if(novoUsuario.checkUser()){
         this.bdUsuarios[novoUsuario.id] = {...novoUsuario};
         console.log(this.bdUsuarios)

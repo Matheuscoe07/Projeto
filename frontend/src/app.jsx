@@ -25,15 +25,15 @@ export default function App({ store }) {
       <Routes>
         <Route
           path="/auth/:idEventoParam/:tokenReactParam/*"
-          element={autenticado ? <AuthRoutes store={store} /> : <Navigate to="/login" />}
+          element={<AuthRoutes store={store} />}
         />
         <Route
           path="/login"
           element={autenticado ? <Navigate to={urlAuth} /> : <Login store={store} />}
         />
         <Route
-          path="/autenticacao*"
-          element={<AutenticacaoComponente />} // Rota para o componente de autenticação
+          path="/auth/*"
+          element={autenticado ? null : <Navigate to="/login" />}
         />
         <Route
           path="/"

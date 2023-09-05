@@ -1,7 +1,11 @@
-import { useSelector } from 'react-redux';
-import { useParams, BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import UserInfo from '../pages/userInfo/userInfo';
+import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useParams, BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import UserInfo from '../pages/usuarioInfo/usuarioInfo';
 import Home from '../pages/home/home';
+import util from '../Util/util';
+import ENUM from '../Util/enums';
+import { setUsuarioLogado } from '../actions/login';
 
 export default function AuthRoutes({ store }) {
 
@@ -9,13 +13,8 @@ export default function AuthRoutes({ store }) {
    const tokenReact = useSelector(state => state.loginReducer.tokenReact);
    const idEvento = useSelector(state => state.loginReducer.idEvento);
    const { idEventoParam, tokenReactParam } = useParams();
-
-   const rodarAutenticacao = () => {
-      return (autenticado && idEvento == idEventoParam && tokenReact == tokenReactParam);
-   };
-
-   const checkUsuario = rodarAutenticacao()
-   console.log('checkUsuario: ', checkUsuario);
+   const [checkAutenticacao, setCheckAutenticacao] = useState(null);
+   const dispatch = useDispatch();
 
    function ComponenteX() {
       return (
@@ -25,15 +24,43 @@ export default function AuthRoutes({ store }) {
       );
    }
 
+   useEffect(() => {
+      const checkAuthorization = async () => {
+         if (idEventoParam && tokenReactParam) {
+            if (autenticado) {
+               setCheckAutenticacao(idEvento === idEventoParam && tokenReact === tokenReactParam)
+               return;
+            }else if (tokenReact === tokenReactParam) {
+               const paramsJson = {
+                  'idEvento': idEventoParam
+               };
+               const response = await util.sendRequestGET(`${ENUM.enderecosIP.SERVICO_BARRAMENTO}/eventos/auth-user`, undefined, paramsJson, false);
+               if (response.status) {
+                  dispatch(setUsuarioLogado(response.data));
+                  setCheckAutenticacao(true);
+                  return;
+               }
+            }
+         }
+         setCheckAutenticacao(false);
+      };
+      checkAuthorization();
+   }, []);
+
+
    return (
       <Routes>
          <Route
-            path="/"
-            element={checkUsuario ? <Home/> : <ComponenteX />}
+            path="/home"
+            element={checkAutenticacao === null ? null : checkAutenticacao ? <Home /> : <ComponenteX />}
          />
          <Route
             path="/perfil"
-            element={checkUsuario ? <UserInfo userData={{}} /> : <ComponenteX />}
+            element={checkAutenticacao === null ? null : checkAutenticacao ? <UserInfo userData={{}} /> : <ComponenteX />}
+         />
+         <Route
+            path="/"
+            element={checkAutenticacao === null ? null : checkAutenticacao ? <Navigate to={`home`} /> : <ComponenteX />}
          />
          <Route
             path="*"
