@@ -71,7 +71,6 @@ class ApiSpotifyController {
             if (!returnMicroServicos.status) {
                throw new Error(`Erro no envio aos microservicos: ${returnMicroServicos.msg}`);
             }
-            // res.status(200).redirect('http://localhost:3000/autenticacao?' + querystring.stringify({ idEvento: returnMicroServicos.data.evento.idEvento, authenticated: this.tokenReact }));
             res.status(200).redirect(`http://localhost:3000/auth/${returnMicroServicos.data.evento.idEvento}/${this.tokenReact}`);
          }
       } catch (error) {

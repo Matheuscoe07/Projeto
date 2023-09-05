@@ -1,5 +1,5 @@
 import React from 'react';
-import CartaoArtista from '../cartaoArtista/cartaoArtista';
+import CartaoArtista from '../cartaoArtistaGlobais/cartaoArtistaGlobais';
 
 export default function ScrollArtista({listaArtista}) {
   return (

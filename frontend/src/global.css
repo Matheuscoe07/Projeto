@@ -8,7 +8,7 @@ body {
    font: monstserrat, serif;
 }
 
-.row{
+.row {
    margin: 0;
 }
 
@@ -18,15 +18,25 @@ p, li {
    padding: 0;
 }
 
-.click:hover{
+.click:hover {
    cursor: pointer;
    text-decoration: underline;
 }
 
-.btn{
+.btn {
    color: #fff;
    background-color: #333;
    border-color: #242424;
    border-width: 0.15em;
    border-radius: 0%;
+}
+
+.row {
+   margin: 0;
+   padding: 0;
+}
+
+.col {
+   margin: 0;
+   padding: 0;
 }

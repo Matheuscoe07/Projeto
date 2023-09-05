@@ -26,7 +26,6 @@ class BarramentoController {
       try {
         const idEvento = req.query.idEvento;
         const evento = await this.barramentoService.obterEvento(idEvento);
-        console.log(evento)
         if (evento === null) {
           throw new Error("Evento não encontrado.");
         }

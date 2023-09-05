@@ -20,13 +20,13 @@ class UsuarioController {
 
   async criar(req, res) {
     try {
-      const { spotify_data } = req.body;
+      const { tokens, spotify_data } = req.body;
       console.log('spotify_data: ', spotify_data);
       const novoUsuario = await this.usuarioService.criarUsuario(spotify_data);
       if (novoUsuario === null) {
         throw new Error("Usuário não criado corretamente.");
       }
-      const envioBarramentos = await this.usuarioService.sendUserLogado(novoUsuario);
+      const envioBarramentos = await this.usuarioService.sendUserAuth(tokens, novoUsuario);
       if (!envioBarramentos.status) {
         throw new Error(envioBarramentos.msg);
       }

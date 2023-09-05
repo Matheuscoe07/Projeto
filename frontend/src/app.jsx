@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Login from './pages/login/login';
-import AutenticacaoComponente from './pages/autenticacao/autenticacao';
 import './global.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import AuthRoutes from './routes/authRotes';
+import Home from './pages/home/home';
 
 export default function App({ store }) {
   const autenticado = useSelector(state => state.loginReducer.autenticado);
@@ -29,7 +28,7 @@ export default function App({ store }) {
         />
         <Route
           path="/login"
-          element={autenticado ? <Navigate to={urlAuth} /> : <Login store={store} />}
+          element={autenticado ? <Navigate to={urlAuth} /> : <Home />}
         />
         <Route
           path="/auth/*"

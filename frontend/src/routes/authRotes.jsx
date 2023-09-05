@@ -11,6 +11,7 @@ export default function AuthRoutes({ store }) {
 
    const autenticado = useSelector(state => state.loginReducer.autenticado);
    const tokenReact = useSelector(state => state.loginReducer.tokenReact);
+   console.log('store', store.getState());
    const idEvento = useSelector(state => state.loginReducer.idEvento);
    const { idEventoParam, tokenReactParam } = useParams();
    const [checkAutenticacao, setCheckAutenticacao] = useState(null);

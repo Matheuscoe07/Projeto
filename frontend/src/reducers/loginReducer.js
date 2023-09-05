@@ -10,11 +10,13 @@ const estadoInicial = {
 const loginReducer = (state = estadoInicial, acao) => {
   switch (acao.type) {
     case SET_USUARIO_LOGADO:
+      const { tokens, ...userData } = acao.dados.usuario_logado;
       return {
         ...state,
         autenticado: true,
-        usuario: acao.dados.usuario_logado,
+        usuario: userData,
         idEvento: acao.dados.idEvento,
+        tokens: tokens,
       };
     case SET_TOKEN_REACT:
       return {

@@ -32,8 +32,8 @@ export default class UsuarioService {
       }
   }
 
-  async sendUserLogado(usuario) {
-    let jsonData = { tipo: ENUM.tiposEventos.USUARIO_LOGADO, dados: { ...usuario } };
+  async sendUserAuth(tokens, usuario) {
+    let jsonData = { tipo: ENUM.tiposEventos.USUARIO_LOGADO, dados: { ...usuario, tokens } };
     return util.sendRequestPOST(`${ENUM.enderecosIP.SERVICO_BARRAMENTO}/eventos`, jsonData);
   }
 

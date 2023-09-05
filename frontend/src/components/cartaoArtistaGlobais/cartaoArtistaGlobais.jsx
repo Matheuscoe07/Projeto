@@ -1,5 +1,4 @@
 import React from "react";
-import './cartaoArtista.css';
 
 export default function CartaoArtista({ fotoArtista, nomeArtista, numeroSeguidores }) {
    return (
@@ -9,7 +8,7 @@ export default function CartaoArtista({ fotoArtista, nomeArtista, numeroSeguidor
          </div>
          <div className="col p-0 overflow-hidden ms-2 text-start" style={{ maxHeight: '100px' }}>
             <p className="artista-nome click text-truncate" style={{ fontSize: '.7em', fontWeight: 'bold' }}>{nomeArtista}</p>
-            <p className="artista-seguidores text-truncate" style={{ fontSize: '.55em' }}>{numeroSeguidores} seguidores</p>
+            <p className="artista-seguidores text-truncate" style={{ fontSize: '.55em' }}>#1 Global</p>
          </div>
       </div>
    );

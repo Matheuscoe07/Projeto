@@ -4,12 +4,12 @@ export default class ApiSpotifyModel {
       const topArtistasGlobais = responseData.map(entry => ({
          rank: entry.chartEntryData.currentRank,
          artists: entry.trackMetadata.artists.map(artist => ({
-            name: artist.name,
-            spotifyUri: artist.spotifyUri.split(':')[2]
+            nome: artist.name,
+            uriAPI: artist.spotifyUri.split(':')[2]
          })),
-         trackUri: entry.trackMetadata.trackUri.split(':')[2],
-         trackName: entry.trackMetadata.trackName,
-         trackImg: entry.trackMetadata.displayImageUri
+         uriAPI: entry.trackMetadata.trackUri.split(':')[2],
+         nome: entry.trackMetadata.trackName,
+         imagem: entry.trackMetadata.displayImageUri
       }));
 
       console.log(JSON.stringify(topArtistasGlobais, null, 2));
@@ -20,12 +20,12 @@ export default class ApiSpotifyModel {
       const topAlbunsGlobais = responseData.map(entry => ({
          rank: entry.chartEntryData.currentRank,
          artists: entry.albumMetadata.artists.map(artist => ({
-            name: artist.name,
-            spotifyUri: artist.spotifyUri.split(':')[2]
+            nome: artist.name,
+            uriAPI: artist.spotifyUri.split(':')[2]
           })),
-         albumUri: entry.albumMetadata.albumUri.split(':')[2],
-         albumName: entry.albumMetadata.albumName,
-         albumImg: entry.albumMetadata.displayImageUri
+         uriAPI: entry.albumMetadata.albumUri.split(':')[2],
+         nome: entry.albumMetadata.albumName,
+         imagem: entry.albumMetadata.displayImageUri
        }));
 
       // console.log(JSON.stringify(topAlbunsGlobais, null, 2));

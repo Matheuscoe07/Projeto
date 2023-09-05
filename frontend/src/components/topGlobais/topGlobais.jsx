@@ -1,29 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import './login.css'; // Importe o arquivo CSS aqui
-import CarrosselAlbum from '../../components/carrosselAlbum/carrosselAlbum';
-import CarrosselMusica from '../../components/carrosselMusica/carrosselMusica';
-import Spinner from '../../components/spinner/spinner';
-import ScrollArtista from '../../components/scrollArtist/scrollArtista';
-import SpotifyDataProcessor from '../../services/dataProcessor';
+import './topGlobais.css'; // Importe o arquivo CSS aqui
+import CarrosselTopGlobais from '../carrosselTopGlobais/carrosselTopGlobais';
+import Spinner from '../spinner/spinner';
+import ScrollArtista from '../scrollArtistaGlobais/scrollArtistaGlobais';
 import util from '../../Util/util';
 import ENUM from '../../Util/enums';
 import { setTokenReact } from '../../actions/login';
 import { Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import logo from '../../images/logo.png'
 
 
-export default function Login({ EmAlta, EmAltaBR, Comunidades, store }) {
+export default function TopGlobais() {
    const AUTH_URL = `${ENUM.enderecosIP.SERVICO_API_SPOTIFY2}/api_spotify/login`;
    const dispatch = useDispatch();
-   // SliderSettings breakpoints: window Size: 1024px, slidesToShow: 2
    const breakpoints = [[1200, 3], [992, 2], [768, 1]];
+
+   const carroselConfig = {
+      infinite: true,
+      speed: 1000,
+      slidesToShow: 4,
+      slidesToScroll: 4,
+      responsive: [],
+   };
 
    const [dataTopMusicas, setDataTopMusicas] = useState([]);
    const [dataTopAlbuns, setDataTopAlbuns] = useState([]);
    const [dataTopArtistas, setDataTopArtistas] = useState([]);
    const [spinner, setSpinner] = useState(true);
 
-   const gerenciarAuthClick = () => {
+   const chamarAutenticacaoSpotify = () => {
       try {
          let tokenReact = util.generateRandomString(16);
          dispatch(setTokenReact(tokenReact))
@@ -60,22 +66,16 @@ export default function Login({ EmAlta, EmAltaBR, Comunidades, store }) {
       fetchData();
     }, []);
     
-    useEffect(() => {
-      console.log('Dados de músicas:', dataTopMusicas);
-      console.log('Dados de álbuns:', dataTopAlbuns);
-      console.log('Dados de artistas:', dataTopArtistas);
-    }, [dataTopMusicas, dataTopAlbuns, dataTopArtistas]);
-    
 
    return (
       <div className='ctn-home'>
 
          <div className='row header-home'>
             <div className='col-6'>
-               <h1 style={{color:'white'}}>Logo</h1>
+               <img src={logo} alt="Logo" style={{width:'150px'}} />
             </div>
             <div className='col-6 text-center'>
-               <p className='click' onClick={gerenciarAuthClick}>
+               <p className='click' onClick={chamarAutenticacaoSpotify}>
                   Entre ou cadastre-se
                </p>
             </div>
@@ -85,11 +85,11 @@ export default function Login({ EmAlta, EmAltaBR, Comunidades, store }) {
             <div className='col-9 carroseis'>
                <div className='carrosel-gringo main-titles'>
                   <p>Top 15 Músicas em Altas </p>
-                  {dataTopMusicas.length === 0 ? <Spinner /> : <CarrosselMusica listaMusica={dataTopMusicas} listaBreakpoints={breakpoints} />}
+                  {dataTopMusicas.length === 0 ? <Spinner /> : <CarrosselTopGlobais listaObjetos={dataTopMusicas} carroselConfig={carroselConfig} listaBreakpoints={breakpoints} />}
                </div>
                <div className='carrosel-brasil main-titles  my-3'>
                   <p>Top 15 Playlists mais Ouvidas</p>
-                  {dataTopAlbuns.length === 0 ? <Spinner /> : <CarrosselAlbum listaAlbum={dataTopAlbuns} listaBreakpoints={breakpoints} />}
+                  {dataTopAlbuns.length === 0 ? <Spinner /> : <CarrosselTopGlobais listaObjetos={dataTopAlbuns} carroselConfig={carroselConfig} listaBreakpoints={breakpoints} />}
                </div>
             </div>
             <div className='col-3 scrolls p-0'>

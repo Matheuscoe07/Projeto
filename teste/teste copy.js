@@ -1,7 +1,6 @@
-let variavel = null;
-
-if(variavel){
-   console.log("Variável IF");
-}else{
-   console.log("Variável ELSE");
-}
+const originalJson = 
+ 
+ // Crie uma cópia do objeto JSON excluindo a propriedade 'tokens'
+ const { tokens, ...novoJson } = originalJson;
+ 
+ console.log(novoJson);
