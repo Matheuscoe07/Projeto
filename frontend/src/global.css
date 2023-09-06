@@ -43,7 +43,12 @@ body{
    padding: 0;
 }
 
-[class^="row-"] {
+.col {
+   margin: 0;
+   padding: 0;
+}
+
+.row {
    margin: 0;
    padding: 0;
 }

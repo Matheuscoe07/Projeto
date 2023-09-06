@@ -5,7 +5,7 @@ import TopGlobais from '../../components/topGlobais/topGlobais'; // Importe a p√
 export default function Home({usuarioAutenticado}) {
   return (
     <div className='container' >
-      <Navbar usuarioAutenticado={usuarioAutenticado} />
+      <Navbar  usuarioAutenticado={usuarioAutenticado} />
       
       <TopGlobais/>
     </div>

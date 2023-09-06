@@ -2,13 +2,19 @@ import React from "react";
 
 export default function CartaoArtista({ fotoArtista, nomeArtista, numeroSeguidores }) {
    return (
-      <div className="row align-items-center">
-         <div className="col-4 p-0">
-            <img className="rounded-circle w-100" src={fotoArtista} alt={nomeArtista} />
-         </div>
-         <div className="col p-0 overflow-hidden ms-2 text-start" style={{ maxHeight: '100px' }}>
-            <p className="artista-nome click text-truncate" style={{ fontSize: '.7em', fontWeight: 'bold' }}>{nomeArtista}</p>
-            <p className="artista-seguidores text-truncate" style={{ fontSize: '.55em' }}>#1 Global</p>
+      <div className="ctn-cartao-artista  mx-auto">
+         <div className="row align-items-center mx-auto"style={{width:'90%'}}>
+            <div className="col-4" style={{alignContent:'center'}}>
+               {/* <div className="mx-auto" > */}
+                  <img src={fotoArtista} alt={nomeArtista} className="rounded-circle" style={{width:'100%'}}/>
+               {/* </div> */}
+            </div>
+            <div className="col-8" style={{ maxHeight: '100px' }}>
+               <div className=" text-start ms-3 mb-1">
+                  <p className="artista-seguidores text-truncate my-0 " style={{ fontSize: '1.7em' }}>{`# ${numeroSeguidores}`}</p>
+                  <p className="artista-nome click text-truncate my-0 " style={{ fontSize: '1.2em', fontWeight: 'bold' }}>{` ${nomeArtista}`}</p>
+               </div>
+            </div>
          </div>
       </div>
    );

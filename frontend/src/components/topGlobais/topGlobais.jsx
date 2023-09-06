@@ -54,34 +54,29 @@ export default function TopGlobais() {
     }, []);
     
    return (
-      <div className='ctn-home'>
+      <div className='ctn-home my-4'>
          
-         {/* <div className='row header-home bg-primary'>
-            <div className='col-6'>
-               <img src={logo} alt="Logo" style={{width:'150px'}} />
-            </div>
-            <div className='col-6 text-center'>
-               <p className='click' onClick={chamarAutenticacaoSpotify}>
-                  Entre ou cadastre-se
-               </p>
-            </div>
-         </div> */}
+         <div className='row body-home mx-auto'>
 
-         <div className='row body-home my-3'>
             <div className='col-9 carroseis'>
-               <div className='carrosel-musicas '>
-                  <h1 className='main-titles'> Top 15 Músicas em Altas </h1>
-                  {dataTopMusicas.length === 0 ? <Spinner /> : <CarrosselTopGlobais listaObjetos={dataTopMusicas} carroselConfig={carroselConfig} listaBreakpoints={breakpoints} />}
+               <div className='ctn-carrosel-musicas-helper'>
+                  <div className='carrosel-musicas mx-auto pb-2' style={{width:'93%'}}>
+                     <h1 className='main-titles ms-2 my-2'># Top 15 Músicas em Altas </h1>
+                     {dataTopMusicas.length === 0 ? <Spinner /> : <CarrosselTopGlobais listaObjetos={dataTopMusicas} carroselConfig={carroselConfig} listaBreakpoints={breakpoints} />}
+                  </div>
                </div>
-               <div className='carrosel-albuns my-3'>
-                  <p className='main-titles'>Top 15 Playlists mais Ouvidas</p>
-                  {dataTopAlbuns.length === 0 ? <Spinner /> : <CarrosselTopGlobais listaObjetos={dataTopAlbuns} carroselConfig={carroselConfig} listaBreakpoints={breakpoints} />}
+               <div className='ctn-carrosel-albuns-helper'>
+                  <div className='carrosel-albuns mx-auto pb-2'  style={{width:'93%'}}>
+                     <h1 className='main-titles ms-2 mb-2 my-2'># Top 15 Álbuns em Alta</h1>
+                     {dataTopAlbuns.length === 0 ? <Spinner /> : <CarrosselTopGlobais listaObjetos={dataTopAlbuns} carroselConfig={carroselConfig} listaBreakpoints={breakpoints} />}
+                  </div>
                </div>
             </div>
-            <div className='col-3 scrolls'>
-               <div className='scroll-artistas text-center main-titles pt-2' style={{backgroundColor: '#343434' }}>
-                  <p className='mb-4'>Artistas em Alta</p>
-                  <ScrollArtista listaArtista={dataTopArtistas} />
+
+            <div className='col-3 scroll'>
+               <div className='scroll-artistas mx-auto' style={{width:'95%'}}>
+                  <h1 className='main-titles my-2 text-center'>Artistas em Alta</h1>
+                  {dataTopArtistas.length === 0 ? <Spinner /> : <ScrollArtista listaArtista={dataTopArtistas} porcentVH={'90'}/>}
                </div>
             </div>
          </div>
