@@ -1,6 +1,5 @@
-.ctn-home {
-   padding: 1em 0em 1em 2em;
-   margin: auto;
+.ctn-home{
+   background-color: #242424;
 }
 
 .header-home a {
@@ -9,10 +8,7 @@
    color: white;
 }
 
-.main-titles {
-   font-size: 1.6em;
-}
 
 .underline-on-hover:hover {
    text-decoration: underline;
- }
+}

@@ -1,42 +1,49 @@
-* {
-   padding: 0;
-   margin: 0;
+:root {
+   --cor0:#1ed760;
+   --cor1:#242424;
+   --corBranca: #fff;
+   --corPreta: #000;
+   --fontPadrao: monstserrat, serif;
+   --fontSizeGrande: 1.6em;
 }
 
-body {
-   background-color: #242424;
-   font: monstserrat, serif;
-}
-
-.row {
-   margin: 0;
-}
-
-p, li {
-   color: #fff;
+*{
    margin: 0;
    padding: 0;
+   color: var(--corBranca);
+   font: var(--fontPadrao);
+}
+
+body{
+   background-color: var(--corPreta);
+}
+
+.main-titles {
+   font-size:  var(--fontSizeGrande);
+}
+
+.click{
+   color: var(--corBranca);
+   text-decoration: none;
 }
 
 .click:hover {
    cursor: pointer;
-   text-decoration: underline;
 }
 
 .btn {
-   color: #fff;
    background-color: #333;
-   border-color: #242424;
+   border-color: var(--cor1);
    border-width: 0.15em;
    border-radius: 0%;
 }
 
-.row {
+[class^="col-"] {
    margin: 0;
    padding: 0;
 }
 
-.col {
+[class^="row-"] {
    margin: 0;
    padding: 0;
 }

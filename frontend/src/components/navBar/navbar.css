@@ -1,31 +1,84 @@
-/* 
-.navbar {
-  background-color: #333;
-  padding: 10px 0;
+.ctn-navbar {
+  background-color: var(--cor1);
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+  box-shadow: 4px 4px 5px rgb(255, 255, 255, 0.3);
 }
 
-.navbar-list {
-  list-style-type: none;
-  display: flex;
-  justify-content: center;
-}
-
-.navbar-item {
-  margin-right: 20px;
-}
-
-.navbar-link {
-  color: #fff;
-  text-decoration: none;
-  border: 2px solid #242424;
-  border-radius: 0%;
-  padding: 5px 10px;
-}
-
-.navbar-link:hover {
-  background-color: #242424;
-}
-
-.active-link {
+.link-ativo {
+  font-weight: 550;
   text-decoration: underline;
-} */
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.3em;
+}
+
+.ctn-list {
+  margin-left: -4em;
+}
+
+.list-inline-item a {
+  font-size: 1.3em;
+  font-weight: normal; 
+  color: white;
+  margin-right: 1em;
+  text-decoration: none;
+}
+
+.list-inline-item a:hover {
+  font-weight: bold;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.ctn-profile-navbar{
+  position: relative;
+  transform-origin: top center; 
+}
+
+.ctn-profile-navbar:hover p {
+  font-weight: 550;
+}
+
+.ctn-profile-navbar > .profile-pic{
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+.ctn-user-options {
+  display: none;
+  position: absolute;
+  top: 90%;
+  left: 28%;
+  width: 50%;
+  background-color: var(--cor1);
+  border: 0.1em solid var(--corBranca);
+  padding: 10px;
+}
+
+.ctn-user-options ul{
+  list-style: none;
+}
+
+.ctn-user-options ul li:hover{
+text-decoration: underline;
+}
+
+.ctn-profile-navbar:hover .ctn-user-options {
+  display: block;
+}
+
+.seta-para-baixo {
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid white; /* Cor e tamanho da seta */
+  position: absolute;
+  top: -23%; /* Posicione acima do elemento-sobreposto */
+  left: 91%; /* Centralize horizontalmente */
+  transform: translateX(-50%) rotate(180deg); /* Gire 180 graus para apontar para baixo */
+}

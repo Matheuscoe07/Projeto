@@ -53,7 +53,7 @@ export default function AuthRoutes({ store }) {
       <Routes>
          <Route
             path="/home"
-            element={checkAutenticacao === null ? null : checkAutenticacao ? <Home /> : <ComponenteX />}
+            element={checkAutenticacao === null ? null : checkAutenticacao ? <Home usuarioAutenticado={autenticado}/> : <ComponenteX />}
          />
          <Route
             path="/perfil"

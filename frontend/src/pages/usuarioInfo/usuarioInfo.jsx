@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './usuarioInfo.css';
 import { useSelector, useDispatch } from 'react-redux';
+import Navbar from '../../components/navBar/navbar'; // Importe o componente da Navbar
 
 export default function UsuarioInfo() {
    const usuarioData = useSelector(state => state.loginReducer.usuario);
@@ -14,6 +15,7 @@ export default function UsuarioInfo() {
 
    return (
       <div className="container ctn-main mx-auto my-3">
+               <Navbar />
 
          <div className="row py-2 user-header align-items-center">
             <div className="col-12">

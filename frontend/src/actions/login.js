@@ -16,4 +16,10 @@ export const setTokenReact = (tokenReact) => {
   };
 };
 
+export const setLogout = () => {
+  return {
+    type: LOGOUT_USUARIO,
+  };
+};
+
 
