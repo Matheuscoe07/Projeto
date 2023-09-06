@@ -11,8 +11,8 @@ export default function CartaoArtista({ fotoArtista, nomeArtista, numeroSeguidor
             </div>
             <div className="col-8" style={{ maxHeight: '100px' }}>
                <div className=" text-start ms-3 mb-1">
-                  <p className="artista-seguidores text-truncate my-0 " style={{ fontSize: '1.7em' }}>{`# ${numeroSeguidores}`}</p>
-                  <p className="artista-nome click text-truncate my-0 " style={{ fontSize: '1.2em', fontWeight: 'bold' }}>{` ${nomeArtista}`}</p>
+                  <p className="artista-seguidores text-truncate my-0 " style={{ fontSize: '1.8em'}}>{`# ${numeroSeguidores}`}</p>
+                  <p className="artista-nome click text-truncate my-0 " style={{ fontSize: '1.1em', fontWeight: 'bold' }}>{` ${nomeArtista}`}</p>
                </div>
             </div>
          </div>

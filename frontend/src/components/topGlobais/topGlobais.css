@@ -8,12 +8,11 @@
 
 .ctn-home{
    border-radius: 1em;
-   box-shadow: 3px -3px 1px rgba(255, 255, 255, 0.426);
+   box-shadow: 2px -2px 1px rgba(255, 255, 255, 0.426);
 }
 
 .ctn-carrosel-musicas-helper{
    border-bottom: 10px solid black;
-   /* background-color: #242424; */
 
 }
 
