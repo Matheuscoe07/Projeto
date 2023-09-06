@@ -28,7 +28,7 @@ export default function App({ store }) {
         />
         <Route
           path="/login"
-          element={autenticado ? <Navigate to={urlAuth} /> : <Home />}
+          element={autenticado ? <Navigate to={urlAuth} /> : <Home usuarioAutenticado={autenticado} />}
         />
         <Route
           path="/auth/*"
