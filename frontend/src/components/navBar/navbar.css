@@ -38,9 +38,9 @@ ul {
   transform-origin: top center; 
 }
 
-.ctn-profile-navbar:hover p {
+/* .ctn-profile-navbar:hover p {
   font-weight: 550;
-}
+} */
 
 .ctn-profile-navbar > .profile-pic{
   width: 2.5em;
@@ -48,7 +48,6 @@ ul {
   border-radius: 50%;
   object-fit: cover;
 }
-
 
 .ctn-user-options {
   display: none;

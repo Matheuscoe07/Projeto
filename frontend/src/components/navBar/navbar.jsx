@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, Navigate } from 'react-router-dom';
 import './navbar.css';
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,13 +14,12 @@ export default function Navbar({ usuarioAutenticado }) {
   const idEvento = useSelector(state => state.loginReducer.idEvento);
   const urlBasica = `/auth/${idEvento}/${tokenReact}`;
   const dispatch = useDispatch();
+  const [activeLink, setActiveLink] = useState(activeLinkGlobal);
 
-  // Estado para controlar o link ativo
-  let activeLink = activeLinkGlobal;
 
   // Função para atualizar o link ativo
   const handleLinkClick = (linkId) => {
-    activeLink = linkId;
+    setActiveLink(linkId);
   };
 
   const fazerLogout = () => {
@@ -43,7 +42,7 @@ export default function Navbar({ usuarioAutenticado }) {
     return (
       <div className='col click ctn-profile-navbar ms-3'>
         <img className="profile-pic" src={usuarioData._fotoPerfil} alt="Foto de Perfil" />
-        <p className='d-inline'>Olá, {usuarioData._nome.split(" ")[0]}</p>
+        <p className='d-inline'> Olá, {usuarioData._nome.split(" ")[0]}</p>
         <div className="ctn-user-options">
           <ul>
             <li >
@@ -65,6 +64,7 @@ export default function Navbar({ usuarioAutenticado }) {
       </div>
     );
   }
+  useEffect(() => {}, [activeLink]);
 
   return (
     <nav className="ctn-navbar p-3">
@@ -75,7 +75,7 @@ export default function Navbar({ usuarioAutenticado }) {
         <div className='col-7 ctn-list'>
           <ul>
             <li className={`click list-inline-item ${activeLink === activeLinkGlobal ? 'link-ativo' : ''}`}>
-              <NavLink to={`${urlBasica}/home`}>Global</NavLink>
+              <NavLink to={`${urlBasica}/home`} onClick={() => handleLinkClick(activeLinkGlobal)} >Global</NavLink>
             </li>
             <li className={`click list-inline-item ${activeLink === activeLinkHome ? 'link-ativo' : ''}`}>
               <NavLink to={`${urlBasica}/home`} onClick={() => handleLinkClick(activeLinkHome)}>Home</NavLink>

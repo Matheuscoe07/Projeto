@@ -4,6 +4,7 @@ import './global.css';
 import { useSelector } from 'react-redux';
 import AuthRoutes from './routes/authRotes';
 import Home from './pages/home/home';
+import Navbar from './components/navBar/navbar'; // Importe o componente da Navbar
 
 export default function App({ store }) {
   const autenticado = useSelector(state => state.loginReducer.autenticado);
@@ -21,28 +22,29 @@ export default function App({ store }) {
 
   return (
     <Router>
-      <Routes>
-        <Route
-          path="/auth/:idEventoParam/:tokenReactParam/*"
-          element={<AuthRoutes store={store} />}
-        />
-        <Route
-          path="/login"
-          element={autenticado ? <Navigate to={urlAuth} /> : <Home usuarioAutenticado={autenticado} />}
-        />
-        <Route
-          path="/auth/*"
-          element={autenticado ? null : <Navigate to="/login" />}
-        />
-        <Route
-          path="/"
-          element={autenticado ? <Navigate to={urlAuth} /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="*"
-          element={<ComponenteX />}
-        />
-      </Routes>
+      <Navbar usuarioAutenticado={autenticado} />
+        <Routes>
+          <Route
+            path="/auth/:idEventoParam/:tokenReactParam/*"
+            element={<AuthRoutes store={store} />}
+          />
+          <Route
+            path="/login"
+            element={autenticado ? <Navigate to={urlAuth} /> : <Home usuarioAutenticado={autenticado} />}
+          />
+          <Route
+            path="/auth/*"
+            element={autenticado ? null : <Navigate to="/login" />}
+          />
+          <Route
+            path="/"
+            element={autenticado ? <Navigate to={urlAuth} /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="*"
+            element={<ComponenteX />}
+          />
+        </Routes>
     </Router>
   );
 }
