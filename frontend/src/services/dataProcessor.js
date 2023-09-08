@@ -1,17 +1,21 @@
 import img1 from '../images/img1.jpg'
 
-const albums = [
-    { id: 1, titulo: 'Here comes the sun 1', artista: 'Beatles', imagem: img1 },
-    { id: 2, titulo: 'Here comes the sun 2', artista: 'Beatles', imagem: img1 },
-    { id: 3, titulo: 'Here comes the sun 3', artista: 'Beatles', imagem: img1 },
-    { id: 4, titulo: 'Here comes the sun 4', artista: 'Beatles', imagem: img1 },
-    { id: 5, titulo: 'Here comes the sun 5', artista: 'Beatles', imagem: img1 },
-    { id: 6, titulo: 'Here comes the sun 6', artista: 'Beatles', imagem: img1 },
-    { id: 7, titulo: 'Here comes the sun 7', artista: 'Beatles', imagem: img1 },
-    { id: 8, titulo: 'Here comes the sun 8', artista: 'Beatles', imagem: img1 },
-    { id: 9, titulo: 'Here comes the sun 9', artista: 'Beatles', imagem: img1 },
-    { id: 10, titulo: 'Here comes the sun 10', artista: 'Beatles', imagem: img1 }
+export const publicacoes = [
+    { id: 1, nomeMusica: 'Here comes the sun 1', timeStamp:'09/11/2023', comentario: 'Música top demais!! Loucura...', artista: 'Beatles', fotoUsuario: img1, nomeUsuario: 'Nando', fotoMusica: img1 },
+    { id: 2, nomeMusica: 'Here comes the sun 2',timeStamp:'09/11/2023',  comentario: 'Música top demais!! Loucura...', artista: 'Beatles', fotoUsuario: img1, nomeUsuario: 'Nando', fotoMusica: img1 },
+    { id: 3, nomeMusica: 'Here comes the sun 3', timeStamp:'09/11/2023', comentario: 'Música top demais!! Loucura...', artista: 'Beatles', fotoUsuario: img1, nomeUsuario: 'Nando', fotoMusica: img1 },
+    { id: 4, nomeMusica: 'Here comes the sun 4',timeStamp:'09/11/2023',  comentario: 'Música top demais!! Loucura...', artista: 'Beatles', fotoUsuario: img1, nomeUsuario: 'Nando', fotoMusica: img1 },
+    { id: 5, nomeMusica: 'Here comes the sun 5', timeStamp:'09/11/2023', comentario: 'Música top demais!! Loucura...', artista: 'Beatles', fotoUsuario: img1 , nomeUsuario: 'Nando', fotoMusica: img1},
+    { id: 6, nomeMusica: 'Here comes the sun 6',timeStamp:'09/11/2023',  comentario: 'Música top demais!! Loucura...', artista: 'Beatles', fotoUsuario: img1, nomeUsuario: 'Nando', fotoMusica: img1 },
+    { id: 7, nomeMusica: 'Here comes the sun 7', timeStamp:'09/11/2023', comentario: 'Música top demais!! Loucura...', artista: 'Beatles', fotoUsuario: img1, nomeUsuario: 'Nando', fotoMusica: img1 },
+    { id: 8, nomeMusica: 'Here comes the sun 8', timeStamp:'09/11/2023', comentario: 'Música top demais!! Loucura...', artista: 'Beatles', fotoUsuario: img1, nomeUsuario: 'Nando', fotoMusica: img1 },
+    { id: 9, nomeMusica: 'Here comes the sun 9', timeStamp:'09/11/2023', comentario: 'Música top demais!! Loucura...', artista: 'Beatles', fotoUsuario: img1, nomeUsuario: 'Nando', fotoMusica: img1 },
+    { id: 10, nomeMusica: 'Here comes the sun 10', timeStamp:'09/11/2023', comentario: 'Música top demais!! Loucura...', artista: 'Beatles', fotoUsuario: img1, nomeUsuario: 'Nando', fotoMusica: img1 }
 ];
+
+export const publicacao = 
+   { id: 1, nomeUsuario: 'fernandohm123', timeStamp:'09/11/2023',  comentario: 'Música top demais!! Loucura...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', nomeMusica: 'Here comes the sun 1asss', artista: 'Beatles', fotoUsuario: img1, fotoMusica: img1 }
+;
 
 const artistas = [
    { id: 1, nome: 'Bey Hive', seguidores: 120, imagem: img1 },
@@ -25,20 +29,3 @@ const artistas = [
    { id: 9, nome: 'Here comes the sun 9', seguidores: 120, imagem: img1 },
    { id: 10, nome: 'Here comes the sun 10', seguidores: 120, imagem: img1 }
 ];
-
-export default class SpotifyDataProcessor {
-
-   getPopularAlbuns() {
-      return albums;
-   }
-  
-   getPopularArtistas() {
-      return artistas;
-   }
-  
-   //  transformSpotifyData(data) {
-   //    // Lógica para transformar o formato dos dados do Spotify
-   //  }
-  }
-  
-

@@ -18,6 +18,11 @@ body{
    background-color: var(--corPreta);
 }
 
+p{
+   margin: 0;
+   padding: 0;
+}
+
 .main-titles {
    font-size:  var(--fontSizeGrande);
 }

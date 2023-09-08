@@ -53,10 +53,9 @@ export default function TopGlobais() {
     }, []);
     
    return (
-      <div className='container-xl ctn-home my-4'>
+      <div className='container-xl ctn-home my-4 p-0'>
          
-         <div className='row body-home mx-auto'>
-
+         <div className='row body-home'>
 
             <div className='col-9 carroseis py-2'>
                <div className='ctn-carrosel-musicas-helper'>

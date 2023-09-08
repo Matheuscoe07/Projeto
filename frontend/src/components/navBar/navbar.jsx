@@ -67,7 +67,7 @@ export default function Navbar({ usuarioAutenticado }) {
   useEffect(() => {}, [activeLink]);
 
   return (
-    <nav className="ctn-navbar p-3">
+    <nav className="ctn-navbar p-3 sticky-top">
       <div className='row align-items-center px-4'>
         <div className='col-2 ctn-logo '>
           <img src={logo} alt="Logo" style={{ width: '170px' }} />

@@ -1,5 +1,6 @@
 import React from 'react';
 import CartaoArtista from '../cartaoArtistaGlobais/cartaoArtistaGlobais';
+import { publicacao } from '../../services/dataProcessor';
 
 export default function ScrollArtista({listaArtista, porcentVH}) {
   return (

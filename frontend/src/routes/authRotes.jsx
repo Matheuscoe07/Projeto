@@ -3,11 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams, BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import UserInfo from '../pages/usuarioInfo/usuarioInfo';
 import Home from '../pages/home/home';
+import CriarPublicacao from '../pages/criarPublicacao/criarPublicacao';
 import TopGlobais from '../pages/topGlobais/topGlobais';
 import util from '../Util/util';
-import CriarPublicacao from '../pages/criarPublicacao/criarPublicacao';
+import CartaoPublicacao from '../components/cartaoPublicacao/cartaoPublicacao';
 import ENUM from '../Util/enums';
 import { setUsuarioLogado } from '../actions/login';
+import { publicacoes } from '../services/dataProcessor';
 
 export default function AuthRoutes({ store }) {
 
@@ -55,7 +57,7 @@ export default function AuthRoutes({ store }) {
       <Routes>
          <Route
             path="/home"
-            element={checkAutenticacao === null ? null : checkAutenticacao ? <Home usuarioAutenticado={autenticado} /> : <ComponenteX />}
+            element={checkAutenticacao === null ? null : checkAutenticacao ? <Home listaPublicacoes={publicacoes}/> : <ComponenteX />}
          />         
          <Route
             path="/top-globais"

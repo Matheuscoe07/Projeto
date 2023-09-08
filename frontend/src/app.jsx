@@ -23,7 +23,7 @@ export default function App({ store }) {
 
   return (
     <Router>
-      <Navbar usuarioAutenticado={autenticado} />
+      <Navbar usuarioAutenticado={autenticado}/>
         <Routes>
           <Route
             path="/auth/:idEventoParam/:tokenReactParam/*"

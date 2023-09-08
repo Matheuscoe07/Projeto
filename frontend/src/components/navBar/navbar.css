@@ -7,6 +7,9 @@
 
 .link-ativo {
   font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.3em;
 }
 
 .ctn-list{

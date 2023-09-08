@@ -17,7 +17,7 @@ export default function UsuarioInfo() {
          <div className="container ctn-main-usuer-info mx-auto my-4">
             <div className="row py-2 user-header align-items-center">
                <div className="col-12 ctn-profile-pic-user-info">
-                  <img className="profile-pic " src={usuarioData._fotoPerfil} alt="Foto de Perfil" />
+                  <img className="profile-pic" src={usuarioData._fotoPerfil} alt="Foto de Perfil" />
                </div>
                <div className="col-12 text-center mt-2 ">
                   <h1>Seus Dados</h1>
