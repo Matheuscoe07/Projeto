@@ -13,14 +13,15 @@ export default class PostsService {
     if (PostsService.instance) {
       return PostsService.instance;
     }
-    this.bdPosts = {};
+    this.bdPosts = [];
     PostsService.instance = this;
   }
 
-  async criarPostagemNova(idUser, timeStamp, userName, fotoPerfil, texto) {
-    const novoPost = new Post(idUser, timeStamp, userName, fotoPerfil, texto);
-    const postID = uuid4();
-    this.bdPosts[postID] = novoPost.toJSON();
+  async criarPostagemNova(postJSON) {
+    const novoPost = new Post(postJSON);
+    this.bdPosts.push(novoPost);
+    console.log(this.bdPosts);
+    return true;
   }
 
   async atualizarPostagem() {

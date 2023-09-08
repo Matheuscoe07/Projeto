@@ -9,16 +9,24 @@ class PostsController {
   }
 
   async criarPost(req, res) {
-    const { dadosPost } = req.body;
-    if(dadosPost.postID === null) {
-      this.postsService.criarPostagemNova();
+    try {
+      const postJSON = req.body;
+      console.log(postJSON);
+      if(postJSON.post.postPai == null) {
+        let funcionou = this.postsService.criarPostagemNova(postJSON);
+        if(funcionou){
+          res.send("Postagem salva!");
+        }
+      }
+    } catch(error){
+      res.status(500).send(`erro: ${error}`);
     }
   }
 
 }
 
 router.post('/', async (req, res) => {
-  const postsController = PostsController();
+  const postsController = new PostsController();
   postsController.criarPost(req, res);
 });
 

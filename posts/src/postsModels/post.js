@@ -1,31 +1,33 @@
 export default class Post {
 
-    constructor(idUser, timeStamp, fotoPerfil, texto) {
-        this.idUser = idUser;
-        this.timeStamp = timeStamp;
-        this.fotoPerfil = fotoPerfil;
-        this.texto = texto;
-        this.curtidas = [];
-        this.postPai = null;
-        this.postsFilhos = [];
+    constructor(postJSON) {
+        this.postID = postJSON.postID;
+        this.userID = postJSON.post.userID;
+        this.timeStamp = postJSON.post.timeStamp;
+        this.fotoPerfil = postJSON.post.fotoPerfil;
+        this.texto = postJSON.post.texto;
+        this.curtidas = postJSON.post.curtidas;
+        this.postPai = postJSON.post.postPai;
+        this.postsFilhos = postJSON.post.postsFilhos;
     }
 
     toJSON() {
-        return {
-            idUser: this.idUser,
-            timeStamp: this.timeStamp,
-            fotoPerfil: this.fotoPerfil,
-            texto: this.texto,
-            curtidas: this.curtidas,
-            postPai: this.postPai,
-            primeiroPostFilho: this.primeiroPostFilho,
-            primeiroPostIrmao: this.primeiroPostIrmao
-        };
+        return { postID: this.postID,
+            post: {
+                userID: this.userID,
+                timeStamp: this.timeStamp,
+                fotoPerfil: this.fotoPerfil,
+                texto: this.texto,
+                curtidas: this.curtidas,
+                postPai: this.postPai,
+                postsFilhos: this.postsFilhos
+            }
+        }
     }
 
-    // Getter para idUser
-    getUsuario() {
-        return this.idUser;
+    // Getter para userID
+    getUserID() {
+        return this.userID;
     }
 
     // Getter para timeStamp
