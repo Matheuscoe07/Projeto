@@ -29,6 +29,7 @@ body{
 
 .click:hover {
    cursor: pointer;
+   text-decoration: underline;
 }
 
 .btn {

@@ -4,6 +4,7 @@ import './global.css';
 import { useSelector } from 'react-redux';
 import AuthRoutes from './routes/authRotes';
 import Home from './pages/home/home';
+import TopGlobais from './pages/topGlobais/topGlobais';
 import Navbar from './components/navBar/navbar'; // Importe o componente da Navbar
 
 export default function App({ store }) {
@@ -30,7 +31,7 @@ export default function App({ store }) {
           />
           <Route
             path="/login"
-            element={autenticado ? <Navigate to={urlAuth} /> : <Home usuarioAutenticado={autenticado} />}
+            element={autenticado ? <Navigate to={urlAuth} /> :  <TopGlobais/>}
           />
           <Route
             path="/auth/*"

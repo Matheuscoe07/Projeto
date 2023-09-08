@@ -1,20 +1,19 @@
-.ctn-main {
-   background-color: #333;
+.ctn-main-usuer-info {
+   position: relative;
+   background-color: #242424;
    border-radius: 8px;
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
    text-align: center;
    color: white;
    width: 50%;
    padding: 20px 10px;
-}
+   box-shadow: -3px 3px 5px rgba(255, 255, 255, 0.426);
 
-.user-header {
-   padding: 20px;
 }
 
 .ctn-profile-pic-user-info > .profile-pic {
-   width: 6.5em;
-   height: 6.5em;
+   width: 6em;
+   height: 6em;
    border-radius: 50%;
    object-fit: cover;
 }
@@ -52,9 +51,11 @@ label {
 }
 
 .back-button {
+   font-size: 35px;
+   position: absolute;
    cursor: pointer;
-   margin-top: 20px;
-   font-size: 20px;
+   top: 1%;
+   left: 3%;
 }
 
 .btn{

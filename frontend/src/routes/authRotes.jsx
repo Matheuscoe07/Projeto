@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import UserInfo from '../pages/usuarioInfo/usuarioInfo';
 import Home from '../pages/home/home';
+import TopGlobais from '../pages/topGlobais/topGlobais';
 import util from '../Util/util';
+import CriarPublicacao from '../pages/criarPublicacao/criarPublicacao';
 import ENUM from '../Util/enums';
 import { setUsuarioLogado } from '../actions/login';
 
@@ -31,7 +33,7 @@ export default function AuthRoutes({ store }) {
             if (autenticado) {
                setCheckAutenticacao(idEvento === idEventoParam && tokenReact === tokenReactParam)
                return;
-            }else if (tokenReact === tokenReactParam) {
+            } else if (tokenReact === tokenReactParam) {
                const paramsJson = {
                   'idEvento': idEventoParam
                };
@@ -53,15 +55,23 @@ export default function AuthRoutes({ store }) {
       <Routes>
          <Route
             path="/home"
-            element={checkAutenticacao === null ? null : checkAutenticacao ? <Home usuarioAutenticado={autenticado}/> : <ComponenteX />}
+            element={checkAutenticacao === null ? null : checkAutenticacao ? <Home usuarioAutenticado={autenticado} /> : <ComponenteX />}
+         />         
+         <Route
+            path="/top-globais"
+            element={checkAutenticacao === null ? null : checkAutenticacao ?  <TopGlobais/> : <ComponenteX />}
          />
          <Route
             path="/perfil"
             element={checkAutenticacao === null ? null : checkAutenticacao ? <UserInfo userData={{}} /> : <ComponenteX />}
          />
          <Route
+            path="/criar-post"
+            element={checkAutenticacao === null ? null : checkAutenticacao ? <CriarPublicacao /> : <ComponenteX />}
+         />
+         <Route
             path="/"
-            element={checkAutenticacao === null ? null : checkAutenticacao ? <Navigate to={`home`} /> : <ComponenteX />}
+            element={checkAutenticacao === null ? null : checkAutenticacao ? <Navigate to={`top-globais`} /> : <ComponenteX />}
          />
          <Route
             path="*"

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './topGlobais.css'; // Importe o arquivo CSS aqui
-import CarrosselTopGlobais from '../carrosselTopGlobais/carrosselTopGlobais';
-import Spinner from '../spinner/spinner';
-import ScrollArtista from '../scrollArtistaGlobais/scrollArtistaGlobais';
+import CarrosselTopGlobais from '../../components/carrosselTopGlobais/carrosselTopGlobais';
+import Spinner from '../../components/spinner/spinner';
+import ScrollArtista from '../../components/scrollArtistaGlobais/scrollArtistaGlobais';
 import util from '../../Util/util';
 import ENUM from '../../Util/enums';
-import { Navigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-
+// import { Navigate } from 'react-router-dom';
+// import { useSelector, useDispatch } from 'react-redux';
 
 export default function TopGlobais() {
    const breakpoints = [[1200, 3], [992, 2], [768, 1]];
@@ -54,28 +53,29 @@ export default function TopGlobais() {
     }, []);
     
    return (
-      <div className='ctn-home my-4'>
+      <div className='container-xl ctn-home my-4'>
          
          <div className='row body-home mx-auto'>
 
-            <div className='col-9 carroseis'>
+
+            <div className='col-9 carroseis py-2'>
                <div className='ctn-carrosel-musicas-helper'>
                   <div className='carrosel-musicas mx-auto pb-2' style={{width:'93%'}}>
-                     <h1 className='main-titles ms-2 my-2'># Top 15 Músicas em Altas </h1>
+                     <h1 className='main-titles ms-2 mt-2 mb-3'># Top 15 mais Ouvidas no Spotify</h1>
                      {dataTopMusicas.length === 0 ? <Spinner /> : <CarrosselTopGlobais listaObjetos={dataTopMusicas} carroselConfig={carroselConfig} listaBreakpoints={breakpoints} />}
                   </div>
                </div>
                <div className='ctn-carrosel-albuns-helper'>
-                  <div className='carrosel-albuns mx-auto pb-2'  style={{width:'93%'}}>
-                     <h1 className='main-titles ms-2 mb-2 my-2'># Top 15 Álbuns em Alta</h1>
+                  <div className='carrosel-albuns mx-auto py-2'  style={{width:'93%'}}>
+                     <h1 className='main-titles ms-2 mt-2 mb-3'># Top 15 Álbuns em Alta no Spotify</h1>
                      {dataTopAlbuns.length === 0 ? <Spinner /> : <CarrosselTopGlobais listaObjetos={dataTopAlbuns} carroselConfig={carroselConfig} listaBreakpoints={breakpoints} />}
                   </div>
                </div>
             </div>
 
-            <div className='col-3 scroll'>
+            <div className='col-3 scroll py-2'>
                <div className='scroll-artistas mx-auto' style={{width:'95%'}}>
-                  <h1 className='main-titles my-2 text-center'>Artistas em Alta</h1>
+                  <h1 className='main-titles mt-2 mb-3 text-center'>Artistas em Alta</h1>
                   {dataTopArtistas.length === 0 ? <Spinner /> : <ScrollArtista listaArtista={dataTopArtistas} porcentVH={'90'}/>}
                </div>
             </div>

@@ -14,7 +14,7 @@ export default function UsuarioInfo() {
 
    return (
       <div>
-         <div className="container ctn-main mx-auto my-3">
+         <div className="container ctn-main-usuer-info mx-auto my-4">
             <div className="row py-2 user-header align-items-center">
                <div className="col-12 ctn-profile-pic-user-info">
                   <img className="profile-pic " src={usuarioData._fotoPerfil} alt="Foto de Perfil" />
@@ -25,7 +25,7 @@ export default function UsuarioInfo() {
             </div>
             <div className='row user-info'>
                <div className="info">
-                  <label>nome:</label>
+                  <label>Nome:</label>
                   <input type="text" className="form-control" value={usuarioData._nome} readOnly />
                   <label>Email:</label>
                   <input type="text" className="form-control" value={usuarioData._email} readOnly />
@@ -45,7 +45,7 @@ export default function UsuarioInfo() {
                </div>
             </div>
             <div className="d-inline-block back-button" onClick={handleBack}>
-               <span>&larr;</span> Voltar
+               <span>&larr;</span>
             </div>
          </div>
       </div>

@@ -40,55 +40,57 @@ export default function Navbar({ usuarioAutenticado }) {
 
   const componenteUsuarioLogado = () => {
     return (
-      <div className='col click ctn-profile-navbar ms-3'>
-        <img className="profile-pic" src={usuarioData._fotoPerfil} alt="Foto de Perfil" />
-        <p className='d-inline'> Olá, {usuarioData._nome.split(" ")[0]}</p>
-        <div className="ctn-user-options">
-          <ul>
-            <li >
-            <NavLink to={`/login`} className='click' onClick={fazerLogout}>Sair</NavLink>
-            </li>
-          </ul>
-          <div className="seta-para-baixo"></div>
+        <div className='ctn-profile-navbar click'>
+          <img className="profile-pic" src={usuarioData._fotoPerfil} alt="Foto de Perfil" />
+          <p className='d-inline'>Olá, {usuarioData._nome.split(" ")[0]}</p>
+          <div className="ctn-user-options">
+            <ul>
+              <li >
+              <NavLink to={`/login`} className='click' onClick={fazerLogout}>Sair</NavLink>
+              </li>
+            </ul>
+            <div className="seta-para-baixo"></div>
+          </div>
         </div>
-      </div>
     );
   }
 
   const componenteUsuarioDeslogado = () => {
     return (
-      <div className='col ms-3'>
-        <p className='click' onClick={chamarAutenticacaoSpotify}>
-          Entre ou cadastre-se
-        </p>
-      </div>
+        <div className="ctn-usuario-deslogado">
+          <p className='click' onClick={chamarAutenticacaoSpotify}>
+            Entre ou cadastre-se
+          </p>
+        </div>
     );
   }
   useEffect(() => {}, [activeLink]);
 
   return (
     <nav className="ctn-navbar p-3">
-      <div className='row align-items-center'>
-        <div className='col-3 ctn-logo ms-4'>
+      <div className='row align-items-center px-4'>
+        <div className='col-2 ctn-logo '>
           <img src={logo} alt="Logo" style={{ width: '170px' }} />
         </div>
-        <div className='col-7 ctn-list'>
-          <ul>
-            <li className={`click list-inline-item ${activeLink === activeLinkGlobal ? 'link-ativo' : ''}`}>
-              <NavLink to={`${urlBasica}/home`} onClick={() => handleLinkClick(activeLinkGlobal)} >Global</NavLink>
+        <div className='col-7'>
+          <ul className='ctn-list'>
+            <li className={`list-inline-item ${activeLink === activeLinkGlobal ? 'link-ativo' : ''}`}>
+              <NavLink to={`${urlBasica}/top-globais`} onClick={() => handleLinkClick(activeLinkGlobal)} >Global</NavLink>
             </li>
-            <li className={`click list-inline-item ${activeLink === activeLinkHome ? 'link-ativo' : ''}`}>
+            <li className={`list-inline-item ${activeLink === activeLinkHome ? 'link-ativo' : ''}`}>
               <NavLink to={`${urlBasica}/home`} onClick={() => handleLinkClick(activeLinkHome)}>Home</NavLink>
             </li>
-            <li className={`click list-inline-item ${activeLink === activeLinkCriarPubli ? 'link-ativo' : ''}`}>
-              <NavLink to={`${urlBasica}/criarpublicacao`} onClick={() => handleLinkClick(activeLinkCriarPubli)}>Publicar um Tweezer</NavLink>
+            <li className={`list-inline-item ${activeLink === activeLinkCriarPubli ? 'link-ativo' : ''}`}>
+              <NavLink to={`${urlBasica}/criar-post`} onClick={() => handleLinkClick(activeLinkCriarPubli)}>Publicar um Tweezer</NavLink>
             </li>
-            <li className={`click list-inline-item ${activeLink === activeLinkCriarPerfil ? 'link-ativo' : ''}`}>
-              <NavLink to={`${urlBasica}/perfil`} onClick={() => handleLinkClick(activeLinkCriarPerfil)}>Meus Dados</NavLink>
+            <li className={`list-inline-item ${activeLink === activeLinkCriarPerfil ? 'link-ativo' : ''}`}>
+              <NavLink className='p-0 m-0' to={`${urlBasica}/perfil`} onClick={() => handleLinkClick(activeLinkCriarPerfil)}>Meus Dados</NavLink>
             </li>
           </ul>
         </div>
+        <div className='col ms-5'>
         {usuarioAutenticado ? componenteUsuarioLogado() : componenteUsuarioDeslogado()}
+        </div>
       </div>
     </nav>
   );
