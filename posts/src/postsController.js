@@ -13,9 +13,10 @@ class PostsController {
       const postJSON = req.body;
       console.log(postJSON);
       if(postJSON.post.postPai == null) {
-        let funcionou = this.postsService.criarPostagemNova(postJSON);
-        if(funcionou){
-          res.send("Postagem salva!");
+        let novoPost = this.postsService.criarPostagemNova(postJSON);
+        if(novoPost){
+          //this.postsService.atualizarPostagem(novoPost.postID);
+          res.send(novoPost);
         }
       }
     } catch(error){

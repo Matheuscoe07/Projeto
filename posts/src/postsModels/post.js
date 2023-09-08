@@ -1,10 +1,14 @@
 export default class Post {
 
-    constructor(postJSON) {
-        this.postID = postJSON.postID;
+    constructor(postJSON, postID) {
+        this.postID = postID;
         this.userID = postJSON.post.userID;
-        this.timeStamp = postJSON.post.timeStamp;
         this.fotoPerfil = postJSON.post.fotoPerfil;
+        this.musicaID = postJSON.post.musicaID;
+        this.fotoMusica = postJSON.post.fotoMusica;
+        this.nomeMusica = postJSON.post.nomeMusica;
+        this.nomeArtista = postJSON.post.nomeArtista;
+        this.timeStamp = postJSON.post.timeStamp;
         this.texto = postJSON.post.texto;
         this.curtidas = postJSON.post.curtidas;
         this.postPai = postJSON.post.postPai;
@@ -23,6 +27,11 @@ export default class Post {
                 postsFilhos: this.postsFilhos
             }
         }
+    }
+
+    //Getter para postID
+    getPostID() {
+        return this.postID;
     }
 
     // Getter para userID
