@@ -1,4 +1,4 @@
-class Enum {
+export default class ENUM {
   static get tiposEventos() {
     return {
       USUARIO_LOGADO: "usuario_logado",
@@ -35,4 +35,4 @@ class Enum {
   }
 }
 
-module.exports = Enum;
+export { ENUM };

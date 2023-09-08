@@ -1,9 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { postsController, router } from './postsController.js';
-import ENUM from '../../Util/src/enums.js';
-
 const app = express();
+import { PostsController, router } from './postsController.js';
+import ENUM from '../../Util/src/enums.js';
 
 app.use(bodyParser.json());
 

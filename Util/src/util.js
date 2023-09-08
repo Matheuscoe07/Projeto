@@ -1,7 +1,7 @@
-const net = require("net");
-const axios = require("axios");
+import axios from "axios";
+import net from "net";
 
-class Util {
+export default class Util {
 
     static async checkPort(port) {
         return new Promise((resolve) => {
@@ -15,18 +15,49 @@ class Util {
         });
     }
 
-    static async sendRequest(strRequest, evento) {
-        const port = Util.extrairPorta(strRequest);
-        const isPortOpen = await Util.checkPort(port);
-        if (isPortOpen) {
+    static async sendRequestPOST(strRequest, jsonData={}, jsonHeader={} , checkPort=true) {
+        let port, isPortOpen = true;
+        if(checkPort){
+            port = Util.extrairPorta(strRequest);
+            isPortOpen = await Util.checkPort(port);
+        }
+        if(isPortOpen) {
             try {
-                await axios.post(strRequest, evento);
-                return {status: true, msg: 'Sucesso'};
+                const response = await axios.post(strRequest, jsonData, {headers: jsonHeader});
+                return {status: true, msg: 'Sucesso', data: response.data};
             }catch (error) {
-                return {status: false, msg: `Endpoit Inválido: ${strRequest}`};
+                return {status: false, msg: `${error}`};
             }
         } else {
             return {status: false, msg: `Serviço inoperante: Porta ${port}`};
+        }
+    }
+
+    static async sendRequestGET(strRequest, jsonHeader={}, jsonParams={}, checkPort=true) {
+        let port, isPortOpen = true;
+        if(checkPort){
+            port = Util.extrairPorta(strRequest);
+            isPortOpen = await Util.checkPort(port);
+        }
+        if(isPortOpen) {
+            try {
+                const response = await axios.get(strRequest, {params: jsonParams, headers: jsonHeader});
+                return {status: true, msg: 'Sucesso', data: response.data};
+            }catch (error) {
+                return {status: false, msg: `${error}`};
+            }
+        } else {
+            return {status: false, msg: `Serviço inoperante: Porta ${port}`};
+        }
+    }
+
+    static async sendRequest(jsonRequest) {
+        try {
+            let response =  await axios(jsonRequest);
+            return {status: true, msg: 'Sucesso', data: response.data};
+        }catch (error) {
+            return {status: false, msg: `${error}`};
+
         }
     }
 
@@ -51,6 +82,3 @@ class Util {
         return text;
     };
 }
-
-
-module.exports = Util;
