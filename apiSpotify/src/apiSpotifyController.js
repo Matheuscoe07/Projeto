@@ -23,7 +23,6 @@ class ApiSpotifyController {
       const scopeLibrary = 'user-library-modify user-library-read ';
       const scopeUsers = 'user-read-email user-read-private ';
       this.scopeLogin = scopeImages + scopeSpotifyConnect + scopePlayback + scopePlaylists + scopeFollow + scopeListeningHistory + scopeLibrary + scopeUsers;
-      console.log(this.scopeLogin);
       this.tokenReact = null;
    }
 
@@ -109,13 +108,22 @@ class ApiSpotifyController {
       }
    }
 
-   // async handleStateMismatch(res) {
-   //    res.redirect('/#' + querystring.stringify({ error: 'state_mismatch' }));
-   // }
+   async buscarMusicas(req, res) {
+      try {
+         const { headers: { authorization: access_token }, body: {nomeMusica} } = req;
+         console.log(access_token );
+         if (!access_token || !nomeMusica) {
+            throw new Error('Parametros nao passados corretamente');
+         }
+         const musicasEncontradas = await this.apiSpotifyService.buscarMusicas(access_token, nomeMusica);
 
-   // async handleTokenError(res) {
-   //    res.redirect('/#' + querystring.stringify({ error: 'invalid_token' }));
-   // }
+         res.status(200).json({musicasEncontradas});
+
+      } catch (error) {
+         res.status(500).send({ error: `${error}` });
+      }
+   }
+
 }
 
 const apiSpotifyController = new ApiSpotifyController();
@@ -132,13 +140,16 @@ router.get('/top-artists', async (req, res) => {
    await apiSpotifyController.getTopArtists(req, res);
 });
 
-
-//------------------------------------- INCLUSAO TRES APIs TOP GLOBAIS -------------------------------------
-
-
 router.get('/top-globais/:tipo', async (req, res) => {
    await apiSpotifyController.pegarTopGlobais(req, res);
 });
+
+router.get('/buscarMusicas', async (req, res) => {
+   await apiSpotifyController.buscarMusicas(req, res);
+});
+
+// http GET 'https://api.spotify.com/v1/search?q=hurricane&type=track' \
+//   Authorization:'Bearer 1POdFZRZbvb...qqillRxMr2z'
 
 export { ApiSpotifyController, router };
 

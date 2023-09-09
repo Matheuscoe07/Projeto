@@ -10,7 +10,7 @@ export default function Home({listaPublicacoes}) {
       </div>
       {listaPublicacoes.map((publicacao) => (
          <div key={publicacao.id} className='item-cartao-publicacao my-2'>
-            <CartaoPublicacao fotoUsuario={publicacao.fotoUsuario} nomeUsuario={publicacao.nomeUsuario} timeStamp={publicacao.timeStamp} fotoMusica={publicacao.fotoMusica} nomeMusica={publicacao.nomeMusica} artista={publicacao.artista} comentario={publicacao.comentario} />
+            <CartaoPublicacao fotoUsuario={publicacao.fotoUsuario} nomeUsuario={publicacao.nomeUsuario} timeStamp={publicacao.timeStamp} fotoMusica={publicacao.fotoMusica} nomeMusica={publicacao.nomeMusica} artista={publicacao.artista} comentario={publicacao.comentario} curtidas={publicacao.curtidas} />
          </div>
       ))}
     </div>

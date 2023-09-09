@@ -80,4 +80,18 @@ export default class ApiSpotifyService {
       return topGlobais;
 
    }
+
+
+   async buscarMusicas(access_token, nomeMusica) {
+      const options = {
+         url: `https://api.spotify.com/v1/search?q=${nomeMusica}&type=track&limit=10`,
+         headers: { Authorization: `${access_token}` },
+      };
+      const response = await util.sendRequestGET(options.url, options.headers, undefined, false);
+      if (!response.status){
+         throw new Error(response.msg);
+      }
+      const returnMusciasEncontradas = this.apiSpotifyModel.formatarMusciasEncontradas(response.data);
+      return returnMusciasEncontradas;
+   }
 }

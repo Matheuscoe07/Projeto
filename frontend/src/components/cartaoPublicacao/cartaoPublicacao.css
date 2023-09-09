@@ -17,7 +17,7 @@
 
 .ctn-foto-musica{
    border-radius: 10px;
-   padding: 5px;
+   /* padding: 5px; */
 }
 
 .ctn-cabecalho .ctn-logo {
@@ -65,6 +65,9 @@
    position: absolute;
    top: 100%;
    /* background-color: rgba(0, 0, 0, 0.302); */
+}
+.ctn-icones img{
+   width: 40px;
 }
 
 .ctn-icones :hover{
