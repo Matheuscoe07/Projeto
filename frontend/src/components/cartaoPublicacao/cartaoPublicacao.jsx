@@ -29,7 +29,7 @@ export default function CartaoPublicacao(props) {
   }
 
   return (
-    <div className='ctn-cartao-publicacao mx-auto' style={{width:'95%'}}>
+    <div className='ctn-cartao-publicacao mx-auto' style={{width:'100%'}}>
       <div className="ctn-cartao-publicacao-infos p-4 ">
         <div className='row ctn-cabecalho align-items-center mb-3'>
 

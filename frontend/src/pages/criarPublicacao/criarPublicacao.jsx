@@ -18,7 +18,6 @@ export default function CriarPublicacao() {
   };
 
   function handleItemClick(musica) {
-    // Coloque aqui a lógica para lidar com o clique em um item da lista
     const musicaJSON = JSON.stringify(musica, null, 2);
     setMusicaSelecionada(musicaJSON);
     const divBusca = document.getElementById('div-busca');
@@ -32,7 +31,6 @@ export default function CriarPublicacao() {
     divBusca.style.display = 'none';
   }
 
-  
   
   function renderizarListaDeMusicas() {
     return (
@@ -76,7 +74,7 @@ export default function CriarPublicacao() {
         if (musicaBuscada) {
           chamadaBuscaAPI();
         }
-      }, 500)
+      }, 250)
       return () => { clearTimeout(timeoutID) }
     }
 
@@ -84,6 +82,7 @@ export default function CriarPublicacao() {
 
 
   return (
+    console.log(musicaSelecionada),
     <div className='ctn-criar-publicacao mx-auto my-4'>
       <img className='mt-2 mb-3' src={logo} alt="Logo" style={{ width: '140px' }} />
       <form action={`${ENUM.enderecosIP.SERVICO_API_SPOTIFY}/api_spotify/top-globais/musicas`} className='form-infos-publicacao text-start mx-auto' style={{ width: '90%' }}>
