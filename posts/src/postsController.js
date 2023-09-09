@@ -11,13 +11,12 @@ class PostsController {
   async criarPost(req, res) {
     try {
       const postJSON = req.body;
-      console.log(postJSON);
-      if(postJSON.post.postPai == null) {
-        let novoPost = this.postsService.criarPostagemNova(postJSON);
-        if(novoPost){
-          //this.postsService.atualizarPostagem(novoPost.postID);
-          res.send(novoPost);
-        }
+      const novoPost = this.postsService.criarPostagemNova(postJSON);
+      if(novoPost){
+        res.send(novoPost);
+      }
+      if(postJSON.post.postPai != null) {
+        this.postsService.atualizarPostagem(novoPost.getPostID(), postJSON.post.postPai);
       }
     } catch(error){
       res.status(500).send(`erro: ${error}`);

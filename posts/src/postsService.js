@@ -28,6 +28,7 @@ export default class PostsService {
 
   atualizarPostagem(postID, postIDPai) {
     this.bdPosts[postIDPai].postsFilhos.push(postID);
+    console.log(this.bdPosts);
   }
 
   buscarPostPorID(postID) {

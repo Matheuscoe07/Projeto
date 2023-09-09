@@ -15,20 +15,6 @@ export default class Post {
         this.postsFilhos = postJSON.post.postsFilhos;
     }
 
-    toJSON() {
-        return { postID: this.postID,
-            post: {
-                userID: this.userID,
-                timeStamp: this.timeStamp,
-                fotoPerfil: this.fotoPerfil,
-                texto: this.texto,
-                curtidas: this.curtidas,
-                postPai: this.postPai,
-                postsFilhos: this.postsFilhos
-            }
-        }
-    }
-
     //Getter para postID
     getPostID() {
         return this.postID;
@@ -39,21 +25,16 @@ export default class Post {
         return this.userID;
     }
 
-    // Getter para timeStamp
-    getTimestamp() {
-        return this.timeStamp;
-    }
-
-    // Getter para userName
-    getNomeUsuario() {
-        return this.userName;
-    }
-
     // Getter para fotoPerfil
     getFotoPerfil() {
         return this.fotoPerfil;
     }
 
+    // Getter para timeStamp
+    getTimestamp() {
+        return this.timeStamp;
+    }
+    
     // Getter para texto
     getTexto() {
         return this.texto;
@@ -71,6 +52,6 @@ export default class Post {
 
     // Getter para postsFilhos
     getPostsFilhos() {
-        return this.getPostsFilhos;
+        return this.postsFilhos;
     }
 }
