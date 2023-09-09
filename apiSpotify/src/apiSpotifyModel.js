@@ -52,7 +52,8 @@ export default class ApiSpotifyModel {
          apiSpotify: item.uri,
          previewTrack: item.preview_url,
          popularity: item.popularity,
-         artists: item.artists.map(artist => ({
+         iconeMusica: item.album.images[1].url,
+         artistas: item.artists.map(artist => ({
             id: artist.id,
             name: artist.name,
          })),

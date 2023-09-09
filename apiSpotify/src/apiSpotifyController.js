@@ -110,8 +110,8 @@ class ApiSpotifyController {
 
    async buscarMusicas(req, res) {
       try {
-         const { headers: { authorization: access_token }, body: {nomeMusica} } = req;
-         console.log(access_token );
+         const { headers: { authorization: access_token }} = req;
+         const nomeMusica = req.params.nomeMusica;
          if (!access_token || !nomeMusica) {
             throw new Error('Parametros nao passados corretamente');
          }
@@ -144,7 +144,7 @@ router.get('/top-globais/:tipo', async (req, res) => {
    await apiSpotifyController.pegarTopGlobais(req, res);
 });
 
-router.get('/buscarMusicas', async (req, res) => {
+router.get('/buscarMusicas/:nomeMusica', async (req, res) => {
    await apiSpotifyController.buscarMusicas(req, res);
 });
 

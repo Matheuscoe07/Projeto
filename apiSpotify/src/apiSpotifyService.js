@@ -81,7 +81,6 @@ export default class ApiSpotifyService {
 
    }
 
-
    async buscarMusicas(access_token, nomeMusica) {
       const options = {
          url: `https://api.spotify.com/v1/search?q=${nomeMusica}&type=track&limit=10`,
