@@ -9,8 +9,8 @@ export default function Home({listaPublicacoes}) {
         <h1>Tweezer's</h1>
       </div>
       {listaPublicacoes.map((publicacao) => (
-         <div key={publicacao.id} className='item-cartao-publicacao' style={{border:'1px solid rgba(255, 255, 255, 0.682)'}}>
-            <CartaoPublicacao fotoUsuario={publicacao.fotoUsuario} nomeUsuario={publicacao.nomeUsuario} timeStamp={publicacao.timeStamp} fotoMusica={publicacao.fotoMusica} nomeMusica={publicacao.nomeMusica} artista={publicacao.artista} comentario={publicacao.comentario} curtidas={publicacao.curtidas} />
+         <div key={publicacao.postID} className='item-cartao-publicacao' style={{border:' 1px solid rgba(255, 255, 255, 0.682)'}}>
+            <CartaoPublicacao id={publicacao.postID} fotoUsuario={publicacao.fotoPerfil} nomeUsuario={publicacao.userID} timeStamp={publicacao.timeStamp} fotoMusica={publicacao.fotoMusica} nomeMusica={publicacao.nomeMusica} artista={publicacao.nomeArtista} comentario={publicacao.texto} curtidas={publicacao.curtidas} />
          </div>
       ))}
     </div>

@@ -26,7 +26,7 @@ class PostsController {
   async getPosts(req, res) {
     try {
        const publicacoes = await this.postsService.getBdPosts();
-       res.status(200).json({...publicacoes});
+       res.status(200).json(publicacoes);
     } catch(error) {
       res.status(500).send(`erro: ${error}`);
     }

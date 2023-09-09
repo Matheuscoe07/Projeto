@@ -13,11 +13,7 @@ export default function CartaoPublicacao(props) {
 
   const usuarioData = useSelector(state => state.loginReducer.usuario);
   const [liked, setLiked] = useState(props.curtidas.includes(usuarioData._id));
-
-  const interagirPublicacao = async () => {
-      // idPublicacao
-      // idUsuario
-  }
+  const [qtdeLike, setQtdeLike] = useState(null);
 
   const verRelacionados = async () => {
     // idPublicacao
@@ -28,8 +24,40 @@ export default function CartaoPublicacao(props) {
 
   }
 
+  const convertDataTimeBR = (dataHora) => {
+    const data = new Date(dataHora);
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+    return data.toLocaleDateString('pt-BR', options);
+  }
+
+  useEffect(() => {
+
+    const interagirPublicacao = async () => {
+      const options = {
+        url: `${ENUM.enderecosIP.SERVICO_POSTS}/posts/curtir`,
+        body: { idPublicacao: props.id, idUsuario: usuarioData._id },
+      };
+      try {
+        const returnInteracao = await util.sendRequestPOST(options.url, options.body, undefined, false);
+        if (!returnInteracao.status) {
+          throw new Error(`Erro na interacao: ${returnInteracao.msg}`);
+        }
+        console.log('CURTIDAS: ', returnInteracao.data.curtidas.length);
+      }
+      catch (error) {
+        console.error('Erro ao curtir:', error);
+      }
+    }
+
+    if (qtdeLike != null) {
+      interagirPublicacao();
+    } else {
+      setQtdeLike(props.curtidas.length)
+    }
+  }, [liked]);
+
   return (
-    <div className='ctn-cartao-publicacao mx-auto' style={{width:'100%'}}>
+    <div className='ctn-cartao-publicacao mx-auto' style={{ width: '100%' }}>
       <div className="ctn-cartao-publicacao-infos p-4 ">
         <div className='row ctn-cabecalho align-items-center mb-3'>
 
@@ -38,7 +66,7 @@ export default function CartaoPublicacao(props) {
               <img src={props.fotoUsuario} alt="" />
             </div>
             <p className='ms-2 d-inline' style={{ fontSize: '1.2em', fontWeight: 'bold' }}>{props.nomeUsuario} </p>
-            <p className='d-inline ms-2' style={{ fontSize: '1em', fontWeight: 'bold', opacity: 0.5 }}>- {props.timeStamp}</p>
+            <p className='d-inline ms-2' style={{ fontSize: '1em', fontWeight: 'bold', opacity: 0.5 }}>- {convertDataTimeBR(props.timeStamp)}</p>
           </div>
           <div className='ctn-logo text-end'>
             <img src={logo} alt="Logo" style={{ width: '110px' }} />
@@ -59,10 +87,18 @@ export default function CartaoPublicacao(props) {
             <div className="ctn-comentario d-inline-block ms-2" style={{ width: '60%' }}>
               <textarea className='d-inline-block w-100' type='text' name="tcomentario" id="tcomentario" cols="30" rows="4" defaultValue={props.comentario} style={{ width: '60%' }} readOnly></textarea>
               <div className='ctn-icones d-flex justify-content-around mt-1 w-100'>
-                {liked ? <img src={iconeLike} alt="" onClick={() => setLiked(false)} /> : <img src={iconeDeslike} alt="" onClick={() => setLiked(true)} />}
+
+                <div className="like-container" onClick={() => {
+                  setLiked(!liked);
+                  setQtdeLike(liked ? qtdeLike - 1 : qtdeLike + 1);
+                }}>
+                  {liked ? <img src={iconeLike} alt="" /> : <img src={iconeDeslike} alt="" />}
+                  <p className='d-inline ms-3' style={{fontWeight:'bold', color:'#C7BCBC'}}>{qtdeLike}</p>
+                </div>
                 <img src={iconeVerRelacionados} alt="" onClick={verRelacionados} />
                 <img src={iconeReTweezer} alt="" onClick={fazerUmretweezer} />
               </div>
+
             </div>
 
           </div>

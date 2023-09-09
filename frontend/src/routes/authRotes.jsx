@@ -15,10 +15,10 @@ export default function AuthRoutes({ store }) {
 
    const autenticado = useSelector(state => state.loginReducer.autenticado);
    const tokenReact = useSelector(state => state.loginReducer.tokenReact);
-   console.log('store', store.getState());
    const idEvento = useSelector(state => state.loginReducer.idEvento);
    const { idEventoParam, tokenReactParam } = useParams();
    const [checkAutenticacao, setCheckAutenticacao] = useState(null);
+   const [postsHome, setHomePosts] = useState([]);
    const dispatch = useDispatch();
 
    function ComponenteX() {
@@ -30,6 +30,7 @@ export default function AuthRoutes({ store }) {
    }
 
    useEffect(() => {
+
       const checkAuthorization = async () => {
          if (idEventoParam && tokenReactParam) {
             if (autenticado) {
@@ -49,16 +50,35 @@ export default function AuthRoutes({ store }) {
          }
          setCheckAutenticacao(false);
       };
-      checkAuthorization();
+
+      const fetchData = async () => {
+         try {
+            const postsHome = await util.sendRequestGET(`${ENUM.enderecosIP.SERVICO_POSTS}/posts`, undefined, undefined, false);
+            if(postsHome.status){
+               setHomePosts([])
+            }
+            console.log(Object.values(postsHome.data));
+            setHomePosts(Object.values(postsHome.data));
+         } catch (error) {
+            console.error('Erro ao processar dados do Spotify:', error);
+         }
+      };
+      
+   checkAuthorization();
+   fetchData();
    }, []);
 
 
    return (
       <Routes>
          <Route
-            path="/home"
+            path="/home/:idPublicacao"
             element={checkAutenticacao === null ? null : checkAutenticacao ? <Home listaPublicacoes={publicacoes}/> : <ComponenteX />}
          />         
+          <Route
+            path="/home"
+            element={checkAutenticacao === null ? null : checkAutenticacao ? <Home listaPublicacoes={postsHome}/> : <ComponenteX />}
+         /> 
          <Route
             path="/top-globais"
             element={checkAutenticacao === null ? null : checkAutenticacao ?  <TopGlobais/> : <ComponenteX />}

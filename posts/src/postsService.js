@@ -14,7 +14,7 @@ export default class PostsService {
     if (PostsService.instance) {
       return PostsService.instance;
     }
-    this.bdPosts = [];
+    this.bdPosts = {};
     PostsService.instance = this;
   }
 
