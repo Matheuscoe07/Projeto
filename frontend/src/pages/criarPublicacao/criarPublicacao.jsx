@@ -52,15 +52,17 @@ export default function CriarPublicacao() {
     );
   }
   
-  
+  function reinicarBarrabusca() {
+    const bmuscia = document.getElementById('bmuscia');
+    bmuscia.style.height = '2.1em'; 
+    bmuscia.style.padding = '1em 0.3em'; 
+    bmuscia.style.background = ''; 
+  }
 
 
   useEffect(() => {
     const chamadaBuscaAPI = async () => {
-      const bmuscia = document.getElementById('bmuscia');
-      bmuscia.style.height = '27px'; 
-      bmuscia.style.paddingLeft = '0px'; 
-      bmuscia.style.background = ''; 
+     
       const { data } = await util.sendRequestGET(`${ENUM.enderecosIP.SERVICO_API_SPOTIFY}/api_spotify/buscarMusicas/${musicaBuscada}`, options.headers, undefined, false);
       if (data) {
         setListaMusicasEncontradas(data.musicasEncontradas)
@@ -87,7 +89,7 @@ export default function CriarPublicacao() {
       <form action={`${ENUM.enderecosIP.SERVICO_API_SPOTIFY}/api_spotify/top-globais/musicas`} className='form-infos-publicacao text-start mx-auto' style={{ width: '90%' }}>
         <label htmlFor="bmuscia" className='publi-info'>Nome da Música:</label>
         <div className="ctn-buscar-musicas">
-          <input type="text" id='bmuscia' name='bmuscia' placeholder='Buscar música' className="info" onChange={(e) => setMusicaBuscada(e.target.value)} required />
+          <input type="text" id='bmuscia' name='bmuscia' placeholder='Buscar música' className="info" onChange={(e) => setMusicaBuscada(e.target.value)} onFocus={reinicarBarrabusca} required />
           {listaMusicasEncontradas.length > 0 && musicaBuscada ? renderizarListaDeMusicas(): null}
         </div>
         <div className="ctn-fazer-comentario mb-3">
