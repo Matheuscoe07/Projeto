@@ -31,28 +31,24 @@ export default class PostsService {
     console.log(this.bdPosts);
   }
 
-  buscarPostPorID(postID) {
-    this.bdPosts.forEach(post => {
-      if(postID == post.getPostID()){
-        return post;
-      }
-    });
+  curtirPost(postID, userID) {
+    this.bdPosts[postID].curtidas.push(userID);
   }
 
-  buscarPostsDeUser(IDBuscado) {
-    const postsDeUser = [];
-    this.bdPosts.forEach(post => {
-      if(post.userID === IDBuscado){
-        postsDeUser.push(post);
-      }
-      return postsDeUser;
-    })
+  descurtirPost(postID, userID) {
+    const colecaoCurtidas = this.bdPosts[postID].curtidas
+    const indice = colecaoCurtidas.indexOf(userID);
+    if (indice !== -1) {
+      colecaoCurtidas.splice(indice, 1);
+    }
   }
 
-  buscarArvoreDePosts() {
-    const arvoreDePosts = [];
-    this.bdPosts.forEach(post => {
-
-    })
+  getBdPosts() {
+    return this.bdPosts;
   }
+
+  getPostsFilhos(postIDPai) {
+    
+  }
+
 }
