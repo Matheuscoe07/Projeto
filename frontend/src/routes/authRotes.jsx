@@ -9,7 +9,7 @@ import util from '../Util/util';
 import CartaoPublicacao from '../components/cartaoPublicacao/cartaoPublicacao';
 import ENUM from '../Util/enums';
 import { setUsuarioLogado } from '../actions/login';
-import { publicacoes } from '../services/dataProcessor';
+import ReTweezers from '../pages/reTweezers/reTweezers';
 
 export default function AuthRoutes({ store }) {
 
@@ -54,13 +54,14 @@ export default function AuthRoutes({ store }) {
       const fetchData = async () => {
          try {
             const postsHome = await util.sendRequestGET(`${ENUM.enderecosIP.SERVICO_POSTS}/posts`, undefined, undefined, false);
-            if(postsHome.status){
+            if(!postsHome.status){
                setHomePosts([])
+               return;
             }
-            console.log(Object.values(postsHome.data));
+            console.log("postsHome: ", Object.values(postsHome.data));
             setHomePosts(Object.values(postsHome.data));
          } catch (error) {
-            console.error('Erro ao processar dados do Spotify:', error);
+            console.error('Erro ao pegar todas as publicacoes:', error);
          }
       };
       
@@ -72,8 +73,8 @@ export default function AuthRoutes({ store }) {
    return (
       <Routes>
          <Route
-            path="/home/:idPublicacao"
-            element={checkAutenticacao === null ? null : checkAutenticacao ? <Home listaPublicacoes={publicacoes}/> : <ComponenteX />}
+            path="/home/:idPublicacao/"
+            element={checkAutenticacao === null ? null : checkAutenticacao ? <ReTweezers/> : <ComponenteX />}
          />         
           <Route
             path="/home"

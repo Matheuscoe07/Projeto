@@ -46,12 +46,19 @@ export default class PostsService {
     return this.bdPosts[idPost];
   }
 
-  getPostsFilhos(idPai) {
-    return this.bdPosts.filter(post => post == idPai);
+  async getPostsFilhos(idPai) {
+   const postPai = this.getIdPost(idPai);
+   const idDosFilhos = postPai.postsFilhos;
+    if(postPai && idDosFilhos.length > 0) {
+      const postsFilhos = idDosFilhos.map(idFilho => this.bdPosts[idFilho]);
+      return postsFilhos;
+    } else {
+      return []; // Ou você pode lançar uma exceção ou retornar uma mensagem de erro, se preferir.
+    }
   }
+  
 
   async getBdPosts() {
     return this.bdPosts;
   }
-
 }

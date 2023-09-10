@@ -8,21 +8,26 @@ import iconeReTweezer from '../../images/iconeReTweezer.png';
 import iconeVerRelacionados from '../../images/iconeVerRelacionados.png';
 import iconeDeslike from '../../images/iconeDeslike.png';
 import iconeLike from '../../images/iconeLike.png';
+import { useNavigate } from 'react-router-dom';
 
 export default function CartaoPublicacao(props) {
+
+  const tokenReact = useSelector(state => state.loginReducer.tokenReact);
+  const idEvento = useSelector(state => state.loginReducer.idEvento);
 
   const usuarioData = useSelector(state => state.loginReducer.usuario);
   const [liked, setLiked] = useState(props.curtidas.includes(usuarioData._id));
   const [qtdeLike, setQtdeLike] = useState(null);
+  const urlPostPai = `/auth/${idEvento}/${tokenReact}/home/${props.id}`;
 
-  const verRelacionados = async () => {
-    // idPublicacao
+  const navigate = useNavigate();
 
-  }
 
   const fazerUmretweezer = async () => {
 
   }
+
+
 
   const convertDataTimeBR = (dataHora) => {
     const data = new Date(dataHora);
@@ -93,9 +98,18 @@ export default function CartaoPublicacao(props) {
                   setQtdeLike(liked ? qtdeLike - 1 : qtdeLike + 1);
                 }}>
                   {liked ? <img src={iconeLike} alt="" /> : <img src={iconeDeslike} alt="" />}
-                  <p className='d-inline ms-3' style={{fontWeight:'bold', color:'#C7BCBC'}}>{qtdeLike}</p>
+                  <p className='d-inline ms-3' style={{ fontWeight: 'bold', color: '#C7BCBC' }}>{qtdeLike}</p>
                 </div>
-                <img src={iconeVerRelacionados} alt="" onClick={verRelacionados} />
+
+                <div className="like-container" 
+                  onClick={() => {
+                    if (props.reTweezers.length > 0) {
+                      navigate(`${urlPostPai}`);
+                    }
+                  }}>
+                  <img src={iconeVerRelacionados} alt="iconeVerRelacionados" />
+                  <p className='d-inline ms-3' style={{ fontWeight: 'bold', color: '#C7BCBC' }}>{props.reTweezers.length}</p>
+                </div>
                 <img src={iconeReTweezer} alt="" onClick={fazerUmretweezer} />
               </div>
 

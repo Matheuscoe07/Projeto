@@ -33,9 +33,12 @@ class PostsController {
   }
 
   async getPostsFilhos(req, res) {
-    const {idPublicacaoPai} = req.body;
+    const idPostPai = req.params.idPostPai;
+    if(!idPostPai){
+      throw new Error(`Parametros não passados corretamente.`);
+    }
     try {
-       const publicacoes = this.postsService.getPostsFilhos;
+       const publicacoes = await this.postsService.getPostsFilhos(idPostPai);
        res.status(200).json(publicacoes);
     } catch(error) {
       res.status(500).send(`erro: ${error}`);
@@ -50,11 +53,9 @@ class PostsController {
       }
         let publicacao = this.postsService.getIdPost(idPublicacao);
         if(publicacao.curtidas.includes(idUsuario)){
-          console.log('DESCUTIR');
           publicacao = this.postsService.descurtirPost(idPublicacao, idUsuario);
         }else{
           publicacao = this.postsService.curtirPost(idPublicacao, idUsuario);
-          console.log('CURTIR: ', publicacao);
         }
         res.status(200).json(publicacao);
     } catch(error) {
@@ -63,7 +64,7 @@ class PostsController {
   }
 }
 
-router.get('/posts-filhos', async (req, res) => {
+router.get('/posts-filhos/:idPostPai', async (req, res) => {
   const postsController = new PostsController();
   postsController.getPostsFilhos(req, res);
 });
