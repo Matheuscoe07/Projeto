@@ -7,6 +7,7 @@ import CriarPublicacao from '../pages/criarPublicacao/criarPublicacao';
 import TopGlobais from '../pages/topGlobais/topGlobais';
 import util from '../Util/util';
 import CartaoPublicacao from '../components/cartaoPublicacao/cartaoPublicacao';
+import CriarReTweezer from '../pages/criarReTweezer/criarReTweezer';
 import ENUM from '../Util/enums';
 import { setUsuarioLogado } from '../actions/login';
 import ReTweezers from '../pages/reTweezers/reTweezers';
@@ -54,7 +55,7 @@ export default function AuthRoutes({ store }) {
       const fetchData = async () => {
          try {
             const postsHome = await util.sendRequestGET(`${ENUM.enderecosIP.SERVICO_POSTS}/posts`, undefined, undefined, false);
-            if(!postsHome.status){
+            if (!postsHome.status) {
                setHomePosts([])
                return;
             }
@@ -64,9 +65,9 @@ export default function AuthRoutes({ store }) {
             console.error('Erro ao pegar todas as publicacoes:', error);
          }
       };
-      
-   checkAuthorization();
-   fetchData();
+
+      checkAuthorization();
+      fetchData();
    }, []);
 
 
@@ -74,19 +75,23 @@ export default function AuthRoutes({ store }) {
       <Routes>
          <Route
             path="/home/:idPublicacao/"
-            element={checkAutenticacao === null ? null : checkAutenticacao ? <ReTweezers/> : <ComponenteX />}
-         />         
-          <Route
+            element={checkAutenticacao === null ? null : checkAutenticacao ? <ReTweezers /> : <ComponenteX />}
+         />
+         <Route
             path="/home"
-            element={checkAutenticacao === null ? null : checkAutenticacao ? <Home listaPublicacoes={postsHome}/> : <ComponenteX />}
-         /> 
+            element={checkAutenticacao === null ? null : checkAutenticacao ? <Home listaPublicacoes={postsHome} /> : <ComponenteX />}
+         />
          <Route
             path="/top-globais"
-            element={checkAutenticacao === null ? null : checkAutenticacao ?  <TopGlobais/> : <ComponenteX />}
+            element={checkAutenticacao === null ? null : checkAutenticacao ? <TopGlobais /> : <ComponenteX />}
          />
          <Route
             path="/perfil"
             element={checkAutenticacao === null ? null : checkAutenticacao ? <UserInfo userData={{}} /> : <ComponenteX />}
+         />
+         <Route
+            path="/criar-retweezer"
+            element={checkAutenticacao === null ? null : checkAutenticacao ? <CriarReTweezer /> : <ComponenteX />}
          />
          <Route
             path="/criar-post"

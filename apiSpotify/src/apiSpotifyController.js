@@ -124,6 +124,23 @@ class ApiSpotifyController {
       }
    }
 
+   async pegarMusicasPorId(req, res) {
+      try {
+         const { headers: { authorization: access_token }} = req;
+         const idMusica = req.params.idMusica;
+         // const idMusica = '11dFghVXANMlKmJXsNCbNl';
+         if (!access_token || !idMusica) {
+            throw new Error('Parametros nao passados corretamente');
+         }
+         const musicasEncontrada = await this.apiSpotifyService.buscarMusica(access_token, idMusica);
+
+         res.status(200).json(musicasEncontrada);
+
+      } catch (error) {
+         res.status(500).send({ error: `${error}` });
+      }
+   }
+
 }
 
 const apiSpotifyController = new ApiSpotifyController();
@@ -146,6 +163,10 @@ router.get('/top-globais/:tipo', async (req, res) => {
 
 router.get('/buscarMusicas/:nomeMusica', async (req, res) => {
    await apiSpotifyController.buscarMusicas(req, res);
+});
+
+router.get('/buscarMusicasPorId/:idMusica', async (req, res) => {
+   await apiSpotifyController.pegarMusicasPorId(req, res);
 });
 
 // http GET 'https://api.spotify.com/v1/search?q=hurricane&type=track' \

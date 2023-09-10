@@ -28,7 +28,7 @@ export default function Home({ listaPublicacoes, reTweezer }) {
       </div>
       {listaPublicacoes.map((publicacao) => (
         <div key={publicacao.postID} className='item-cartao-publicacao' style={{ border: ' 1px solid rgba(255, 255, 255, 0.682)' }}>
-          <CartaoPublicacao id={publicacao.postID} fotoUsuario={publicacao.fotoPerfil} nomeUsuario={publicacao.userID} timeStamp={publicacao.timeStamp} fotoMusica={publicacao.fotoMusica} nomeMusica={publicacao.nomeMusica} artista={publicacao.nomeArtista} comentario={publicacao.texto} curtidas={publicacao.curtidas} reTweezers={publicacao.postsFilhos} />
+          <CartaoPublicacao id={publicacao.postID} fotoUsuario={publicacao.fotoPerfil} nomeUsuario={publicacao.userID} timeStamp={publicacao.timeStamp} fotoMusica={publicacao.fotoMusica} nomeMusica={publicacao.nomeMusica} artista={publicacao.nomeArtista} comentario={publicacao.texto} curtidas={publicacao.curtidas} reTweezers={publicacao.postsFilhos} musicaID={publicacao.musicaID} />
         </div>
       ))}
     </div>

@@ -93,4 +93,16 @@ export default class ApiSpotifyService {
       const returnMusciasEncontradas = this.apiSpotifyModel.formatarMusciasEncontradas(response.data);
       return returnMusciasEncontradas;
    }
+
+   async buscarMusica(access_token, idMusica) {
+      const options = {
+         url: `https://api.spotify.com/v1/tracks/${idMusica}`,
+         headers: { Authorization: `${access_token}` },
+      };
+      const response = await util.sendRequestGET(options.url, options.headers, undefined, false);
+      if (!response.status){
+         throw new Error(response.msg);
+      }
+      return response.data;
+   }
 }

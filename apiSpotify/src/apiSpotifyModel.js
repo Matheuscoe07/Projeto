@@ -61,4 +61,5 @@ export default class ApiSpotifyModel {
 
       return musicasEncontradas.sort((a, b) => b.popularity - a.popularity);;
    }
+
 }

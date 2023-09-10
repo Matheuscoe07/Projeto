@@ -19,15 +19,14 @@ export default function CartaoPublicacao(props) {
   const [liked, setLiked] = useState(props.curtidas.includes(usuarioData._id));
   const [qtdeLike, setQtdeLike] = useState(null);
   const urlPostPai = `/auth/${idEvento}/${tokenReact}/home/${props.id}`;
+  const urlCriarPost = `/auth/${idEvento}/${tokenReact}/criar-retweezer`;
 
   const navigate = useNavigate();
 
-
-  const fazerUmretweezer = async () => {
-
-  }
-
-
+  const params = {
+    musicaID: props.musicaID,
+    idPostPai: props.id,
+  };
 
   const convertDataTimeBR = (dataHora) => {
     const data = new Date(dataHora);
@@ -110,7 +109,7 @@ export default function CartaoPublicacao(props) {
                   <img src={iconeVerRelacionados} alt="iconeVerRelacionados" />
                   <p className='d-inline ms-3' style={{ fontWeight: 'bold', color: '#C7BCBC' }}>{props.reTweezers.length}</p>
                 </div>
-                <img src={iconeReTweezer} alt="" onClick={fazerUmretweezer} />
+                <img src={iconeReTweezer} alt="" onClick={() => navigate(`${urlCriarPost}`, {state: params})} />
               </div>
 
             </div>
