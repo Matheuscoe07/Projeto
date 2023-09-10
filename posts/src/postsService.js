@@ -56,9 +56,27 @@ export default class PostsService {
       return []; // Ou você pode lançar uma exceção ou retornar uma mensagem de erro, se preferir.
     }
   }
+
+  ordenarJSONPorTimestamp(json) {
+    // Converter o objeto em um array de objetos
+    const jsonArray = Object.values(json);
+
+    // Ordenar o array pelo timestamp mais recente
+    jsonArray.sort((a, b) => new Date(b.timeStamp) - new Date(a.timeStamp));
+
+    // Converter o array ordenado de volta para um objeto
+    const sortedJson = {};
+    jsonArray.forEach(item => {
+        sortedJson[item.postID] = item;
+    });
+
+    return sortedJson;
+}
   
 
   async getBdPosts() {
+    // console.log(this.ordenarJSONPorTimestamp(this.bdPosts));
+    return (this.ordenarJSONPorTimestamp(this.bdPosts));
     return this.bdPosts;
   }
 }
