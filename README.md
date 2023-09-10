@@ -15,6 +15,8 @@ Este é o README para o projeto Tweezer, um sistema de microserviços desenvolvi
 
 https://github.com/Matheuscoe07/Projeto/assets/86134291/52e407ba-d095-49de-af1b-92fe5603bd11
 
+Link Vídeo Youtube: https://www.youtube.com/watch?v=7yt2-r2EBas
+
 
 
 ## Autores
