@@ -7,7 +7,7 @@ Este é o README para o projeto Tweezer, um sistema de microserviços desenvolvi
 - `frontend`
 - `posts`
 - `usuarios`
-- `Util`
+- `Util` (somente install)
 
 ## Vídeo de Demonstração
 
