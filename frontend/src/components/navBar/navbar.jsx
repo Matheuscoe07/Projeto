@@ -18,6 +18,14 @@ export default function Navbar({ usuarioAutenticado }) {
 
 
   // Função para atualizar o link ativo
+  const handleLinkClickAuth = (linkId) => {
+    if (!usuarioAutenticado) {
+      alert('Você precisa fazer login!');
+    } else {
+      setActiveLink(linkId);
+    }
+  };
+
   const handleLinkClick = (linkId) => {
     setActiveLink(linkId);
   };
@@ -75,16 +83,16 @@ export default function Navbar({ usuarioAutenticado }) {
         <div className='col-7'>
           <ul className='ctn-list'>
             <li className={`list-inline-item ${activeLink === activeLinkGlobal ? 'link-ativo' : ''}`}>
-              <NavLink to={`${urlBasica}/top-globais`} onClick={() => handleLinkClick(activeLinkGlobal)} >Global</NavLink>
+              <NavLink to={ usuarioAutenticado ? `${urlBasica}/top-globais` : null} onClick={() =>  handleLinkClick(activeLinkGlobal)} >Global</NavLink>
             </li>
             <li className={`list-inline-item ${activeLink === activeLinkHome ? 'link-ativo' : ''}`}>
-              <NavLink to={`${urlBasica}/home`} onClick={() => handleLinkClick(activeLinkHome)}>Home</NavLink>
+              <NavLink to={ usuarioAutenticado ? `${urlBasica}/home` : null}  onClick={() => handleLinkClickAuth(activeLinkHome)}>{usuarioAutenticado ? 'Home' : ''}</NavLink>
             </li>
             <li className={`list-inline-item ${activeLink === activeLinkCriarPubli ? 'link-ativo' : ''}`}>
-              <NavLink to={`${urlBasica}/criar-post`} onClick={() => handleLinkClick(activeLinkCriarPubli)}>Publicar um Tweezer</NavLink>
+              <NavLink to={usuarioAutenticado ? `${urlBasica}/criar-post` : null} onClick={() => handleLinkClickAuth(activeLinkCriarPubli)}> {usuarioAutenticado ? 'Publicar um Tweezer' : ''}</NavLink>
             </li>
             <li className={`list-inline-item ${activeLink === activeLinkCriarPerfil ? 'link-ativo' : ''}`}>
-              <NavLink className='p-0 m-0' to={`${urlBasica}/perfil`} onClick={() => handleLinkClick(activeLinkCriarPerfil)}>Meus Dados</NavLink>
+              <NavLink className='p-0 m-0' to={ usuarioAutenticado ? `${urlBasica}/perfil` : null} onClick={() => handleLinkClickAuth(activeLinkCriarPerfil)}>{usuarioAutenticado ? 'Meus Dados' : ''}</NavLink>
             </li>
           </ul>
         </div>

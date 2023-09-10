@@ -8,13 +8,13 @@ import { useLocation } from 'react-router-dom';
 
 export default function CriarReTweezer() {
    const location = useLocation();
-   const { musicaID, idPostPai } = location.state;
-
-    useEffect(() => {
-      console.log('musicaID: ', musicaID);
-      console.log('idPostPai: ', idPostPai);
+   const { musicaID, idPostPai } = location.state || {}; 
+   
+   //  useEffect(() => {
+   //    console.log('musicaID: ', musicaID);
+   //    console.log('idPostPai: ', idPostPai);
     
-    }, []);
+   //  }, []);
 
    return (
       <div className='ctn-page-re-tweezers'>

@@ -10,11 +10,14 @@ app.use(bodyParser.json());
 
 export default class PostsService {
 
+
   constructor() {
     if (PostsService.instance) {
       return PostsService.instance;
     }
-    this.bdPosts = {};
+    this.bdPosts = util.mockJsonPosts();
+    // this.bdPosts = util.mockJsonPosts;
+
     PostsService.instance = this;
   }
 
@@ -80,3 +83,4 @@ export default class PostsService {
     return this.bdPosts;
   }
 }
+
