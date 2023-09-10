@@ -9,7 +9,7 @@ Este é o README para o projeto Tweezer, um sistema de microserviços desenvolvi
 - `usuarios`
 - `Util` (Somente npm install)
 
-OBS: Para a conta ser vinculda com sucesso é necessário ter a conta do spotify vinculada cadastrada com o nosso projeto Tweezer no Spotify for developers.
+OBS: Para o login com spotify ser realizado com sucesso em nosso aplicativo é necessário ter a respectiva conta do spotify cadastrada em o nosso projeto Tweezer no Spotify for developers.
 
 ## Vídeo de Demonstração
 
