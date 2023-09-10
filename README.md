@@ -1,6 +1,6 @@
 # Projeto Tweezer - MicroServiços em Node.js + React
 
-Este é o README para o projeto Tweezer, um sistema de microserviços desenvolvido em Node.js e React. O Tweezer é composto por vários módulos, cada um em seu próprio diretório. Para que o programa funcione corretamente, é necessário executar o comando `npm install` em cada um dos seguintes diretórios:
+Este é o README para o projeto Tweezer, um sistema de microserviços desenvolvido em Node.js e React. O Tweezer é composto por vários módulos, cada um em seu próprio diretório. Para que o programa funcione corretamente, é necessário executar o comando `npm install` e em seguida o `npm start` em cada um dos seguintes diretórios:
 
 - `apiSpotify`
 - `barramentoDeEventos`
