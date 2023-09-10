@@ -1,0 +1,75 @@
+/* .ctn-cartao-publicacao {
+   border-radius: 8px;
+   border: 2px solid rgba(255, 255, 255, 0.192);
+   
+} */
+
+.ctn-cartao-publicacao-infos{
+   background-color: #242424;
+   border-radius: 15px;
+   /* border: 2px solid rgba(255, 255, 255, 0.682); */
+}
+
+.ctn-cabecalho{
+   padding: 2px 1em;
+   position: relative;
+}
+
+.ctn-foto-musica{
+   border-radius: 10px;
+   /* padding: 5px; */
+}
+
+.ctn-cabecalho .ctn-logo {
+   position: absolute;
+   top: 10%;
+   left: 0%;
+}
+
+.ctn-main-infos{
+   /* border-radius: 10px; */
+}
+
+.ctn-cartao-publicacao .ctn-comentario textarea {
+   resize: none;
+   border: none;
+   outline: none;
+   border-radius: 10px;
+   background-color: rgba(0, 0, 0, 0.302);
+   font-size: 1.1em;
+   padding: 0.5em 1em;
+
+}
+
+.ctn-cartao-publicacao .ctn-foto-usuario img{
+   width: 4em;
+   height: 4em;
+   border-radius: 50%;
+   object-fit: cover;
+}
+
+.ctn-cartao-publicacao .ctn-foto-musica img{
+   object-fit: cover;
+}
+
+.ctn-cartao-publicacao .ctn-infos{
+   position: relative;
+}
+
+.ctn-infos .ctn-comentario{
+   position: absolute;
+   top: 0%;
+}
+
+.ctn-icones{
+   position: absolute;
+   top: 100%;
+   /* background-color: rgba(0, 0, 0, 0.302); */
+}
+.ctn-icones img{
+   width: 40px;
+}
+
+.ctn-icones :hover{
+   cursor: pointer;
+}

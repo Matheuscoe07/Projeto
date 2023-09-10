@@ -1,0 +1,60 @@
+:root {
+   --cor0:#1ed760;
+   --cor1:#242424;
+   --corBranca: #fff;
+   --corPreta: #000;
+   --fontPadrao: monstserrat, serif;
+   --fontSizeGrande: 1.6em;
+}
+
+*{
+   margin: 0;
+   padding: 0;
+   color: var(--corBranca);
+   font: var(--fontPadrao);
+}
+
+body{
+   background-color: var(--corPreta);
+}
+
+p{
+   margin: 0;
+   padding: 0;
+}
+
+.main-titles {
+   font-size:  var(--fontSizeGrande);
+}
+
+.click{
+   color: var(--corBranca);
+   text-decoration: none;
+}
+
+.click:hover {
+   cursor: pointer;
+   text-decoration: underline;
+}
+
+.btn {
+   background-color: #333;
+   border-color: var(--cor1);
+   border-width: 0.15em;
+   border-radius: 0%;
+}
+
+[class^="col-"] {
+   margin: 0;
+   padding: 0;
+}
+
+.col {
+   margin: 0;
+   padding: 0;
+}
+
+.row {
+   margin: 0;
+   padding: 0;
+}

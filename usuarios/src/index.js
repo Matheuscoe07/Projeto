@@ -1,38 +1,16 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const axios = require("axios");
+import express from "express";
+import bodyParser from "body-parser";
+import { UsuarioController, router } from './usuarioController.js';
+import ENUM from '../../Util/src/enums.js';
 
 const app = express();
+
 app.use(bodyParser.json());
 
-const bdUsuarios = {};
+app.use('/usuarios', router)
 
-app.get('/usuarios', (req, res) => {
-    res.send(bdUsuarios)
-}); 
-
-app.post('/usuarios', async (req, res) => {
-    jsonSpotify = req.body.spotify_data
-    console.log(jsonSpotify)
-    bdUsuarios[jsonSpotify.id] = {
-        username:jsonSpotify.email, nome:jsonSpotify.display_name
-    }   
-
-    await axios.post('http://localhost:10000/eventos', {
-        tipo:'usuarioLogado',
-        dados:{
-            jsonSpotify
-        }
-    })
-
-    res.status(201).send(bdUsuarios[jsonSpotify.id]);
+app.listen(ENUM.portas.PORTA_USUARIO, () => {
+  console.log(`Usuários: Porta ${ENUM.portas.PORTA_USUARIO}`);
 });
 
-app.post("/eventos", (req, res) => {
-    console.log(req.body);
-    res.status(200).send({ msg: "ok" });
-    });
 
-app.listen(5001, (() => {
-    console.log('Usuários. Porta 5001');
-    }));
