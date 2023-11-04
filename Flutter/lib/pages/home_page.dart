@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
                   title: const Text('Login ou Cadastre-se'),
                   onTap: () {
                     Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const LoginPage()));
+                      Navigator.pushNamed(context, '/login') as Route<Object?>);
                   },
                 ),
               ],
