@@ -1,9 +1,7 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 
 class MobileAppBar extends StatelessWidget {
-  const MobileAppBar({super.key});
+  const MobileAppBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

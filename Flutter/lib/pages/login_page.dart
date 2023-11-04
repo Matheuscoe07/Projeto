@@ -1,17 +1,12 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'dart:html';
+
 import 'package:flutter/material.dart';
-
-import 'dart:async';
-
-import 'package:flutter/services.dart';
-import 'package:flutter_js/flutter_js.dart';
-
-import 'dart:html'; 
-import 'package:Flutter/Util/enum.dart' as util;';
+import 'package:Flutter/Util/util.dart' as util;
+// ignore: library_prefixes
+import 'package:Flutter/Util/enum.dart' as ENUM;
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +15,9 @@ class LoginPage extends StatelessWidget {
         centerTitle: true,
         toolbarHeight: 72,
         backgroundColor: Colors.black,
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Text(
               'Tweezer', 
               style: TextStyle(color: Colors.white),
@@ -63,22 +58,19 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-// Import this library for using window.location.href
-
 void chamarAutenticacaoSpotify() {
   try {
-    String tokenReact = util.generateRandomString(16);
-    dispatch(setTokenReact(tokenReact));
+    String tokenReact = util.Util.generateRandomString(16);
+    //dispatch(setTokenReact(tokenReact));
 
     String authUrlWithToken =
-        '${ENUM.enderecosIP['SERVICO_API_SPOTIFY2']}/api_spotify/login/$tokenReact';
+        '${ENUM.ENUM.enderecosIP['SERVICO_API_SPOTIFY2']}/api_spotify/login/$tokenReact';
     print(authUrlWithToken);
 
     window.location.href = authUrlWithToken;
   } catch (error) {
     print('Erro de rede');
   }
+
 }
 
-// Replace `util.generateRandomString(16)` with the actual implementation of your random string generation.
-// Replace `dispatch(setTokenReact(tokenReact))` with the appropriate function calls in your Dart code.
