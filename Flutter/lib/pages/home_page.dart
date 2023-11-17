@@ -51,67 +51,16 @@ class HomePage extends StatelessWidget {
             preferredSize: Size(double.infinity, 56),
             child: MobileAppBar()  
             ),                
-              body: ListView(
-          children: [
-            Container(
-              color: const Color.fromARGB(255, 54, 54, 54),
-              child: const Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Text(
-                      'Top 10 artistas globais',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+              body: const Center(
+                child: Text(
+                  'Faça login para acessar os conteúdos exclusivos',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
                   ),
-                  TopArtistas(),
-                ],
+                ),
               ),
-            ),
-            Container(
-              color: const Color.fromARGB(255, 54, 54, 54),
-              child: const Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Text(
-                      'Top 10 álbuns globais',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  TopAlbuns(),
-                ],
-              ),
-            ),
-            Container(
-              color: const Color.fromARGB(255, 54, 54, 54),
-              child: const Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Text(
-                      'Top 10 músicas globais',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  TopMusicas(),
-                ],
-              ),
-            ),
-          ],
-        ),
       );
     });
   }
