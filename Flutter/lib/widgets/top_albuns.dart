@@ -2,15 +2,15 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 final List<String> imgList = [
-  'assets/img1.jpg',
-  'assets/img2.jpg',
-  'assets/img3.jpg',
-  'assets/img4.jpg',
   'assets/img5.jpg',
+  'assets/img4.jpg',
+  'assets/img3.jpg',
+  'assets/img2.jpg',
+  'assets/img1.jpg',
 ];
 
-class TopArtistas extends StatelessWidget {
-  const TopArtistas({Key? key}) : super(key: key);
+class TopAlbuns extends StatelessWidget {
+  const TopAlbuns({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

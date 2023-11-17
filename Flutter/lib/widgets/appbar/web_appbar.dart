@@ -17,18 +17,6 @@ class WebAppBar extends StatelessWidget {
             style: TextStyle(color: Colors.white),
           ),
           const Expanded(child: SizedBox()),
-          TextButton(
-            onPressed: () {},
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.white, 
-              textStyle: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                decoration: TextDecoration.underline
-              ),
-            ), 
-            child: const Text('Global'),
-          ),
           const Expanded(child: SizedBox()),
           TextButton(
             onPressed: () {
