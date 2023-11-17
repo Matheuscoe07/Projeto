@@ -51,13 +51,19 @@ class HomePage extends StatelessWidget {
             preferredSize: Size(double.infinity, 56),
             child: MobileAppBar()  
             ),                
-              body: const Center(
-                child: Text(
-                  'Faça login para acessar os conteúdos exclusivos',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+              body: Center(
+                child: Container(
+                  color: Color.fromARGB(255, 54, 54, 54),
+                  child: const Center(
+                    child: Text(
+                      'Faça login para acessar os conteúdos exclusivos',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ),

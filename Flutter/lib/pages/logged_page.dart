@@ -1,5 +1,6 @@
 import 'package:Flutter/widgets/appbar/mobile_appbar.dart';
 import 'package:Flutter/widgets/appbar/web_appbar.dart';
+import 'package:Flutter/widgets/appbar/web_appbar_logged.dart';
 import 'package:Flutter/widgets/top_albuns.dart';
 import 'package:Flutter/widgets/top_artistas.dart';
 import 'package:Flutter/widgets/top_musicas.dart';
@@ -32,20 +33,13 @@ class LoggedPage extends StatelessWidget {
                     Navigator.pop(context);
                   },
                 ),
-                ListTile(
-                  title: const Text('Login ou Cadastre-se'),
-                  onTap: () {
-                    Navigator.push(context,
-                      Navigator.pushNamed(context, '/login') as Route<Object?>);
-                  },
-                ),
               ],
             ),
 
           ),
           appBar: constraints.maxWidth > 800 ? const PreferredSize(
             preferredSize: Size(double.infinity, 72),
-            child: WebAppBar())
+            child: WebAppBarLogged())
             : const PreferredSize(
             preferredSize: Size(double.infinity, 56),
             child: MobileAppBar()  
