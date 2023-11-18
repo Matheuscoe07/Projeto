@@ -53,7 +53,7 @@ class LoggedPage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      'Top 10 artistas globais',
+                      'Top artistas globais',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 24,
@@ -72,7 +72,7 @@ class LoggedPage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      'Top 10 álbuns globais',
+                      'Top álbuns globais',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 24,
@@ -91,7 +91,7 @@ class LoggedPage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      'Top 10 músicas globais',
+                      'Top músicas globais',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 24,

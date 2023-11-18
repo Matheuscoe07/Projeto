@@ -1,7 +1,9 @@
 export 'util.dart';
 import 'dart:convert';
 import 'dart:core';
+import 'dart:html';
 import 'dart:io';
+import 'package:http/http.dart' as http;
 
 class Util {
   static String generateRandomString(int length) {
@@ -62,20 +64,20 @@ class Util {
   int? port;
   bool isPortOpen = true;
 
-  if (checkPort) {
-    port = extrairPorta(strRequest);
-    isPortOpen = await checkPort;
-  }
+  // if (checkPort) {
+  //   port = extrairPorta(strRequest);
+  //   isPortOpen = await checkPort;
+  // }
 
   if (isPortOpen) {
     try {
-      final HttpClientRequest request = await HttpClient().getUrl(Uri.parse(strRequest));
-      jsonHeader.forEach((key, value) {
-        request.headers.add(key, value);
-      });
-      final HttpClientResponse httpClientResponse = await request.close();
-      final String responseBody = await httpClientResponse.transform(utf8.decoder).join();
-      return {'status': true, 'msg': 'Sucesso', 'data': responseBody};
+      final response = await http.get(Uri.parse(strRequest), headers: {});
+      // jsonHeader.forEach((key, value) {
+        // request.headers.add(key, value);
+      // });
+      // final HttpClientResponse httpClientResponse = await request.close();
+      // final String responseBody = await httpClientResponse.transform(utf8.decoder).join();
+      return {'status': true, 'msg': 'Sucesso', 'data': response.body};
     } catch (error) {
       return {'status': false, 'msg': '$error'};
     }

@@ -1,4 +1,5 @@
 import 'package:Flutter/pages/home_page.dart';
+import 'package:Flutter/widgets/top_artistas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app_widget.dart';
@@ -16,7 +17,7 @@ void main() {
   
   // Configuração para aceitar conexões inseguras
   HttpOverrides.global = MyHttpOverrides();
-
+  chamarListaArtistas();
   runApp(const AppWidget());
 }
 
