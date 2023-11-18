@@ -12,7 +12,7 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Tweezer',
-      home: const HomePage(),
+      home: HomePage(),
       routes: {
         '/login' : (context) => const LoginPage(),
         '/auth' : (context) {

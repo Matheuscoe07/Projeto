@@ -44,6 +44,7 @@ dependencies:
   flutter_redux_navigation: ^0.7.1
   redux: ^5.0.0
   fluro: ^2.0.5
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +72,8 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
