@@ -24,7 +24,7 @@ Future<List<Artista>> chamarListaArtistas() async {
     var imgList = await Util.sendRequestGET(
         'http://127.0.0.1:8888/api_spotify/top-globais/artistas', null, null, false);
     var imgListDecoded = json.decode(imgList['data']);
-    print(imgListDecoded);
+    // print(imgListDecoded);
     if (imgListDecoded == null) {
       throw Exception("Invalid data format");
     }
